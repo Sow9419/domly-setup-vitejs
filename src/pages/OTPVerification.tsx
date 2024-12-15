@@ -41,9 +41,9 @@ const OTPVerification = () => {
 
           <div className="space-y-6">
             <InputOTP
+              maxLength={6}
               value={otp}
               onChange={setOtp}
-              maxLength={6}
               render={({ slots }) => (
                 <InputOTPGroup className="gap-2 justify-center">
                   {slots.map((slot, idx) => (
@@ -106,7 +106,7 @@ const OTPVerification = () => {
       <div className="hidden md:flex md:w-1/2 bg-gray-100 relative">
         <div className="absolute inset-0 bg-black bg-opacity-40 z-10 flex flex-col items-center justify-center text-white p-8">
           <h1 className="text-4xl font-bold mb-4">
-            Trouvez votre chez-vous avec LocationMaison!
+            Trouvez votre chez-vous avec DomHyn!
           </h1>
           <p className="text-xl mb-8">Plus de 50.000+ propriétés disponibles</p>
         </div>
