@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { FcGoogle } from "react-icons/fc";
 import { Phone } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -97,16 +98,16 @@ export const LoginForm = () => {
 
         <p className="text-center text-sm">
           Vous n'avez pas de compte?{" "}
-          <a href="#" className="text-primary hover:text-primary-hover font-semibold">
+          <Link to="/signup" className="text-primary hover:text-primary-hover font-semibold">
             S'inscrire
-          </a>
+          </Link>
         </p>
       </div>
 
       <div className="text-center text-xs text-gray-500 space-x-4">
-        <a href="#" className="hover:text-gray-700">Conditions d'utilisation</a>
-        <a href="#" className="hover:text-gray-700">Politique de confidentialité</a>
-        <a href="#" className="hover:text-gray-700">Aide</a>
+        <Link to="#" className="hover:text-gray-700">Conditions d'utilisation</Link>
+        <Link to="#" className="hover:text-gray-700">Politique de confidentialité</Link>
+        <Link to="#" className="hover:text-gray-700">Aide</Link>
       </div>
     </div>
   );
