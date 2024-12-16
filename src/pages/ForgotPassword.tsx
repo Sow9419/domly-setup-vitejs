@@ -22,15 +22,17 @@ const ForgotPassword = () => {
     <div className="min-h-screen flex flex-col md:flex-row">
       <div className="w-full md:w-1/2 flex items-center justify-center p-8">
         <div className="w-full max-w-md space-y-8">
-          <div className="text-center">
+          <div className="text-center relative">
             <Link
               to="/login"
-              className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900 mb-8"
+              className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 mb-8 absolute left-0 top-0"
             >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Retour à la connexion
+              <div className="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center">
+                <ArrowLeft className="w-5 h-5" />
+              </div>
+              <span>Retour</span>
             </Link>
-            <h1 className="text-2xl font-bold">Mot de passe oublié ?</h1>
+            <h1 className="text-2xl font-bold mt-16">Mot de passe oublié ?</h1>
             <p className="text-sm text-gray-600 mt-2">
               Entrez votre email pour réinitialiser votre mot de passe
             </p>
