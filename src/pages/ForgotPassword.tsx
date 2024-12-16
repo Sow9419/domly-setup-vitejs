@@ -14,59 +14,77 @@ const ForgotPassword = () => {
     console.log("Reset password for:", email);
     toast({
       title: "Email envoyé",
-      description: "Vérifiez votre boîte mail pour réinitialiser votre mot de passe",
+      description: "Si un compte existe avec cette adresse, vous recevrez un email de réinitialisation.",
     });
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <nav className="fixed top-0 left-0 right-0 h-20 bg-white z-50 flex items-center px-8 border-b">
-        <Link
-          to="/login"
-          className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900"
-        >
-          <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-sm">
-            <ArrowLeft className="w-5 h-5 text-white" />
-          </div>
-          <span>Retour</span>
-        </Link>
-      </nav>
-
-      <div className="flex-1 flex items-center justify-center p-8 mt-20">
+    <div className="min-h-screen flex flex-col md:flex-row">
+      <div className="w-full md:w-1/2 flex items-center justify-center p-8">
         <div className="w-full max-w-md space-y-8">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold">Réinitialiser le mot de passe</h1>
+          <div className="text-center relative">
+            <Link
+              to="/login"
+              className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 mb-8 absolute left-8 top-8"
+            >
+              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-sm">
+                <ArrowLeft className="w-5 h-5 text-white" />
+              </div>
+              <span>Retour</span>
+            </Link>
+            <h1 className="text-2xl font-bold mt-16">Mot de passe oublié ?</h1>
             <p className="text-sm text-gray-600 mt-2">
-              Entrez votre email pour recevoir un lien de réinitialisation
+              Entrez votre email pour réinitialiser votre mot de passe
             </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="relative">
-              <Input
-                type="email"
-                placeholder="Entrez votre email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="pl-10"
-              />
-              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <div className="space-y-2">
+              <div className="relative">
+                <Input
+                  type="email"
+                  placeholder="Entrez votre email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="pl-10"
+                />
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+              </div>
             </div>
 
-            <Button type="submit" className="w-full bg-[#9b87f5] hover:bg-[#7E69AB]">
-              Envoyer le lien de réinitialisation
+            <Button type="submit" className="w-full bg-primary hover:bg-primary-hover">
+              Envoyer les instructions
             </Button>
-
-            <div className="text-center">
-              <p className="text-sm text-gray-600">
-                Vous avez déjà un compte ?{" "}
-                <Link to="/login" className="text-[#9b87f5] hover:text-[#7E69AB]">
-                  Se connecter
-                </Link>
-              </p>
-            </div>
           </form>
+
+          <div className="text-center text-xs text-gray-500 space-x-4">
+            <Link to="#" className="hover:text-gray-700">
+              Conditions d'utilisation
+            </Link>
+            <Link to="#" className="hover:text-gray-700">
+              Politique de confidentialité
+            </Link>
+            <Link to="#" className="hover:text-gray-700">
+              Aide
+            </Link>
+          </div>
         </div>
+      </div>
+
+      <div className="hidden md:flex md:w-1/2 bg-gray-100 relative">
+        <div className="absolute inset-0 bg-black bg-opacity-40 z-10 flex flex-col items-center justify-center text-white p-8">
+          <h1 className="text-4xl font-bold mb-4">
+            Retrouvez l'accès à votre compte LocationMaison
+          </h1>
+          <p className="text-xl mb-8">
+            Nous vous aiderons à récupérer votre compte en toute sécurité
+          </p>
+        </div>
+        <img
+          src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2075&q=80"
+          alt="Luxury home interior"
+          className="object-cover w-full h-full"
+        />
       </div>
     </div>
   );

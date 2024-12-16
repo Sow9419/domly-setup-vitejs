@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
-import WorkspaceHeader from "@/components/workspace/WorkspaceHeader";
+import { WorkspaceHeader } from "@/components/workspace/WorkspaceHeader";
 import { UserTypeSelection } from "@/components/workspace/UserTypeSelection";
 import { ThemeSelection } from "@/components/workspace/ThemeSelection";
 import { InterfaceCustomization } from "@/components/workspace/InterfaceCustomization";
