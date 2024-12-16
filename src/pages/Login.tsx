@@ -21,16 +21,21 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
-      <div className="w-full md:w-1/2 flex items-center justify-center p-8">
+      <nav className="fixed top-0 left-0 right-0 h-20 bg-white z-50 flex items-center px-8 border-b">
+        <Link
+          to="/"
+          className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900"
+        >
+          <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-sm">
+            <ArrowLeft className="w-5 h-5 text-white" />
+          </div>
+          <span>Retour à l'accueil</span>
+        </Link>
+      </nav>
+
+      <div className="w-full md:w-1/2 flex items-center justify-center p-8 mt-20">
         <div className="w-full max-w-md space-y-8">
           <div className="text-center">
-            <Link
-              to="/"
-              className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900 mb-8"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Retour à l'accueil
-            </Link>
             <h1 className="text-2xl font-bold">Connexion à votre compte</h1>
             <p className="text-sm text-gray-600 mt-2">
               Entrez vos identifiants pour accéder à votre espace
