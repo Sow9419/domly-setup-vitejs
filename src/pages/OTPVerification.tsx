@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { Link } from "react-router-dom";
-import { HelpCircle, Mail } from "lucide-react";
+import { HelpCircle, Mail, ArrowLeft } from "lucide-react";
 
 const OTPVerification = () => {
   const [otp, setOtp] = useState("");
@@ -29,11 +29,18 @@ const OTPVerification = () => {
       <div className="w-full md:w-1/2 flex items-center justify-center p-8">
         <div className="w-full max-w-md space-y-8">
           <div className="text-center">
+            <Link
+              to="/signup"
+              className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900 mb-8"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Retour
+            </Link>
             <h1 className="text-2xl font-bold">Vérification de votre compte</h1>
             <p className="text-sm text-gray-600 mt-2">
               Pour sécuriser votre compte, veuillez saisir le code reçu
             </p>
-            <div className="flex items-center justify-center gap-2 mt-2 text-sm text-primary">
+            <div className="flex items-center justify-center gap-2 mt-2 text-sm text-[#9b87f5]">
               <Mail className="w-4 h-4" />
               <span>Nous avons envoyé un code à j***@example.com</span>
             </div>
@@ -55,7 +62,7 @@ const OTPVerification = () => {
 
             <Button
               onClick={handleVerify}
-              className="w-full bg-primary hover:bg-primary-hover"
+              className="w-full bg-[#9b87f5] hover:bg-[#7E69AB]"
             >
               Vérifier
             </Button>
@@ -63,7 +70,7 @@ const OTPVerification = () => {
             <div className="text-center">
               <button
                 onClick={handleResend}
-                className="text-sm text-primary hover:text-primary-hover"
+                className="text-sm text-[#9b87f5] hover:text-[#7E69AB]"
               >
                 Renvoyer le code (59s)
               </button>
@@ -90,15 +97,6 @@ const OTPVerification = () => {
                 </div>
               </div>
             </div>
-          </div>
-
-          <div className="text-center text-xs text-gray-500 space-x-4">
-            <Link to="#" className="hover:text-gray-700">
-              Conditions d'utilisation
-            </Link>
-            <Link to="#" className="hover:text-gray-700">
-              Politique de confidentialité
-            </Link>
           </div>
         </div>
       </div>
