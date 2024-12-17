@@ -8,7 +8,7 @@ interface BackButtonProps {
 
 export const BackButton = ({ to, label = "Retour" }: BackButtonProps) => {
   return (
-    <div className="fixed top-0 left-0 w-full h-14 bg-white shadow-sm z-50 flex items-center px-4">
+    <div className="fixed top-0 left-0 md:w-1/2 w-full h-14 bg-white shadow-sm z-50 flex items-center px-4">
       <Link
         to={to}
         className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900"
