@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { Button } from "@/components/ui/button";
-import { Select } from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Map from "@/components/map/Map";
 import { Minus, Plus } from "lucide-react";
 
@@ -37,8 +37,15 @@ const Explorer = () => {
               <label className="block text-sm font-medium mb-2">
                 Type de propriété
               </label>
-              <Select className="w-full">
-                <option>Penthouse</option>
+              <Select>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Sélectionner un type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="penthouse">Penthouse</SelectItem>
+                  <SelectItem value="apartment">Appartement</SelectItem>
+                  <SelectItem value="house">Maison</SelectItem>
+                </SelectContent>
               </Select>
             </div>
 
