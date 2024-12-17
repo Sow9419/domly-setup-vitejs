@@ -22,17 +22,10 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
-      <BackButton to="/" />
       <div className="w-full md:w-1/2 flex items-center justify-center p-8 pt-20">
         <div className="w-full max-w-md space-y-8">
+          <BackButton to="/" />
           <div className="text-center">
-            <Link
-              to="/"
-              className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900 mb-8"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Retour à l'accueil
-            </Link>
             <h1 className="text-2xl font-bold">Connexion à votre compte</h1>
             <p className="text-sm text-gray-600 mt-2">
               Entrez vos identifiants pour accéder à votre espace
