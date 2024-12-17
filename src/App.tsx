@@ -10,6 +10,7 @@ import OTPVerification from "./pages/OTPVerification";
 import ForgotPassword from "./pages/ForgotPassword";
 import CreateProfile from "./pages/CreateProfile";
 import CreateWorkspace from "./pages/CreateWorkspace";
+import Explorer from "./pages/Explorer";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/create-profile" element={<CreateProfile />} />
           <Route path="/create-workspace" element={<CreateWorkspace />} />
+          <Route path="/explorer" element={<Explorer />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
