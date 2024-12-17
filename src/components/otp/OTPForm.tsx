@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
+import { Mail } from "lucide-react";
 
 interface OTPFormProps {
   onSubmit: (otp: string) => void;
