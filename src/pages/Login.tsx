@@ -2,8 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
-import { ArrowLeft, Mail, Lock } from "lucide-react";
+import { Mail, Lock } from "lucide-react";
 import { Link } from "react-router-dom";
+import { BackButton } from "@/components/ui/back-button";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -21,7 +22,8 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
-      <div className="w-full md:w-1/2 flex items-center justify-center p-8">
+      <BackButton to="/" />
+      <div className="w-full md:w-1/2 flex items-center justify-center p-8 pt-20">
         <div className="w-full max-w-md space-y-8">
           <div className="text-center">
             <Link

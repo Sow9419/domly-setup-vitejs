@@ -2,8 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
-import { ArrowLeft, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import { Link } from "react-router-dom";
+import { BackButton } from "@/components/ui/back-button";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -20,18 +21,10 @@ const ForgotPassword = () => {
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
-      <div className="w-full md:w-1/2 flex items-center justify-center p-8">
+      <BackButton to="/login" />
+      <div className="w-full md:w-1/2 flex items-center justify-center p-8 pt-20">
         <div className="w-full max-w-md space-y-8">
           <div className="text-center relative">
-            <Link
-              to="/login"
-              className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 mb-8 absolute left-8 top-8"
-            >
-              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-sm">
-                <ArrowLeft className="w-5 h-5 text-white" />
-              </div>
-              <span>Retour</span>
-            </Link>
             <h1 className="text-2xl font-bold mt-16">Mot de passe oublié ?</h1>
             <p className="text-sm text-gray-600 mt-2">
               Entrez votre email pour réinitialiser votre mot de passe

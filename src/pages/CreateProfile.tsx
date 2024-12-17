@@ -2,8 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
-import { ArrowLeft, Upload, User, Phone, MapPin } from "lucide-react";
+import { Upload, User, Phone, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import { BackButton } from "@/components/ui/back-button";
 
 const CreateProfile = () => {
   const [formData, setFormData] = useState({
@@ -29,22 +30,9 @@ const CreateProfile = () => {
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
-      <div className="w-full md:w-1/2 flex items-center justify-center p-8">
+      <BackButton to="/signup" />
+      <div className="w-full md:w-1/2 flex items-center justify-center p-8 pt-20">
         <div className="w-full max-w-md space-y-8">
-          <div className="text-center">
-            <Link
-              to="/signup"
-              className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900 mb-8"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Retour
-            </Link>
-            <h1 className="text-2xl font-bold">Créez votre profil</h1>
-            <p className="text-sm text-gray-600 mt-2">
-              Personnalisez votre expérience LocationMaison
-            </p>
-          </div>
-
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-4">
               <div className="flex justify-center">
@@ -112,7 +100,6 @@ const CreateProfile = () => {
           </form>
         </div>
       </div>
-
       <div className="hidden md:flex md:w-1/2 bg-gray-100 relative">
         <div className="absolute inset-0 bg-black bg-opacity-40 z-10 flex flex-col items-center justify-center text-white p-8">
           <h1 className="text-4xl font-bold mb-4">
