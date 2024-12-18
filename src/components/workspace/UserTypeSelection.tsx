@@ -9,14 +9,14 @@ interface UserTypeSelectionProps {
 }
 
 export const UserTypeSelection = ({ userType, setUserType }: UserTypeSelectionProps) => (
-  <div className="space-y-4">
+  <div className="space-y-4 w-full">
     <h2 className="text-lg font-semibold">Choisissez votre type d'utilisateur</h2>
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <button
         type="button"
         onClick={() => setUserType("client")}
         className={cn(
-          "p-4 rounded-lg border relative flex items-start",
+          "p-4 rounded-lg border relative flex items-start w-full",
           userType === "client"
             ? "border-primary bg-primary/5"
             : "border-gray-200 hover:border-primary",
@@ -52,7 +52,7 @@ export const UserTypeSelection = ({ userType, setUserType }: UserTypeSelectionPr
         type="button"
         onClick={() => setUserType("owner")}
         className={cn(
-          "p-4 rounded-lg border relative flex items-start",
+          "p-4 rounded-lg border relative flex items-start w-full",
           userType === "owner"
             ? "border-primary bg-primary/5"
             : "border-gray-200 hover:border-primary",

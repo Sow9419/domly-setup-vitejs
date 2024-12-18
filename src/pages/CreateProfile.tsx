@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Upload, User, Phone, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { BackButton } from "@/components/ui/back-button";
+import { UserTypeSelection } from "@/components/workspace/UserTypeSelection";
 
 const CreateProfile = () => {
   const [formData, setFormData] = useState({
@@ -12,11 +13,13 @@ const CreateProfile = () => {
     phone: "",
     address: "",
   });
+  const [userType, setUserType] = useState<"client" | "owner" | null>(null);
   const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Profile data:", formData);
+    console.log("User type:", userType);
     toast({
       title: "Profil créé",
       description: "Redirection vers la création de l'espace de travail...",
@@ -34,7 +37,7 @@ const CreateProfile = () => {
       <div className="w-full md:w-1/2 flex items-center justify-center p-8 pt-20">
         <div className="w-full max-w-md space-y-8">
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="space-y-4">
+            <div className="space-y-6">
               <div className="flex justify-center">
                 <div className="relative">
                   <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center">
@@ -51,7 +54,7 @@ const CreateProfile = () => {
                 </div>
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-4">
                 <div className="relative">
                   <Input
                     name="fullName"
@@ -62,9 +65,7 @@ const CreateProfile = () => {
                   />
                   <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                 </div>
-              </div>
 
-              <div className="space-y-2">
                 <div className="relative">
                   <Input
                     name="phone"
@@ -75,9 +76,7 @@ const CreateProfile = () => {
                   />
                   <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                 </div>
-              </div>
 
-              <div className="space-y-2">
                 <div className="relative">
                   <Input
                     name="address"
@@ -88,6 +87,10 @@ const CreateProfile = () => {
                   />
                   <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                 </div>
+              </div>
+
+              <div className="w-full">
+                <UserTypeSelection userType={userType} setUserType={setUserType} />
               </div>
             </div>
 
