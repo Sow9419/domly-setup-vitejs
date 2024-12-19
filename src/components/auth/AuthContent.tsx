@@ -1,5 +1,5 @@
 import React from "react";
-import { Home, Users, Clock } from "lucide-react";
+import { Search, Users, Clock } from "lucide-react";
 
 interface AuthContentProps {
   title: string;
@@ -53,8 +53,8 @@ export const AuthContent = ({ title, subtitle, features }: AuthContentProps) => 
       </div>
     </div>
     <img
-      src="https://images.unsplash.com/photo-1721322800607-8c38375eef04"
-      alt="Jolie maison"
+      src="/lovable-uploads/da1fbdbc-d5c4-44aa-a49e-8eb282a02721.png"
+      alt="Jolie maison moderne"
       className="object-cover w-full h-full"
     />
   </div>
