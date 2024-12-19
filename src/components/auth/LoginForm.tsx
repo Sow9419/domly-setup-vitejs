@@ -4,12 +4,13 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { FcGoogle } from "react-icons/fc";
 import { Phone } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,6 +19,10 @@ export const LoginForm = () => {
       title: "Tentative de connexion",
       description: "Fonctionnalité en cours de développement",
     });
+  };
+
+  const handleForgotPassword = () => {
+    navigate("/forgot-password");
   };
 
   return (
@@ -87,9 +92,13 @@ export const LoginForm = () => {
               <input type="checkbox" className="mr-2" />
               <span className="text-sm">Rester connecté</span>
             </label>
-            <a href="#" className="text-sm text-primary hover:text-primary-hover">
+            <button
+              type="button"
+              onClick={handleForgotPassword}
+              className="text-sm text-primary hover:text-primary-hover"
+            >
               Mot de passe oublié?
-            </a>
+            </button>
           </div>
           <Button type="submit" className="w-full bg-primary hover:bg-primary-hover">
             Se connecter
