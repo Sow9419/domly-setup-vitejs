@@ -3,10 +3,17 @@ import { NavBackButton } from "@/components/auth/NavBackButton";
 import { OTPForm } from "@/components/otp/OTPForm";
 import { ResendCode } from "@/components/otp/ResendCode";
 import { AuthContent } from "@/components/auth/AuthContent";
-import { Lock, AlertCircle, Check } from "lucide-react";
 
 const OTPVerification = () => {
   const { toast } = useToast();
+
+  const handleVerification = (otp: string) => {
+    console.log("Verifying OTP:", otp);
+    toast({
+      title: "Vérification en cours",
+      description: "Redirection vers votre espace...",
+    });
+  };
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
@@ -21,13 +28,7 @@ const OTPVerification = () => {
                   Pour sécuriser votre compte, veuillez saisir le code reçu
                 </p>
               </div>
-              <OTPForm onSubmit={(otp) => {
-                console.log("Verifying OTP:", otp);
-                toast({
-                  title: "Vérification en cours",
-                  description: "Redirection vers votre espace...",
-                });
-              }} />
+              <OTPForm onSubmit={handleVerification} />
               <ResendCode />
             </div>
           </div>
@@ -39,16 +40,12 @@ const OTPVerification = () => {
           subtitle="Une étape de plus vers votre espace sécurisé"
           features={[
             {
-              icon: <Lock />,
+              icon: <div className="w-6 h-6" />,
               text: "Vérification en deux étapes"
             },
             {
-              icon: <AlertCircle />,
+              icon: <div className="w-6 h-6" />,
               text: "Protection de vos données"
-            },
-            {
-              icon: <Check />,
-              text: "Authentification sécurisée"
             }
           ]}
         />

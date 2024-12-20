@@ -2,7 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
-import { Upload, User, Phone, MapPin, UserCheck, Settings } from "lucide-react";
+import { Upload, User, Phone, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
+import { BackButton } from "@/components/ui/back-button";
 import { UserTypeSelection } from "@/components/workspace/UserTypeSelection";
 import { NavBackButton } from "@/components/auth/NavBackButton";
 import { AuthContent } from "@/components/auth/AuthContent";
@@ -33,8 +35,8 @@ const CreateProfile = () => {
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
+      <NavBackButton />
       <div className="w-full md:w-1/2 relative">
-        <NavBackButton />
         <div className="h-full overflow-y-auto pt-16">
           <div className="flex items-center justify-center p-8">
             <div className="w-full max-w-md space-y-8">
@@ -113,11 +115,11 @@ const CreateProfile = () => {
           subtitle="Personnalisez votre expérience"
           features={[
             {
-              icon: <UserCheck />,
+              icon: <div className="w-6 h-6" />,
               text: "Profil personnalisé"
             },
             {
-              icon: <Settings />,
+              icon: <div className="w-6 h-6" />,
               text: "Préférences de recherche"
             }
           ]}

@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
-import { Lock, Shield } from "lucide-react";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -54,11 +53,11 @@ const ForgotPassword = () => {
           subtitle="Nous vous aidons à récupérer l'accès"
           features={[
             {
-              icon: <Lock />,
+              icon: <div className="w-6 h-6" />,
               text: "Processus simple et rapide"
             },
             {
-              icon: <Shield />,
+              icon: <div className="w-6 h-6" />,
               text: "Sécurité renforcée"
             }
           ]}

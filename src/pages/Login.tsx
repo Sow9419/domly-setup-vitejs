@@ -1,7 +1,6 @@
 import { LoginForm } from "@/components/auth/LoginForm";
 import { AuthContent } from "@/components/auth/AuthContent";
 import { NavBackButton } from "@/components/auth/NavBackButton";
-import { Lock, Users, Clock } from "lucide-react";
 
 const Login = () => {
   return (
@@ -9,7 +8,7 @@ const Login = () => {
       <div className="w-full md:w-1/2 relative">
         <NavBackButton />
         <div className="h-full overflow-y-auto pt-16">
-          <div className="flex items-center justify-center p-8">
+          <div className="flex items-center justify-center">
             <LoginForm />
           </div>
         </div>
@@ -20,15 +19,15 @@ const Login = () => {
           subtitle="Connectez-vous pour accéder à votre espace"
           features={[
             {
-              icon: <Lock />,
+              icon: <div className="w-6 h-6" />,
               text: "Gérez vos propriétés facilement"
             },
             {
-              icon: <Users />,
+              icon: <div className="w-6 h-6" />,
               text: "Accédez à vos documents"
             },
             {
-              icon: <Clock />,
+              icon: <div className="w-6 h-6" />,
               text: "Support client prioritaire"
             }
           ]}
