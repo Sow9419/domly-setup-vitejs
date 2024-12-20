@@ -1,5 +1,5 @@
 import React from "react";
-import { Check, User, Mail, Key, Lock, Info, AlertCircle } from "lucide-react";
+import { Home, Users, Clock } from "lucide-react";
 
 interface AuthContentProps {
   title: string;
@@ -19,11 +19,9 @@ export const AuthContent = ({ title, subtitle, features }: AuthContentProps) => 
         {features && features.map((feature, index) => (
           <div key={index} className="flex items-center space-x-2">
             <div className="bg-white/20 p-2 rounded-full">
-              {React.cloneElement(feature.icon as React.ReactElement, {
-                className: "w-6 h-6 text-white"
-              })}
+              {feature.icon}
             </div>
-            <p className="text-white">{feature.text}</p>
+            <p>{feature.text}</p>
           </div>
         ))}
       </div>
@@ -55,7 +53,7 @@ export const AuthContent = ({ title, subtitle, features }: AuthContentProps) => 
       </div>
     </div>
     <img
-      src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2075&q=80"
+      src="https://images.unsplash.com/photo-1721322800607-8c38375eef04"
       alt="Jolie maison"
       className="object-cover w-full h-full"
     />
