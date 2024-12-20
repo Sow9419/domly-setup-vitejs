@@ -1,7 +1,7 @@
 import { LoginForm } from "@/components/auth/LoginForm";
 import { AuthContent } from "@/components/auth/AuthContent";
 import { NavBackButton } from "@/components/auth/NavBackButton";
-import { Lock, Shield, Clock } from "lucide-react";
+import { Lock, Users, Clock } from "lucide-react";
 
 const Login = () => {
   return (
@@ -24,7 +24,7 @@ const Login = () => {
               text: "Gérez vos propriétés facilement"
             },
             {
-              icon: <Shield />,
+              icon: <Users />,
               text: "Accédez à vos documents"
             },
             {

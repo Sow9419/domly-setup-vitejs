@@ -33,8 +33,8 @@ const CreateProfile = () => {
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
-      <NavBackButton />
       <div className="w-full md:w-1/2 relative">
+        <NavBackButton />
         <div className="h-full overflow-y-auto pt-16">
           <div className="flex items-center justify-center p-8">
             <div className="w-full max-w-md space-y-8">
