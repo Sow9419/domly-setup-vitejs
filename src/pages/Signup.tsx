@@ -1,6 +1,7 @@
 import { SignupForm } from "@/components/auth/SignupForm";
 import { AuthContent } from "@/components/auth/AuthContent";
 import { NavBackButton } from "@/components/auth/NavBackButton";
+import { Search, Users, Clock } from "lucide-react";
 
 const Signup = () => {
   return (
@@ -19,15 +20,15 @@ const Signup = () => {
           subtitle="La meilleure plateforme pour trouver votre logement idéal"
           features={[
             {
-              icon: <div className="w-6 h-6" />,
+              icon: <Search />,
               text: "Plus de 50.000+ propriétés disponibles"
             },
             {
-              icon: <div className="w-6 h-6" />,
+              icon: <Users />,
               text: "Des agents immobiliers à votre service"
             },
             {
-              icon: <div className="w-6 h-6" />,
+              icon: <Clock />,
               text: "Support client 24/7"
             }
           ]}
