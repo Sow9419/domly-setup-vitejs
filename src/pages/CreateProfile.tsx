@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
-import { Upload, User, Phone, MapPin } from "lucide-react";
+import { Upload, User, Phone, MapPin, Search as SearchIcon, Users as UsersIcon, Clock as ClockIcon } from "lucide-react";
 import { UserTypeSelection } from "@/components/workspace/UserTypeSelection";
 import { NavBackButton } from "@/components/auth/NavBackButton";
 import { AuthContent } from "@/components/auth/AuthContent";
@@ -113,15 +113,15 @@ const CreateProfile = () => {
           subtitle="Personnalisez votre expérience"
           features={[
             {
-              icon: <Search className="w-6 h-6" />,
+              icon: <SearchIcon className="w-6 h-6" />,
               text: "Plus de 50.000+ propriétés disponibles"
             },
             {
-              icon: <Users className="w-6 h-6" />,
+              icon: <UsersIcon className="w-6 h-6" />,
               text: "Des agents immobiliers à votre service"
             },
             {
-              icon: <Clock className="w-6 h-6" />,
+              icon: <ClockIcon className="w-6 h-6" />,
               text: "Support client 24/7"
             }
           ]}
