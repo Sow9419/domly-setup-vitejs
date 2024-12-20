@@ -1,5 +1,4 @@
 import React from "react";
-import { Check, User, Mail, Key, Lock, Info, AlertCircle } from "lucide-react";
 
 interface AuthContentProps {
   title: string;

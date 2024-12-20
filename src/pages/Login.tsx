@@ -9,7 +9,7 @@ const Login = () => {
       <div className="w-full md:w-1/2 relative">
         <NavBackButton />
         <div className="h-full overflow-y-auto pt-16">
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center p-8">
             <LoginForm />
           </div>
         </div>

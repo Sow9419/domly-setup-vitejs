@@ -5,7 +5,7 @@ export const NavBackButton = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="fixed top-0 left-0 w-full md:w-1/2 bg-white/80 backdrop-blur-sm z-20 p-4">
+    <div className="fixed top-0 left-0 w-full md:w-1/2 bg-white z-20 p-4">
       <button
         onClick={() => navigate(-1)}
         className="flex items-center gap-2"
