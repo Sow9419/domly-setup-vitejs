@@ -61,8 +61,8 @@ export const AuthContent = ({ title, subtitle, features }: AuthContentProps) => 
       </div>
     </div>
     <img
-      src="/lovable-uploads/d0ce8b9f-84b0-4b09-b0e2-a4d69d145561.png"
-      alt="Luxury home"
+      src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80"
+      alt="Luxury modern house"
       className="object-cover w-full h-full"
     />
   </div>

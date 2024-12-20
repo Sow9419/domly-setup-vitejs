@@ -43,8 +43,8 @@ export const AuthRightSection = () => (
       </div>
     </div>
     <img
-      src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2075&q=80"
-      alt="Luxury home interior"
+      src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80"
+      alt="Modern architecture house"
       className="object-cover w-full h-full"
     />
   </div>
