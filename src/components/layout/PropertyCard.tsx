@@ -40,7 +40,7 @@ const PropertyCard = ({ image, title, location, rating, status }: PropertyCardPr
         </div>
 
         {/* Bottom Info Bar */}
-        <div className="absolute bottom-0 left-0 right-0 bg-white rounded-t-[20px] overflow-hidden">
+        <div className="absolute bottom-2 left-2 right-2 bg-white rounded-[20px] overflow-hidden">
           <div className="px-4 py-3">
             <div className="flex items-center justify-between">
               <div className="space-y-1.5">
