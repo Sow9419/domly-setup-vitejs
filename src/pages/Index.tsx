@@ -3,6 +3,7 @@ import Header from "@/components/layout/Header";
 import CategoryBar from "@/components/layout/CategoryBar";
 import PropertyCard from "@/components/layout/PropertyCard";
 import BottomNav from "@/components/layout/BottomNav";
+import Sidebar from "@/components/layout/Sidebar";
 
 const properties = [
   {
@@ -58,26 +59,31 @@ const properties = [
 const Index = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
-      <CategoryBar />
-      
-      <main className="container mx-auto px-4 pt-32 pb-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {properties.map((property) => (
-            <PropertyCard key={property.id} {...property} />
-          ))}
-        </div>
+      <div className="flex">
+        <Sidebar />
+        <div className="flex-1">
+          <Header />
+          <CategoryBar />
+          
+          <main className="container mx-auto px-4 pt-32 pb-20">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {properties.map((property) => (
+                <PropertyCard key={property.id} {...property} />
+              ))}
+            </div>
 
-        <div className="mt-12 bg-gradient-to-r from-pink-500 to-purple-500 rounded-xl p-8 text-white">
-          <h2 className="text-2xl font-bold mb-4">Devenez hôte</h2>
-          <p className="mb-6">Gagnez un revenu complémentaire en partageant votre logement</p>
-          <Button variant="secondary" className="bg-white text-pink-500 hover:bg-gray-100">
-            En savoir plus
-          </Button>
-        </div>
-      </main>
+            <div className="mt-12 bg-gradient-to-r from-pink-500 to-purple-500 rounded-xl p-8 text-white">
+              <h2 className="text-2xl font-bold mb-4">Devenez hôte</h2>
+              <p className="mb-6">Gagnez un revenu complémentaire en partageant votre logement</p>
+              <Button variant="secondary" className="bg-white text-pink-500 hover:bg-gray-100">
+                En savoir plus
+              </Button>
+            </div>
+          </main>
 
-      <BottomNav />
+          <BottomNav />
+        </div>
+      </div>
     </div>
   );
 };
