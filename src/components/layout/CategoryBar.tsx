@@ -24,28 +24,23 @@ const CategoryBar = () => {
   return (
     <div className="border-b sticky top-20 bg-white z-40">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between py-4">
-          <div className="flex gap-8 overflow-x-auto no-scrollbar">
+        <div className="flex items-center justify-between py-4 overflow-x-auto">
+          <div className="flex gap-4">
             {categories.map((category) => {
               const IconComponent = category.icon;
               return (
                 <Button
                   key={category.id}
                   variant="ghost"
-                  className="min-w-[80px] flex flex-col items-center gap-2 h-auto py-2 px-1 hover:bg-transparent hover:text-primary group"
+                  className="whitespace-nowrap flex flex-col items-center gap-1 h-auto py-2"
                 >
-                  <div className="p-3 rounded-lg group-hover:bg-gray-100 transition-colors">
-                    <IconComponent className="h-6 w-6" />
-                  </div>
-                  <span className="text-xs font-medium">{category.label}</span>
+                  <IconComponent className="h-6 w-6" />
+                  <span className="text-xs">{category.label}</span>
                 </Button>
               );
             })}
           </div>
-          <Button 
-            variant="outline" 
-            className="flex items-center gap-2 ml-8 rounded-lg border-gray-300"
-          >
+          <Button variant="outline" className="flex items-center gap-2 ml-4">
             <Sliders className="h-4 w-4" />
             Filtres
           </Button>
