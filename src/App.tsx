@@ -27,6 +27,9 @@ const App = () => (
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/create-profile" element={<CreateProfile />} />
           <Route path="/create-workspace" element={<CreateWorkspace />} />
+          <Route path="/favorites" element={<Index />} />
+          <Route path="/trips" element={<Index />} />
+          <Route path="/profile" element={<Index />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
