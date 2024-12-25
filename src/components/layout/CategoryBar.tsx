@@ -30,7 +30,7 @@ const CategoryBar = () => {
   };
 
   return (
-    <div className="border-b sticky top-20 bg-white z-40 ">
+    <div className="border-b sticky top-20 bg-white z-40 drop-shadows-md">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4 overflow-x-auto no-scrollbar">
           <div className="flex gap-6">
