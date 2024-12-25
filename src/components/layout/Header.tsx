@@ -21,7 +21,8 @@ const Header = () => {
       <header 
         className={`
           fixed top-0 w-full z-50 
-          transition-all duration-300 
+          transition-all duration-300
+          hidden md:block 
           ${isScrolled ? 
             "bg-white shadow-md border-b border-gray-200" : 
             "bg-transparent"
@@ -97,7 +98,7 @@ const Header = () => {
 
       {/* Search Bar - Positioned between Header and CategoryBar */}
       {!isScrolled && (
-        <div className="w-full bg-transparent" style={{ marginTop: "80px" }}>
+        <div className="w-full bg-transparent hidden md:block" style={{ marginTop: "80px" }}>
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto">
               <div className="relative">
