@@ -22,7 +22,7 @@ const categories = [
 ];
 
 const CategoryBar = () => {
-  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<number | null>(1); // Default to "Tous les hôtes"
 
   const handleCategorySelect = (categoryId: number) => {
     setSelectedCategory(categoryId);
@@ -30,9 +30,9 @@ const CategoryBar = () => {
   };
 
   return (
-    <div className="border-b sticky top-20 bg-white z-40">
+    <div className="border-b sticky top-20 bg-white z-40 ">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between py-4 overflow-x-auto">
+        <div className="flex items-center justify-between py-4 overflow-x-auto no-scrollbar">
           <div className="flex gap-6">
             {categories.map((category) => {
               const IconComponent = category.icon;
@@ -46,7 +46,7 @@ const CategoryBar = () => {
                     flex flex-row items-center gap-3 h-10 px-4 py-2 
                     border border-[#E5E7EB] rounded-full
                     hover:bg-gray-50 transition-colors
-                    ${isSelected ? 'text-[#0EA5E9] border-[#0EA5E9]' : 'text-gray-600'}
+                    ${isSelected ? 'text-white bg-[#0EA5E9]' : 'text-gray-600'}
                   `}
                 >
                   <IconComponent className="h-5 w-5" />
@@ -61,6 +61,15 @@ const CategoryBar = () => {
           </Button>
         </div>
       </div>
+      <style>{`
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+        }
+      `}</style>
     </div>
   );
 };
