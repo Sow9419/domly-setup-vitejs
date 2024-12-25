@@ -18,30 +18,61 @@ const Header = () => {
 
   return (
     <>
-      <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-white border-b border-gray-200" : "bg-transparent"}`}>
+      <header 
+        className={`
+          fixed top-0 w-full z-50 
+          transition-all duration-300 
+          ${isScrolled ? 
+            "bg-white shadow-md border-b border-gray-200" : 
+            "bg-transparent"
+          }
+        `}
+      >
         {/* Top Navigation */}
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link to="/" className="flex items-center">
-              <span className="text-primary text-2xl font-bold">LOGO</span>
+              <span className={`text-2xl font-bold ${isScrolled ? 'text-primary' : 'text-primary'}`}>
+                LOGO
+              </span>
             </Link>
 
             {/* Center Navigation */}
             <div className="hidden md:flex items-center space-x-6">
-              <Link to="/" className="text-gray-800 hover:text-gray-600">Logement</Link>
-              <Link to="/experiences" className="text-gray-800 hover:text-gray-600">Expérience</Link>
+              <Link 
+                to="/" 
+                className={`hover:text-gray-600 ${isScrolled ? 'text-gray-800' : 'text-gray-800'}`}
+              >
+                Logement
+              </Link>
+              <Link 
+                to="/experiences" 
+                className={`hover:text-gray-600 ${isScrolled ? 'text-gray-800' : 'text-gray-800'}`}
+              >
+                Expérience
+              </Link>
             </div>
 
             {/* Right Menu */}
             <div className="hidden md:flex items-center gap-4">
-              <Button variant="ghost" className="text-gray-800 hover:text-gray-600">
+              <Button 
+                variant="ghost" 
+                className={`hover:text-gray-600 ${isScrolled ? 'text-gray-800' : 'text-gray-800'}`}
+              >
                 Mettre mon logement sur Airbnb
               </Button>
-              <Button variant="ghost" size="icon" className="text-gray-800">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className={isScrolled ? 'text-gray-800' : 'text-gray-800'}
+              >
                 <Globe className="h-5 w-5" />
               </Button>
-              <Button variant="outline" className="flex items-center gap-2 rounded-full border border-gray-300">
+              <Button 
+                variant="outline" 
+                className="flex items-center gap-2 rounded-full border border-gray-300"
+              >
                 <Menu className="h-5 w-5" />
                 <User className="h-5 w-5" />
               </Button>
