@@ -1,4 +1,4 @@
-import { Heart, MapPin } from "lucide-react";
+import { Heart, MapPin, ChevronRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import {
   Carousel,
@@ -17,16 +17,30 @@ interface PropertyCardProps {
 
 const PropertyCard = ({ image, title, location, rating, status }: PropertyCardProps) => {
   return (
-    <Card className="overflow-hidden bg-white relative transform transition-all hover:scale-[1.02] rounded-[20px]">
+    <Card className="overflow-hidden bg-white relative transform transition-all hover:scale-[1.02] rounded-[20px] group">
       <div className="relative aspect-square w-full">
-        <img 
-          src={image}
-          alt={title}
-          className="w-full h-full object-cover"
-        />
+        <Carousel className="w-full h-full">
+          <CarouselContent>
+            {[image, image].map((img, index) => (
+              <CarouselItem key={index} className="h-full">
+                <img 
+                  src={img}
+                  alt={`${title} - vue ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity z-10">
+            <CarouselNext className="h-8 w-8 rounded-full bg-white hover:bg-white/90 border-none">
+              <ChevronRight className="h-4 w-4 text-[#0EA5E9]" />
+            </CarouselNext>
+          </div>
+        </Carousel>
 
         {/* Top Info Bar */}
-        <div className="absolute top-4 left-4 right-4 flex justify-between items-start">
+        <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-20">
           <div className="bg-white rounded-full py-1 px-3 flex items-center gap-1.5 shadow-sm">
             <span className="text-base">⭐</span>
             <span className="text-[15px] font-medium">{rating}</span>
