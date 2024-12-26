@@ -57,11 +57,11 @@ const properties = [
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Header />
       <CategoryBar />
       
-      <main className="container mx-auto px-4 pt-20 pb-20">
+      <main className="container mx-auto px-4 pt-4 pb-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {properties.map((property) => (
             <PropertyCard key={property.id} {...property} />

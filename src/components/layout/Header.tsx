@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Search, Globe, Menu, User } from "lucide-react";
+import { Search, Globe, Menu, User, SlidersHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
@@ -18,14 +18,35 @@ const Header = () => {
 
   return (
     <>
+      {/* Version Mobile */}
+      <header className="fixed top-0 w-full z-50 bg-white md:hidden">
+        <div className="px-4 py-3">
+          <div className="flex items-center gap-3 bg-white rounded-full border border-gray-200 p-3 shadow-lg">
+            <Search className="h-5 w-5 text-gray-600" />
+            <div className="flex flex-col flex-1">
+              <span className="text-sm font-medium text-gray-800">Destination</span>
+              <span className="text-xs text-gray-500">Destination...besoin...N'importe...</span>
+            </div>
+            <Button 
+              variant="outline" 
+              size="icon" 
+              className="rounded-full border-gray-300"
+            >
+              <SlidersHorizontal className="h-5 w-5" />
+            </Button>
+          </div>
+        </div>
+      </header>
+
+      {/* Version Desktop - Code existant */}
       <header 
         className={`
           fixed top-0 w-full z-50 
-          transition-all duration-300
+          transition-all duration-0
           hidden md:block 
           ${isScrolled ? 
-            "bg-white shadow-md border-b border-gray-200" : 
-            "bg-transparent"
+            "bg-white border-b border-gray-100" : 
+            "bg-white"
           }
         `}
       >
@@ -43,30 +64,28 @@ const Header = () => {
             {isScrolled && (
               <div className="hidden md:flex flex-1 max-w-md mx-8">
                 <div className="relative w-full">
-                  <Input
-                    type="text"
-                    placeholder="Rechercher une destination"
-                    className="w-full pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:border-primary focus:ring-primary"
-                  />
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                  <div className="flex items-center bg-white rounded-full border border-gray-300 shadow-md hover:shadow-xl transition-shadow duration-200">
+                    <div className="flex-1">
+                      <Input
+                        type="text"
+                        placeholder="Rechercher une destination"
+                        className="w-full pl-10 pr-4 py-2 border-0 bg-transparent focus:ring-0 focus:outline-none placeholder-gray-500"
+                      />
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                    </div>
+                    <div className="pr-1">
+                      <Button size="sm" className="rounded-full bg-primary hover:bg-primary-hover h-8 w-8">
+                        <Search className="h-4 w-4 text-white" />
+                      </Button>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
 
             {/* Center Navigation */}
             <div className="hidden md:flex items-center space-x-6">
-              <Link 
-                to="/" 
-                className={`hover:text-gray-600 ${isScrolled ? 'text-gray-800' : 'text-gray-800'}`}
-              >
-                Logement
-              </Link>
-              <Link 
-                to="/experiences" 
-                className={`hover:text-gray-600 ${isScrolled ? 'text-gray-800' : 'text-gray-800'}`}
-              >
-                Expérience
-              </Link>
+              
             </div>
 
             {/* Right Menu */}
@@ -98,11 +117,11 @@ const Header = () => {
 
       {/* Search Bar - Positioned between Header and CategoryBar */}
       {!isScrolled && (
-        <div className="w-full bg-transparent hidden md:block" style={{ marginTop: "80px" }}>
+        <div className="w-full bg-transparent hidden md:block bg-white pb-3" style={{ marginTop: "80px" }}>
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto">
               <div className="relative">
-                <div className="flex items-center bg-white rounded-full border border-gray-300 shadow-lg hover:shadow-xl transition-shadow duration-200">
+                <div className="flex items-center bg-white rounded-full border border-gray-300 shadow-md hover:shadow-xl transition-shadow duration-200">
                   <div className="flex-1 px-6 py-3">
                     <Input
                       type="text"
