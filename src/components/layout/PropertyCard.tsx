@@ -18,37 +18,29 @@ interface PropertyCardProps {
 const PropertyCard = ({ image, title, location, rating, status }: PropertyCardProps) => {
   return (
     <Card className="overflow-hidden bg-white relative transform transition-all hover:scale-[1.02] rounded-[20px] group">
-      {/* Image Container with Carousel */}
       <div className="relative aspect-square w-full">
-        <Carousel opts={{ align: "start", loop: true }}>
+        <Carousel className="w-full h-full">
           <CarouselContent>
-            <CarouselItem>
-              <img 
-                src={image}
-                alt={title}
-                className="w-full h-full object-cover"
-              />
-            </CarouselItem>
-            <CarouselItem>
-              <img 
-                src={image}
-                alt={title}
-                className="w-full h-full object-cover"
-              />
-            </CarouselItem>
+            {[image, image].map((img, index) => (
+              <CarouselItem key={index} className="h-full">
+                <img 
+                  src={img}
+                  alt={`${title} - vue ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </CarouselItem>
+            ))}
           </CarouselContent>
           
-          {/* Custom Next Button - Only visible on hover */}
-          <div className="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
-            <CarouselNext className="h-8 w-8 rounded-full bg-white hover:bg-white/90">
-              <ChevronRight className="h-4 w-4 text-primary" />
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity z-10">
+            <CarouselNext className="h-8 w-8 rounded-full bg-white hover:bg-white/90 border-none">
+              <ChevronRight className="h-4 w-4 text-[#0096FF]" />
             </CarouselNext>
           </div>
         </Carousel>
-        
+
         {/* Top Info Bar */}
-        <div className="absolute top-0 left-0 right-0 p-3 flex justify-between items-start">
-          {/* Rating Badge */}
+        <div className="absolute top-0 left-0 right-0 p-3 flex justify-between items-start z-20">
           <div className="bg-white/90 backdrop-blur-[2px] py-1 pl-2 pr-3 rounded-full flex items-center gap-1.5 shadow-sm">
             <span className="text-base">⭐</span>
             <span className="text-[15px] font-medium">{rating}</span>
@@ -56,7 +48,6 @@ const PropertyCard = ({ image, title, location, rating, status }: PropertyCardPr
             <span className="text-[15px] text-gray-600">{status}</span>
           </div>
 
-          {/* Favorite Button */}
           <button 
             className="w-8 h-8 flex items-center justify-center rounded-full bg-white/90 backdrop-blur-[2px] hover:bg-white transition-colors"
             aria-label="Ajouter aux favoris"
@@ -66,7 +57,7 @@ const PropertyCard = ({ image, title, location, rating, status }: PropertyCardPr
         </div>
 
         {/* Bottom Info Bar */}
-        <div className="absolute bottom-2 left-2 right-2 bg-white rounded-[20px] overflow-hidden">
+        <div className="absolute bottom-2 left-2 right-2 bg-white rounded-[20px] overflow-hidden z-20">
           <div className="px-4 py-3">
             <div className="flex items-center justify-between">
               <div className="space-y-1.5">
@@ -77,7 +68,6 @@ const PropertyCard = ({ image, title, location, rating, status }: PropertyCardPr
                 </div>
               </div>
               
-              {/* Arrow Button */}
               <button 
                 className="w-10 h-10 rounded-full bg-[#0096FF] hover:bg-[#0086e5] transition-colors flex items-center justify-center shadow-sm"
                 aria-label="Voir les détails"
