@@ -5,6 +5,7 @@ import {
   CarouselContent,
   CarouselItem,
   CarouselNext,
+  CarouselPrevious,
 } from "@/components/ui/carousel";
 
 interface PropertyCardProps {
@@ -19,14 +20,42 @@ const PropertyCard = ({ image, title, location, rating, status }: PropertyCardPr
   return (
     <Card className="overflow-hidden bg-white relative transform transition-all hover:scale-[1.02] rounded-[20px]">
       <div className="relative aspect-square w-full">
-        <img 
-          src={image}
-          alt={title}
-          className="w-full h-full object-cover"
-        />
+        <Carousel className="w-full h-full">
+          <CarouselContent className="h-full">
+            {/* Image principale */}
+            <CarouselItem>
+              <img 
+                src={image}
+                alt={title}
+                className="w-full h-full object-cover"
+              />
+            </CarouselItem>
+            {/* Images supplémentaires (même image pour l'exemple) */}
+            <CarouselItem>
+              <img 
+                src={image}
+                alt={title}
+                className="w-full h-full object-cover"
+              />
+            </CarouselItem>
+            <CarouselItem>
+              <img 
+                src={image}
+                alt={title}
+                className="w-full h-full object-cover"
+              />
+            </CarouselItem>
+          </CarouselContent>
+          
+          {/* Boutons de navigation du carrousel (visibles au survol) */}
+          <div className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity">
+            <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2" />
+            <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2" />
+          </div>
+        </Carousel>
 
         {/* Top Info Bar */}
-        <div className="absolute top-4 left-4 right-4 flex justify-between items-start">
+        <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-10">
           <div className="bg-white rounded-full py-1 px-3 flex items-center gap-1.5 shadow-sm">
             <span className="text-base">⭐</span>
             <span className="text-[15px] font-medium">{rating}</span>
@@ -43,7 +72,7 @@ const PropertyCard = ({ image, title, location, rating, status }: PropertyCardPr
         </div>
 
         {/* Bottom Info Bar */}
-        <div className="absolute bottom-4 left-4 right-4 bg-white rounded-[16px] shadow-sm overflow-hidden">
+        <div className="absolute bottom-4 left-4 right-4 bg-white rounded-[16px] shadow-sm overflow-hidden z-10">
           <div className="p-4">
             <div className="flex items-center justify-between">
               <div className="space-y-1">
