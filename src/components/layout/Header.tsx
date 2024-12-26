@@ -9,7 +9,6 @@ const Header = () => {
   const mainContentRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    // Trouver l'élément main avec overflow-y-auto
     mainContentRef.current = document.querySelector('main.overflow-y-auto');
 
     const handleScroll = (e: Event) => {
@@ -21,13 +20,11 @@ const Header = () => {
       }
     };
 
-    // Écouter le défilement sur l'élément main pour desktop
     const mainContent = mainContentRef.current;
     if (mainContent) {
       mainContent.addEventListener('scroll', handleScroll);
     }
 
-    // Écouter le défilement sur window pour mobile
     window.addEventListener('scroll', () => {
       setIsScrolled(window.scrollY > 0);
     });
@@ -64,20 +61,19 @@ const Header = () => {
         </div>
       </header>
 
-      {/* Version Desktop - Code existant */}
+      {/* Version Desktop */}
       <header 
         className={`
-          fixed top-0 w-full z-50 
-          transition-all duration-0
+          fixed top-0 left-0 right-0 z-50 
+          transition-all duration-300
           hidden md:block 
           ${isScrolled ? 
-            "bg-white border-b border-gray-100" : 
-            "bg-white"
+            "bg-white shadow-md border-b border-gray-200" : 
+            "bg-transparent"
           }
         `}
       >
-        {/* Top Navigation */}
-        <div className="container mx-auto px-4">
+        <div className="max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link to="/" className="flex items-center">
@@ -109,11 +105,6 @@ const Header = () => {
               </div>
             )}
 
-            {/* Center Navigation */}
-            <div className="hidden md:flex items-center space-x-6">
-              
-            </div>
-
             {/* Right Menu */}
             <div className="hidden md:flex items-center gap-4">
               <Button 
@@ -143,8 +134,8 @@ const Header = () => {
 
       {/* Search Bar - Positioned between Header and CategoryBar */}
       {!isScrolled && (
-        <div className="w-full bg-transparent hidden md:block bg-white pb-3" style={{ marginTop: "80px" }}>
-          <div className="container mx-auto px-4">
+        <div className="w-full bg-transparent hidden md:block" style={{ marginTop: "80px" }}>
+          <div className="max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4">
             <div className="max-w-2xl mx-auto">
               <div className="relative">
                 <div className="flex items-center bg-white rounded-full border border-gray-300 shadow-md hover:shadow-xl transition-shadow duration-200">
