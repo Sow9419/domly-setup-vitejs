@@ -64,7 +64,7 @@ const Index = () => {
       <div className="md:hidden">
         <Header />
         <CategoryBar />
-        <main className="px-4 pt-4 pb-20">
+        <main className="px-4 pt-20 pb-20">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {properties.map((property) => (
               <PropertyCard key={property.id} {...property} />
