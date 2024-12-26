@@ -1,5 +1,11 @@
-import { Heart, MapPin } from "lucide-react";
+import { Heart, MapPin, ChevronRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+} from "@/components/ui/carousel";
 
 interface PropertyCardProps {
   image: string;
@@ -11,14 +17,34 @@ interface PropertyCardProps {
 
 const PropertyCard = ({ image, title, location, rating, status }: PropertyCardProps) => {
   return (
-    <Card className="overflow-hidden bg-white relative transform transition-all hover:scale-[1.02] rounded-[20px]">
-      {/* Image Container */}
+    <Card className="overflow-hidden bg-white relative transform transition-all hover:scale-[1.02] rounded-[20px] group">
+      {/* Image Container with Carousel */}
       <div className="relative aspect-square w-full">
-        <img 
-          src={image}
-          alt={title}
-          className="w-full h-full object-cover"
-        />
+        <Carousel className="w-full h-full">
+          <CarouselContent>
+            <CarouselItem>
+              <img 
+                src={image}
+                alt={title}
+                className="w-full h-full object-cover"
+              />
+            </CarouselItem>
+            <CarouselItem>
+              <img 
+                src={image}
+                alt={title}
+                className="w-full h-full object-cover"
+              />
+            </CarouselItem>
+          </CarouselContent>
+          
+          {/* Custom Next Button - Only visible on hover */}
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
+            <CarouselNext className="h-8 w-8 rounded-full bg-white hover:bg-white/90">
+              <ChevronRight className="h-4 w-4 text-primary" />
+            </CarouselNext>
+          </div>
+        </Carousel>
         
         {/* Top Info Bar */}
         <div className="absolute top-0 left-0 right-0 p-3 flex justify-between items-start">
