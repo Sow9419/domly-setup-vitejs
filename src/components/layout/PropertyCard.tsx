@@ -20,7 +20,7 @@ const PropertyCard = ({ image, title, location, rating, status }: PropertyCardPr
     <Card className="overflow-hidden bg-white relative transform transition-all hover:scale-[1.02] rounded-[20px] group">
       {/* Image Container with Carousel */}
       <div className="relative aspect-square w-full">
-        <Carousel className="w-full h-full">
+        <Carousel opts={{ align: "start", loop: true }}>
           <CarouselContent>
             <CarouselItem>
               <img 
