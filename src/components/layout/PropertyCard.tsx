@@ -8,6 +8,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { useState } from "react";
+import type { CarouselApi } from "@/components/ui/carousel";
 
 interface PropertyCardProps {
   images: string[];
@@ -19,10 +20,15 @@ interface PropertyCardProps {
 
 const PropertyCard = ({ images, title, location, rating, status }: PropertyCardProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [api, setApi] = useState<CarouselApi>();
 
   // Gestionnaire pour la mise à jour de l'index du carrousel
-  const handleSlideChange = (index: number) => {
-    setCurrentSlide(index);
+  const handleSlideChange = (api: CarouselApi | undefined) => {
+    if (!api) return;
+
+    api.on("select", () => {
+      setCurrentSlide(api.selectedScrollSnap());
+    });
   };
 
   return (
@@ -31,7 +37,8 @@ const PropertyCard = ({ images, title, location, rating, status }: PropertyCardP
         {/* Carousel d'images */}
         <Carousel 
           className="w-full h-full"
-          onSelect={handleSlideChange}
+          setApi={setApi}
+          onSelect={() => handleSlideChange(api)}
         >
           <CarouselContent className="h-full">
             {images.map((image, index) => (
