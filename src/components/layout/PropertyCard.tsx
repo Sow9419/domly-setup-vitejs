@@ -20,13 +20,18 @@ interface PropertyCardProps {
 const PropertyCard = ({ images, title, location, rating, status }: PropertyCardProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  // Gestionnaire pour la mise à jour de l'index du carrousel
+  const handleSlideChange = (index: number) => {
+    setCurrentSlide(index);
+  };
+
   return (
     <Card className="overflow-hidden bg-white relative transform transition-all hover:scale-[1.02] rounded-[20px]">
       <div className="relative aspect-square w-full">
         {/* Carousel d'images */}
         <Carousel 
           className="w-full h-full"
-          onSelect={(index) => setCurrentSlide(index)}
+          onSelect={handleSlideChange}
         >
           <CarouselContent className="h-full">
             {images.map((image, index) => (
