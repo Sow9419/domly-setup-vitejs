@@ -7,50 +7,57 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { useState } from "react";
 
 interface PropertyCardProps {
-  image: string;
+  images: string[];
   title: string;
   location: string;
   rating: number;
   status: "Occupé" | "Disponible";
 }
 
-const PropertyCard = ({ image, title, location, rating, status }: PropertyCardProps) => {
+const PropertyCard = ({ images, title, location, rating, status }: PropertyCardProps) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   return (
     <Card className="overflow-hidden bg-white relative transform transition-all hover:scale-[1.02] rounded-[20px]">
       <div className="relative aspect-square w-full">
-        <Carousel className="w-full h-full">
+        {/* Carousel d'images */}
+        <Carousel 
+          className="w-full h-full"
+          onSelect={(index) => setCurrentSlide(index)}
+        >
           <CarouselContent className="h-full">
-            {/* Image principale */}
-            <CarouselItem>
-              <img 
-                src={image}
-                alt={title}
-                className="w-full h-full object-cover"
-              />
-            </CarouselItem>
-            {/* Images supplémentaires (même image pour l'exemple) */}
-            <CarouselItem>
-              <img 
-                src={image}
-                alt={title}
-                className="w-full h-full object-cover"
-              />
-            </CarouselItem>
-            <CarouselItem>
-              <img 
-                src={image}
-                alt={title}
-                className="w-full h-full object-cover"
-              />
-            </CarouselItem>
+            {images.map((image, index) => (
+              <CarouselItem key={index}>
+                <img 
+                  src={image}
+                  alt={`${title} - Image ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </CarouselItem>
+            ))}
           </CarouselContent>
           
           {/* Boutons de navigation du carrousel (visibles au survol) */}
           <div className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity">
             <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2" />
             <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2" />
+          </div>
+
+          {/* Indicateurs de navigation */}
+          <div className="absolute bottom-24 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+            {images.map((_, index) => (
+              <div
+                key={index}
+                className={`w-1.5 h-1.5 rounded-full transition-all ${
+                  currentSlide === index
+                    ? "bg-white w-4"
+                    : "bg-white/60"
+                }`}
+              />
+            ))}
           </div>
         </Carousel>
 
