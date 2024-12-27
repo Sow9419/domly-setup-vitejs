@@ -7,71 +7,50 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { useState } from "react";
-import type { CarouselApi } from "@/components/ui/carousel";
 
 interface PropertyCardProps {
-  images: string[];
+  image: string;
   title: string;
   location: string;
   rating: number;
   status: "Occupé" | "Disponible";
 }
 
-const PropertyCard = ({ images, title, location, rating, status }: PropertyCardProps) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [api, setApi] = useState<CarouselApi>();
-
-  // Gestionnaire pour la mise à jour de l'index du carrousel
-  const handleSlideChange = (api: CarouselApi | undefined) => {
-    if (!api) return;
-
-    api.on("select", () => {
-      setCurrentSlide(api.selectedScrollSnap());
-    });
-  };
-
+const PropertyCard = ({ image, title, location, rating, status }: PropertyCardProps) => {
   return (
     <Card className="overflow-hidden bg-white relative transform transition-all hover:scale-[1.02] rounded-[20px]">
       <div className="relative aspect-square w-full">
-        {/* Carousel d'images */}
-        <Carousel 
-          className="w-full h-full"
-          setApi={setApi}
-          onSelect={() => handleSlideChange(api)}
-        >
+        <Carousel className="w-full h-full">
           <CarouselContent className="h-full">
-            {images.map((image, index) => (
-              <CarouselItem key={index} className="h-full">
-                <div className="relative w-full h-full">
-                  <img 
-                    src={image}
-                    alt={`${title} - Image ${index + 1}`}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                </div>
-              </CarouselItem>
-            ))}
+            {/* Image principale */}
+            <CarouselItem>
+              <img 
+                src={image}
+                alt={title}
+                className="w-full h-full object-cover"
+              />
+            </CarouselItem>
+            {/* Images supplémentaires (même image pour l'exemple) */}
+            <CarouselItem>
+              <img 
+                src={image}
+                alt={title}
+                className="w-full h-full object-cover"
+              />
+            </CarouselItem>
+            <CarouselItem>
+              <img 
+                src={image}
+                alt={title}
+                className="w-full h-full object-cover"
+              />
+            </CarouselItem>
           </CarouselContent>
           
           {/* Boutons de navigation du carrousel (visibles au survol) */}
           <div className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity">
             <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2" />
             <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2" />
-          </div>
-
-          {/* Indicateurs de navigation */}
-          <div className="absolute bottom-24 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
-            {images.map((_, index) => (
-              <div
-                key={index}
-                className={`w-1.5 h-1.5 rounded-full transition-all ${
-                  currentSlide === index
-                    ? "bg-white w-4"
-                    : "bg-white/60"
-                }`}
-              />
-            ))}
           </div>
         </Carousel>
 
@@ -92,24 +71,24 @@ const PropertyCard = ({ images, title, location, rating, status }: PropertyCardP
           </button>
         </div>
 
-        {/* Bottom Info Bar avec hauteur fixe et ellipsis pour le texte */}
+        {/* Bottom Info Bar */}
         <div className="absolute bottom-4 left-4 right-4 bg-white rounded-[16px] shadow-sm overflow-hidden z-10">
-          <div className="p-2">
+          <div className="p-4">
             <div className="flex items-center justify-between">
-              <div className="space-y-0.5 flex-1 min-w-0">
-                <h3 className="font-medium text-[15px] truncate pr-2">{title}</h3>
+              <div className="space-y-1">
+                <h3 className="font-medium text-[15px]">{title}</h3>
                 <div className="flex items-center text-gray-600">
-                  <MapPin className="w-4 h-4 shrink-0 mr-1" />
-                  <span className="text-sm truncate">{location}</span>
+                  <MapPin className="w-4 h-4 mr-1" />
+                  <span className="text-sm">{location}</span>
                 </div>
               </div>
               
               <button 
-                className="w-8 h-8 shrink-0 rounded-full bg-[#0EA5E9] hover:bg-[#0284C7] transition-colors flex items-center justify-center"
+                className="w-10 h-10 rounded-full bg-[#0EA5E9] hover:bg-[#0284C7] transition-colors flex items-center justify-center"
                 aria-label="Voir les détails"
               >
                 <svg 
-                  className="w-4 h-4 text-white" 
+                  className="w-5 h-5 text-white" 
                   viewBox="0 0 24 24"
                   fill="none" 
                   stroke="currentColor"
