@@ -42,7 +42,7 @@ const Index = () => {
           <CategoryBar />
           <main className="flex-1 overflow-y-auto hide-scrollbar">
             <div className="container mx-auto px-8 py-4">
-              <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6">
                 {properties.map((property) => (
                   <PropertyCard key={property.id} property={property} />
                 ))}

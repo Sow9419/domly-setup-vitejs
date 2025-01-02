@@ -43,7 +43,7 @@ const CategoryBar = () => {
                   variant="ghost"
                   onClick={() => handleCategorySelect(category.id)}
                   className={`
-                    flex flex-row items-center gap-3 h-10 px-4 py-2 
+                    flex flex-row items-center gap-3 h-10 px-2 py-2 
                     border border-[#E5E7EB] rounded-full
                     hover:bg-gray-50 transition-colors
                     ${isSelected ? 'text-white bg-[#0EA5E9]' : 'text-gray-600'}

@@ -74,14 +74,14 @@ const PropertyCard = ({ property }: { property: Property }) => {
           <div className="flex items-center gap-2 bg-white/80 px-2 py-1 rounded-full">
             <Star className="h-4 w-4 fill-current" />
             <span className="text-sm font-medium">{property.rating}</span>
-            <span className="text-sm">• {property.status}</span>
+            <span className="text-sm">| {property.status}</span>
           </div>
           {/* Bouton favori avec nouveau style */}
           <button 
             className={`bg-white p-2 rounded-full transition-colors duration-300`}
             onClick={toggleFavorite}
           >
-            <Heart className={`h-4 w-4 ${isFavorite ? 'text-primary fill-current' : ''}`} />
+            <Heart className={`h-4 w-4 ${isFavorite ? 'text-primary fill-current ' : ''}`} />
           </button>
         </div>
 
@@ -99,7 +99,7 @@ const PropertyCard = ({ property }: { property: Property }) => {
                 <p className="text-sm truncate max-w-[180px]">{property.location}</p>
               </div>
             </div>
-            <button className="bg-black p-2 rounded-full w-[42px] h-[42px] flex items-center justify-center -translate-y-2 translate-x-2">
+            <button className="bg-black p-2 rounded-full w-[35px] h-[35px] flex items-center justify-center -translate-y-2 translate-x-2">
               <ArrowUpRight className="h-6 w-6 text-white" />
             </button>
           </div>
@@ -111,7 +111,7 @@ const PropertyCard = ({ property }: { property: Property }) => {
             <div
               key={index}
               className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${
-                currentImageIndex === index ? "bg-white" : "bg-white/50"
+                currentImageIndex === index ? "bg-primary" : "bg-white/50"
               }`}
               onClick={() => setCurrentImageIndex(index)}
             />
