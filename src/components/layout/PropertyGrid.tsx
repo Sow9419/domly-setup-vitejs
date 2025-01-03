@@ -5,34 +5,28 @@ interface PropertyGridProps {
   properties: Property[]
 }
 
-// Composant de grille Bento pour afficher les propriétés avec effet StaggeredView
 const PropertyGrid = ({ properties }: PropertyGridProps) => {
-  // Fonction pour déterminer la taille de la carte en fonction de son index
-  const getCardSize = (index: number): "small" | "medium" | "large" => {
-    // Pattern Bento : variation des tailles pour créer un effet StaggeredView
-    const pattern = [
-      "medium", "large", "small",
-      "large", "small", "medium",
-      "small", "medium", "large"
-    ]
-    return pattern[index % pattern.length] as "small" | "medium" | "large"
+  // Function to determine card height based on index
+  const getCardHeight = (index: number): string => {
+    const heights = [
+      'h-[300px]', 'h-[400px]', 'h-[350px]', 
+      'h-[450px]', 'h-[380px]', 'h-[420px]',
+      'h-[360px]', 'h-[440px]', 'h-[320px]', 'h-[400px]'
+    ];
+    return heights[index % heights.length];
   }
 
   return (
     <div className="w-full p-4 bg-gray-100">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-7xl mx-auto">
+      <div className="columns-1 md:columns-2 lg:columns-3 gap-4 max-w-7xl mx-auto">
         {properties.map((property, index) => (
           <div 
             key={property.id} 
-            className={`
-              transform transition-all duration-300 hover:-translate-y-1
-              ${index % 3 === 0 ? 'md:col-span-2 lg:col-span-1' : ''}
-              ${index % 5 === 0 ? 'md:row-span-2' : ''}
-            `}
+            className={`mb-4 break-inside-avoid transform transition-all duration-300 hover:-translate-y-1 ${getCardHeight(index)}`}
           >
             <PropertyCard 
               property={property}
-              size={getCardSize(index)}
+              size={index % 3 === 0 ? 'large' : index % 2 === 0 ? 'medium' : 'small'}
               className="h-full"
             />
           </div>
