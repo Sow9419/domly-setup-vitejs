@@ -5,11 +5,11 @@ interface PropertyGridProps {
   properties: Property[]
 }
 
-// Composant de grille Bento pour afficher les propriétés
+// Composant de grille Bento pour afficher les propriétés avec effet StaggeredView
 const PropertyGrid = ({ properties }: PropertyGridProps) => {
   // Fonction pour déterminer la taille de la carte en fonction de son index
   const getCardSize = (index: number): "small" | "medium" | "large" => {
-    // Pattern Bento : variation des tailles pour créer un effet visuel intéressant
+    // Pattern Bento : variation des tailles pour créer un effet StaggeredView
     const pattern = [
       "medium", "large", "small",
       "large", "small", "medium",
