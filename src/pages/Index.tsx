@@ -1,21 +1,46 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/layout/Header";
-import CategoryBar from "@/components/layout/CategoryBar";
+import CategoryBar, { CategoryType } from "@/components/layout/CategoryBar";
 import PropertyCard from "@/components/layout/PropertyCard";
 import SideNav from "@/components/layout/SideNav";
 import BottomNav from "@/components/layout/BottomNav";
 import { properties } from "@/data/properties";
 
 const Index = () => {
+  const [selectedCategory, setSelectedCategory] = useState<CategoryType>("all");
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Filtrer les propriétés en fonction de la catégorie et du terme de recherche
+  const filteredProperties = properties.filter((property) => {
+    const matchesCategory = selectedCategory === "all" || property.category === selectedCategory;
+    const matchesSearch = 
+      property.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      property.location.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
+  // Gestionnaire de changement de catégorie
+  const handleCategoryChange = (category: CategoryType) => {
+    setSelectedCategory(category);
+    console.log("Filtering by category:", category);
+  };
+
+  // Gestionnaire de recherche
+  const handleSearch = (term: string) => {
+    setSearchTerm(term);
+    console.log("Searching for:", term);
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* Layout pour Mobile */}
       <div className="md:hidden">
-        <Header />
-        <CategoryBar />
+        <Header onSearch={handleSearch} />
+        <CategoryBar onCategoryChange={handleCategoryChange} onSearch={handleSearch} />
         <main className="px-4 pt-20 pb-20">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {properties.map((property) => (
+            {filteredProperties.map((property) => (
               <PropertyCard key={property.id} property={property} />
             ))}
           </div>
@@ -38,12 +63,12 @@ const Index = () => {
         </div>
         
         <div className="flex-1 flex flex-col overflow-hidden">
-          <Header />
-          <CategoryBar />
+          <Header onSearch={handleSearch} />
+          <CategoryBar onCategoryChange={handleCategoryChange} onSearch={handleSearch} />
           <main className="flex-1 overflow-y-auto hide-scrollbar">
             <div className="container mx-auto px-8 py-4">
               <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6">
-                {properties.map((property) => (
+                {filteredProperties.map((property) => (
                   <PropertyCard key={property.id} property={property} />
                 ))}
               </div>
