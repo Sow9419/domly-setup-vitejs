@@ -9,9 +9,11 @@ interface HeaderProps {
 }
 
 const Header = ({ onSearch }: HeaderProps) => {
+  // État pour gérer le scroll
   const [isScrolled, setIsScrolled] = useState(false);
   const mainContentRef = useRef<HTMLElement | null>(null);
 
+  // Gestion du scroll pour l'affichage conditionnel de la barre de recherche
   useEffect(() => {
     mainContentRef.current = document.querySelector('main.overflow-y-auto');
 
@@ -43,8 +45,11 @@ const Header = ({ onSearch }: HeaderProps) => {
     };
   }, []);
 
+  // Gestionnaire de recherche
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onSearch(e.target.value);
+    const searchTerm = e.target.value;
+    console.log("Searching for:", searchTerm);
+    onSearch(searchTerm);
   };
 
   return (
@@ -57,7 +62,7 @@ const Header = ({ onSearch }: HeaderProps) => {
             <input
               type="text"
               placeholder="Rechercher une destination..."
-              className="flex-1 border-none focus:outline-none text-sm"
+              className="flex-1 border-none focus:outline-none focus:ring-0 text-sm"
               onChange={handleSearch}
             />
             <Button 
@@ -77,10 +82,7 @@ const Header = ({ onSearch }: HeaderProps) => {
           fixed top-0 left-0 right-0 z-50 
           transition-all duration-300
           hidden md:block 
-          ${isScrolled ? 
-            "bg-white border-b border-gray-200" : 
-            "bg-white"
-          }
+          ${isScrolled ? 'bg-white border-b border-gray-200' : 'bg-white'}
         `}
       >
         <div className="max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4">
@@ -92,7 +94,7 @@ const Header = ({ onSearch }: HeaderProps) => {
               </span>
             </Link>
 
-            {/* Search Bar - Only visible when scrolled */}
+            {/* Barre de recherche - Visible uniquement lors du scroll */}
             {isScrolled && (
               <div className="hidden md:flex flex-1 max-w-md mx-8">
                 <div className="relative w-full">
@@ -102,6 +104,7 @@ const Header = ({ onSearch }: HeaderProps) => {
                         type="text"
                         placeholder="Rechercher une destination"
                         className="w-full pl-10 pr-4 py-2 border-0 bg-transparent focus:ring-0 focus:outline-none placeholder-gray-500"
+                        onChange={handleSearch}
                       />
                       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                     </div>
@@ -115,7 +118,7 @@ const Header = ({ onSearch }: HeaderProps) => {
               </div>
             )}
 
-            {/* Right Menu */}
+            {/* Menu de droite */}
             <div className="hidden md:flex items-center gap-4">
               <Button 
                 variant="ghost" 
@@ -142,7 +145,7 @@ const Header = ({ onSearch }: HeaderProps) => {
         </div>
       </header>
 
-      {/* Search Bar - Positioned between Header and CategoryBar */}
+      {/* Barre de recherche principale - Entre Header et CategoryBar */}
       {!isScrolled && (
         <div className="w-full bg-transparent hidden md:block pb-2" style={{ marginTop: "80px" }}>
           <div className="max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4">
@@ -154,6 +157,7 @@ const Header = ({ onSearch }: HeaderProps) => {
                       type="text"
                       placeholder="Trouver une location n'importe où"
                       className="border-0 bg-transparent focus:ring-0 focus:outline-none w-full placeholder-gray-500"
+                      onChange={handleSearch}
                     />
                   </div>
                   <div className="pr-2">

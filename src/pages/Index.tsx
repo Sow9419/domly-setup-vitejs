@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/layout/Header";
 import CategoryBar, { CategoryType } from "@/components/layout/CategoryBar";
@@ -8,33 +8,34 @@ import BottomNav from "@/components/layout/BottomNav";
 import { properties } from "@/data/properties";
 
 const Index = () => {
+  // États pour la gestion des filtres et de la recherche
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>("all");
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Filtrer les propriétés en fonction de la catégorie et du terme de recherche
+  // Fonction de filtrage des propriétés
   const filteredProperties = properties.filter((property) => {
     const matchesCategory = selectedCategory === "all" || property.category === selectedCategory;
-    const matchesSearch = 
+    const matchesSearch = searchTerm === "" || 
       property.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       property.location.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
   // Gestionnaire de changement de catégorie
-  const handleCategoryChange = (category: CategoryType) => {
+  const handleCategoryChange = useCallback((category: CategoryType) => {
     setSelectedCategory(category);
     console.log("Filtering by category:", category);
-  };
+  }, []);
 
   // Gestionnaire de recherche
-  const handleSearch = (term: string) => {
+  const handleSearch = useCallback((term: string) => {
     setSearchTerm(term);
     console.log("Searching for:", term);
-  };
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Layout pour Mobile */}
+      {/* Layout Mobile */}
       <div className="md:hidden">
         <Header onSearch={handleSearch} />
         <CategoryBar onCategoryChange={handleCategoryChange} onSearch={handleSearch} />
@@ -56,7 +57,7 @@ const Index = () => {
         <BottomNav />
       </div>
 
-      {/* Layout pour Desktop */}
+      {/* Layout Desktop */}
       <div className="hidden md:flex h-screen">
         <div className="w-[72px] overflow-y-auto border-r border-gray-100 bg-white hide-scrollbar">
           <SideNav />
