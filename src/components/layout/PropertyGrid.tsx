@@ -9,27 +9,11 @@ export default function PropertyGrid() {
           <div key={property.id} className="mb-4 break-inside-avoid">
             <PropertyCard 
               property={property} 
-              className={getCardHeight(index)}
+              className={index % 2 === 0 ? 'h-[280px]' : 'h-[380px]'}
             />
           </div>
         ))}
       </div>
     </div>
   )
-}
-
-function getCardHeight(index: number): string {
-  // Hauteurs ajustées pour un effet cascade plus naturel
-  const heights = [
-    'h-[240px]', // Plus petit pour un meilleur équilibre
-    'h-[280px]',
-    'h-[260px]',
-    'h-[300px]', // Réduit de 350px
-    'h-[270px]',
-    'h-[290px]', // Réduit de 330px
-    'h-[250px]',
-    'h-[310px]', // Réduit de 340px
-    'h-[280px]'
-  ];
-  return heights[index % heights.length];
 }
