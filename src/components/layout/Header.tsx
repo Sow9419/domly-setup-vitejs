@@ -103,7 +103,7 @@ const Header = ({ onSearch }: HeaderProps) => {
                       <Input
                         type="text"
                         placeholder="Rechercher une destination"
-                        className="w-full pl-10 pr-4 py-2 border-0 bg-transparent focus:ring-0 focus:outline-none placeholder-gray-500"
+                        className="w-full pl-10 pr-4 py-2 border-none bg-transparent focus:ring-0 focus:outline-none placeholder-gray-500"
                         onChange={handleSearch}
                       />
                       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
