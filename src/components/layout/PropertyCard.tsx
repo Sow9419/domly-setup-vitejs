@@ -47,11 +47,11 @@ const PropertyCard = ({ property, className = '' }: PropertyCardProps) => {
 
   return (
     <Card
-      className={`relative group overflow-hidden bg-white shadow-sm hover:shadow-md transition-all duration-300 ${className} h-full`}
+      className={`relative group overflow-hidden bg-white shadow-sm hover:shadow-md transition-all duration-300 ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative h-full">
+      <div className="relative h-full w-full">
         <button
           className={`absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 p-1.5 rounded-full z-10 transition-opacity duration-300 ${
             isHovered ? "opacity-100" : "opacity-0"

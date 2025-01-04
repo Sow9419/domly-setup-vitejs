@@ -4,10 +4,13 @@ import { properties } from '../../data/properties'
 export default function PropertyGrid() {
   return (
     <div className="p-4 bg-gray-100">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-7xl mx-auto">
+      <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 max-w-7xl mx-auto">
         {properties.map((property, index) => (
-          <div key={property.id} className={`${getCardHeight(index)}`}>
-            <PropertyCard property={property} />
+          <div key={property.id} className="mb-4 break-inside-avoid">
+            <PropertyCard 
+              property={property} 
+              className={getCardHeight(index)}
+            />
           </div>
         ))}
       </div>
@@ -16,17 +19,17 @@ export default function PropertyGrid() {
 }
 
 function getCardHeight(index: number): string {
-  // Adjusted heights to create a more balanced staggered effect
+  // Hauteurs ajustées pour un effet cascade plus naturel
   const heights = [
-    'h-[260px]', // Reduced from 280px
-    'h-[320px]', // Reduced from 350px
-    'h-[290px]', // Reduced from 320px
-    'h-[350px]', // Reduced from 400px
-    'h-[310px]', // Reduced from 340px
-    'h-[330px]', // Reduced from 380px
-    'h-[280px]', // Reduced from 300px
-    'h-[340px]', // Reduced from 360px
-    'h-[270px]'  // Reduced from 290px
+    'h-[240px]', // Plus petit pour un meilleur équilibre
+    'h-[280px]',
+    'h-[260px]',
+    'h-[300px]', // Réduit de 350px
+    'h-[270px]',
+    'h-[290px]', // Réduit de 330px
+    'h-[250px]',
+    'h-[310px]', // Réduit de 340px
+    'h-[280px]'
   ];
   return heights[index % heights.length];
 }
