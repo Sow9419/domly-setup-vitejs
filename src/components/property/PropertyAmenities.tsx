@@ -11,14 +11,14 @@ const amenities = [
 
 export const PropertyAmenities = () => {
   return (
-    <div className="grid grid-cols-3 gap-4 md:grid-cols-6">
+    <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
       {amenities.map((amenity, index) => (
         <div
           key={index}
           className="flex flex-col items-center justify-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
         >
-          {amenity.icon}
-          <span className="text-sm mt-1">{amenity.label}</span>
+          <span className="text-secondary">{amenity.icon}</span>
+          <span className="font-roboto text-sm mt-1 text-[#333333]">{amenity.label}</span>
         </div>
       ))}
     </div>
