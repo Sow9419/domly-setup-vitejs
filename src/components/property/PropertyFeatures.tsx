@@ -1,4 +1,4 @@
-import { Bed, Shower, Wind, Droplet, Zap } from 'lucide-react';
+import { Bed, ShowerHead, Wind, Droplet, Zap } from 'lucide-react';
 
 interface PropertyFeature {
   icon: React.ReactNode;
@@ -7,7 +7,7 @@ interface PropertyFeature {
 
 const features: PropertyFeature[] = [
   { icon: <Bed className="h-5 w-5" />, label: "4 Chambres" },
-  { icon: <Shower className="h-5 w-5" />, label: "2 Douches" },
+  { icon: <ShowerHead className="h-5 w-5" />, label: "2 Douches" },
   { icon: <Wind className="h-5 w-5" />, label: "Climatisation" },
   { icon: <Droplet className="h-5 w-5" />, label: "Robinet" },
   { icon: <Zap className="h-5 w-5" />, label: "Electricité" },
