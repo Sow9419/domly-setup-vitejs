@@ -10,7 +10,6 @@ export interface Property {
   rating: number;
   status: "Disponible" | "Occupé";
   category: "all" | "apartment" | "house" | "villa" | "workspace" | "office" | "store";
-  price?: number;
   images: PropertyImage[];
 }
 
