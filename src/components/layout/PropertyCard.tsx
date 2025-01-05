@@ -4,49 +4,54 @@ import { useState } from 'react'
 import { Star, Heart, ChevronLeft, ChevronRight, ArrowUpRight, MapPin } from 'lucide-react'
 import { Card } from "@/components/ui/card"
 import { Property } from '@/data/properties'
+import { useNavigate } from 'react-router-dom'
 
 const PropertyCard = ({ property }: { property: Property }) => {
-  // États pour gérer l'interaction utilisateur
+  const navigate = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0)
   const [isHovered, setIsHovered] = useState<boolean>(false)
   const [isFavorite, setIsFavorite] = useState<boolean>(false)
 
-  // Navigation des images
-  const nextImage = () => {
+  const nextImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     setCurrentImageIndex((prev) =>
       prev === property.images.length - 1 ? 0 : prev + 1
     )
   }
 
-  const previousImage = () => {
+  const previousImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     setCurrentImageIndex((prev) =>
       prev === 0 ? property.images.length - 1 : prev - 1
     )
   }
 
-  // Gestion des favoris
   const toggleFavorite = (e: React.MouseEvent) => {
     e.preventDefault()
+    e.stopPropagation()
     setIsFavorite(!isFavorite)
   }
 
+  const handleDetailClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigate(`/property/${property.id}`);
+  };
+
   return (
     <Card
-      className="relative group overflow-hidden"
+      className="relative group overflow-hidden cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Container principal avec ratio d'aspect augmenté */}
       <div className="relative aspect-[3/2.5]">
-        {/* Boutons de navigation des images */}
         <button
           className={`absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 p-1.5 rounded-full z-10 transition-opacity duration-300 ${
             isHovered ? "opacity-100" : "opacity-0"
           }`}
-          onClick={(e) => {
-            e.preventDefault();
-            previousImage();
-          }}
+          onClick={previousImage}
         >
           <ChevronLeft className="h-4 w-4" />
         </button>
@@ -54,29 +59,23 @@ const PropertyCard = ({ property }: { property: Property }) => {
           className={`absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 p-1.5 rounded-full z-10 transition-opacity duration-300 ${
             isHovered ? "opacity-100" : "opacity-0"
           }`}
-          onClick={(e) => {
-            e.preventDefault();
-            nextImage();
-          }}
+          onClick={nextImage}
         >
           <ChevronRight className="h-4 w-4" />
         </button>
 
-        {/* Image principale */}
         <img
           src={property.images[currentImageIndex].url}
           alt={property.images[currentImageIndex].alt}
           className="object-cover w-full h-full transition-transform duration-300"
         />
 
-        {/* Barre supérieure avec rating et favoris */}
         <div className="absolute top-0 left-0 right-0 p-3 flex justify-between items-center">
           <div className="flex items-center gap-2 bg-white/80 px-2 py-1 rounded-full">
             <Star className="h-4 w-4 fill-current" />
             <span className="text-sm font-medium">{property.rating}</span>
             <span className="text-sm">| {property.status}</span>
           </div>
-          {/* Bouton favori avec nouveau style */}
           <button 
             className={`bg-white p-2 rounded-full transition-colors duration-300`}
             onClick={toggleFavorite}
@@ -85,7 +84,6 @@ const PropertyCard = ({ property }: { property: Property }) => {
           </button>
         </div>
 
-        {/* Barre d'information inférieure */}
         <div
           className={`absolute bottom-0 left-0 right-0 p-3 bg-white/70 backdrop-blur-[20px] rounded-t-[12px] transform transition-transform duration-300 ${
             isHovered ? "translate-y-0" : "translate-y-full"
@@ -99,13 +97,15 @@ const PropertyCard = ({ property }: { property: Property }) => {
                 <p className="text-sm truncate max-w-[180px]">{property.location}</p>
               </div>
             </div>
-            <button className="bg-black p-2 rounded-full w-[35px] h-[35px] flex items-center justify-center -translate-y-2 translate-x-2">
+            <button 
+              className="bg-black p-2 rounded-full w-[35px] h-[35px] flex items-center justify-center -translate-y-2 translate-x-2"
+              onClick={handleDetailClick}
+            >
               <ArrowUpRight className="h-6 w-6 text-white" />
             </button>
           </div>
         </div>
 
-        {/* Indicateurs de navigation */}
         <div className="absolute bottom-14 left-0 right-0 flex justify-center gap-1.5">
           {property.images.map((_, index) => (
             <div
