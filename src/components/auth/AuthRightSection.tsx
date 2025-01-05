@@ -2,7 +2,7 @@ import React from "react";
 import { Search, Users, Clock } from "lucide-react";
 
 export const AuthRightSection = () => (
-  <div className="relative h-full rounded-l-lg">
+  <div className="relative h-full">
     <div className="absolute inset-0 bg-black bg-opacity-40 z-10 flex flex-col items-center justify-center text-white p-8">
       <h1 className="text-4xl font-bold mb-4">
         Trouvez votre chez-vous avec DomHyn!
@@ -45,7 +45,7 @@ export const AuthRightSection = () => (
     <img
       src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80"
       alt="Modern architecture house"
-      className="object-cover w-full h-full rounded-l-lg"
+      className="object-cover w-full h-full"
     />
   </div>
 );
