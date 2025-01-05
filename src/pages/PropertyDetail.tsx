@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-import { ChevronLeft, ChevronRight, Star, MapPin, Wifi, Parking, Balcony, Tree, Pool, UtensilsCrossed } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Star, MapPin, Wifi, Trees, UtensilsCrossed, Car, Home, Waves } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { properties } from '@/data/properties';
 import { format } from 'date-fns';
@@ -34,10 +34,10 @@ const PropertyDetail = () => {
 
   const amenities = [
     { icon: <Wifi className="h-5 w-5" />, label: "Wifi" },
-    { icon: <Parking className="h-5 w-5" />, label: "Parking" },
-    { icon: <Balcony className="h-5 w-5" />, label: "Balcon" },
-    { icon: <Tree className="h-5 w-5" />, label: "Jardin" },
-    { icon: <Pool className="h-5 w-5" />, label: "Piscine" },
+    { icon: <Car className="h-5 w-5" />, label: "Parking" },
+    { icon: <Home className="h-5 w-5" />, label: "Balcon" },
+    { icon: <Trees className="h-5 w-5" />, label: "Jardin" },
+    { icon: <Waves className="h-5 w-5" />, label: "Piscine" },
     { icon: <UtensilsCrossed className="h-5 w-5" />, label: "Cuisine équipée" },
   ];
 
