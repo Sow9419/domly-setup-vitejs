@@ -4,37 +4,43 @@ import { useState } from 'react'
 import { Star, Heart, ChevronLeft, ChevronRight, ArrowUpRight, MapPin } from 'lucide-react'
 import { Card } from "@/components/ui/card"
 import { Property } from '@/data/properties'
+import { useNavigate } from 'react-router-dom'
 
 const PropertyCard = ({ property }: { property: Property }) => {
-  // États pour gérer l'interaction utilisateur
+  const navigate = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0)
   const [isHovered, setIsHovered] = useState<boolean>(false)
   const [isFavorite, setIsFavorite] = useState<boolean>(false)
 
-  // Navigation des images
-  const nextImage = () => {
+  const nextImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setCurrentImageIndex((prev) =>
       prev === property.images.length - 1 ? 0 : prev + 1
     )
   }
 
-  const previousImage = () => {
+  const previousImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setCurrentImageIndex((prev) =>
       prev === 0 ? property.images.length - 1 : prev - 1
     )
   }
 
-  // Gestion des favoris
   const toggleFavorite = (e: React.MouseEvent) => {
-    e.preventDefault()
+    e.stopPropagation()
     setIsFavorite(!isFavorite)
   }
 
+  const handleCardClick = () => {
+    navigate(`/property/${property.id}`);
+  };
+
   return (
     <Card
-      className="relative group overflow-hidden"
+      className="relative group overflow-hidden cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={handleCardClick}
     >
       {/* Container principal avec ratio d'aspect augmenté */}
       <div className="relative aspect-[3/2.5]">
@@ -43,10 +49,7 @@ const PropertyCard = ({ property }: { property: Property }) => {
           className={`absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 p-1.5 rounded-full z-10 transition-opacity duration-300 ${
             isHovered ? "opacity-100" : "opacity-0"
           }`}
-          onClick={(e) => {
-            e.preventDefault();
-            previousImage();
-          }}
+          onClick={previousImage}
         >
           <ChevronLeft className="h-4 w-4" />
         </button>
@@ -54,10 +57,7 @@ const PropertyCard = ({ property }: { property: Property }) => {
           className={`absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 p-1.5 rounded-full z-10 transition-opacity duration-300 ${
             isHovered ? "opacity-100" : "opacity-0"
           }`}
-          onClick={(e) => {
-            e.preventDefault();
-            nextImage();
-          }}
+          onClick={nextImage}
         >
           <ChevronRight className="h-4 w-4" />
         </button>
@@ -76,12 +76,11 @@ const PropertyCard = ({ property }: { property: Property }) => {
             <span className="text-sm font-medium">{property.rating}</span>
             <span className="text-sm">| {property.status}</span>
           </div>
-          {/* Bouton favori avec nouveau style */}
           <button 
             className={`bg-white p-2 rounded-full transition-colors duration-300`}
             onClick={toggleFavorite}
           >
-            <Heart className={`h-4 w-4 ${isFavorite ? 'text-primary fill-current ' : ''}`} />
+            <Heart className={`h-4 w-4 ${isFavorite ? 'text-primary fill-current' : ''}`} />
           </button>
         </div>
 
@@ -99,7 +98,10 @@ const PropertyCard = ({ property }: { property: Property }) => {
                 <p className="text-sm truncate max-w-[180px]">{property.location}</p>
               </div>
             </div>
-            <button className="bg-black p-2 rounded-full w-[35px] h-[35px] flex items-center justify-center -translate-y-2 translate-x-2">
+            <button 
+              className="bg-black p-2 rounded-full w-[35px] h-[35px] flex items-center justify-center -translate-y-2 translate-x-2"
+              onClick={handleCardClick}
+            >
               <ArrowUpRight className="h-6 w-6 text-white" />
             </button>
           </div>
@@ -113,7 +115,10 @@ const PropertyCard = ({ property }: { property: Property }) => {
               className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${
                 currentImageIndex === index ? "bg-primary" : "bg-white/50"
               }`}
-              onClick={() => setCurrentImageIndex(index)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setCurrentImageIndex(index);
+              }}
             />
           ))}
         </div>
