@@ -147,59 +147,5 @@ export const properties: Property[] = [
         alt: "Coin salon confortable"
       }
     ]
-  },
-  {
-    id: 8,
-    title: "Duplex élégant",
-    location: "Toulouse, Occitanie",
-    rating: 4.9,
-    status: "Disponible",
-    category: "apartment",
-    images: [
-      {
-        url: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop",
-        alt: "Vue depuis le balcon"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1568605114967-8130f3a3bc8a?q=80&w=2070&auto=format&fit=crop",
-        alt: "Salle à manger élégante"
-      }
-    ]
-  },
-  {
-    id: 9,
-    title: "Résidence de charme",
-    location: "Nantes, Pays de la Loire",
-    rating: 4.8,
-    status: "Occupé",
-    category: "house",
-    images: [
-      {
-        url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop",
-        alt: "Entrée principale"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2070&auto=format&fit=crop",
-        alt: "Chambre d'amis"
-      }
-    ]
-  },
-  {
-    id: 10,
-    title: "Suite luxueuse",
-    location: "Cannes, Alpes-Maritimes",
-    rating: 4.9,
-    status: "Disponible",
-    category: "villa",
-    images: [
-      {
-        url: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=2084&auto=format&fit=crop",
-        alt: "Vue sur la mer depuis la suite"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1523247986295-a266a9e2b33a?q=80&w=2070&auto=format&fit=crop",
-        alt: "Salle de bain luxueuse"
-      }
-    ]
   }
 ]
