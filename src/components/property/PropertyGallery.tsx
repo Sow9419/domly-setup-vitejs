@@ -13,14 +13,14 @@ export const PropertyGallery = ({
   setCurrentImageIndex 
 }: PropertyGalleryProps) => {
   const nextImage = () => {
-    setCurrentImageIndex((prev) =>
-      prev === property.images.length - 1 ? 0 : prev + 1
+    setCurrentImageIndex(
+      currentImageIndex === property.images.length - 1 ? 0 : currentImageIndex + 1
     );
   };
 
   const previousImage = () => {
-    setCurrentImageIndex((prev) =>
-      prev === 0 ? property.images.length - 1 : prev - 1
+    setCurrentImageIndex(
+      currentImageIndex === 0 ? property.images.length - 1 : currentImageIndex - 1
     );
   };
 

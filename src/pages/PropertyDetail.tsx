@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-import { Star, MapPin } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Star, MapPin } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { properties } from '@/data/properties';
 import { format } from 'date-fns';
