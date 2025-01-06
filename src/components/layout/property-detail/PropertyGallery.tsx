@@ -17,7 +17,7 @@ const PropertyGallery = ({ images }: PropertyGalleryProps) => {
         <img
           src={images[currentImageIndex].url}
           alt={images[currentImageIndex].alt}
-          className="w-full h-[353px] md:w-[609px] md:h-[333px] object-cover md:rounded-lg"
+          className="w-full h-[353px] md:w-full md:h-[333px] object-cover md:rounded-lg"
         />
         <Button 
           onClick={() => setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length)}
@@ -36,7 +36,7 @@ const PropertyGallery = ({ images }: PropertyGalleryProps) => {
           <ChevronRight className="h-6 w-6" />
         </Button>
       </div>
-      <div className="w-full md:w-[45%] flex flex-row md:grid md:grid-cols-2 gap-2 overflow-x-auto md:overflow-y-auto md:h-[333px] px-4 md:px-0">
+      <div className="w-full md:w-[45%] flex flex-row md:grid md:grid-cols-2 gap-2 overflow-x-auto hide-scrollbar md:overflow-y-auto md:h-[333px] px-4 md:px-0">
         {images.map((img, index) => (
           <button
             key={index}

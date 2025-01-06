@@ -18,7 +18,7 @@ const PropertyDetail = () => {
   return (
     <>
       <NavDesktop />
-      <div className="min-h-screen bg-white font-roboto text-[#333333] pb-16 md:pb-0 md:pt-20">
+      <div className="min-h-screen bg-white font-roboto text-[#333333] pb-16 md:pb-0 md:pt-20 overflow-x-hidden">
         <div className="relative">
           {/* Mobile Header Actions */}
           <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-10 md:hidden">

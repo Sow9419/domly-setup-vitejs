@@ -10,7 +10,7 @@ interface PropertyBookingProps {
 const PropertyBooking = ({ property }: PropertyBookingProps) => {
   return (
     <>
-      <div className="w-full md:w-[40%] min-w-[383px]">
+      <div className="w-full md:w-[40%] min-w-[320px] lg:min-w-[383px]">
         <div className="sticky top-6 space-y-6 bg-white p-6 rounded-lg shadow-lg border border-gray-200 mb-16 md:mb-0">
           <div className="flex items-center justify-between mb-4">
             <div className="text-2xl font-bold text-[#2C3E50]">
@@ -23,7 +23,7 @@ const PropertyBooking = ({ property }: PropertyBookingProps) => {
             </div>
           </div>
 
-          <div className="w-[383px] h-[160px] mt-4 rounded-lg overflow-hidden">
+          <div className="w-full h-[160px] mt-4 rounded-lg overflow-hidden">
             <img 
               src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s+3498DB(-1.4157,52.6643)/-1.4157,52.6643,13,0/383x160@2x?access_token=pk.eyJ1IjoiZXhhbXBsZSIsImEiOiJja2V5czB1b3EwMW9zMnJxcXg2NW51aWc3In0.q8qo6tM7UesXxm7moqIxlA"
               alt="Location map"
