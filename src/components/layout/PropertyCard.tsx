@@ -1,17 +1,15 @@
-'use client'
-
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Star, Heart, ChevronLeft, ChevronRight, ArrowUpRight, MapPin } from 'lucide-react'
 import { Card } from "@/components/ui/card"
 import { Property } from '@/data/properties'
 
 const PropertyCard = ({ property }: { property: Property }) => {
-  // États pour gérer l'interaction utilisateur
+  const navigate = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0)
   const [isHovered, setIsHovered] = useState<boolean>(false)
   const [isFavorite, setIsFavorite] = useState<boolean>(false)
 
-  // Navigation des images
   const nextImage = () => {
     setCurrentImageIndex((prev) =>
       prev === property.images.length - 1 ? 0 : prev + 1
@@ -24,10 +22,14 @@ const PropertyCard = ({ property }: { property: Property }) => {
     )
   }
 
-  // Gestion des favoris
   const toggleFavorite = (e: React.MouseEvent) => {
     e.preventDefault()
     setIsFavorite(!isFavorite)
+  }
+
+  const handleViewDetails = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigate(`/property/${property.id}`);
   }
 
   return (
@@ -76,7 +78,6 @@ const PropertyCard = ({ property }: { property: Property }) => {
             <span className="text-sm font-medium">{property.rating}</span>
             <span className="text-sm">| {property.status}</span>
           </div>
-          {/* Bouton favori avec nouveau style */}
           <button 
             className={`bg-white p-2 rounded-full transition-colors duration-300`}
             onClick={toggleFavorite}
@@ -99,7 +100,10 @@ const PropertyCard = ({ property }: { property: Property }) => {
                 <p className="text-sm truncate max-w-[180px]">{property.location}</p>
               </div>
             </div>
-            <button className="bg-black p-2 rounded-full w-[35px] h-[35px] flex items-center justify-center -translate-y-2 translate-x-2">
+            <button 
+              className="bg-black p-2 rounded-full w-[35px] h-[35px] flex items-center justify-center -translate-y-2 translate-x-2"
+              onClick={handleViewDetails}
+            >
               <ArrowUpRight className="h-6 w-6 text-white" />
             </button>
           </div>
