@@ -1,16 +1,17 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 const Map = () => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<mapboxgl.Map | null>(null);
+  const [mapInitialized, setMapInitialized] = useState(false);
 
-  useEffect(() => {
-    if (!mapContainer.current) return;
+  // Initialize map function
+  const initializeMap = () => {
+    if (!mapContainer.current || mapInstance.current) return;
 
     try {
-      // Initialize map
       mapboxgl.accessToken = 'pk.eyJ1IjoibG92YWJsZSIsImEiOiJjbHRweHgxeDQwMXB5MmptbGw3Z2JsMnB2In0.O8lasM04g4tQoqYS6P5UFw';
       
       const map = new mapboxgl.Map({
@@ -22,10 +23,8 @@ const Map = () => {
         pitch: 45,
       });
 
-      // Store map instance in ref
       mapInstance.current = map;
 
-      // Add navigation controls
       map.addControl(
         new mapboxgl.NavigationControl({
           visualizePitch: true,
@@ -33,79 +32,96 @@ const Map = () => {
         'top-right'
       );
 
-      // Disable scroll zoom for smoother experience
       map.scrollZoom.disable();
 
-      // Add atmosphere and fog effects
-      map.on('style.load', () => {
-        map.setFog({
+      const setupMapEffects = () => {
+        if (!mapInstance.current) return;
+        mapInstance.current.setFog({
           color: 'rgb(255, 255, 255)',
           'high-color': 'rgb(200, 200, 225)',
           'horizon-blend': 0.2,
         });
-      });
+        setMapInitialized(true);
+      };
 
-      // Rotation animation settings
-      const secondsPerRevolution = 240;
-      const maxSpinZoom = 5;
-      const slowSpinZoom = 3;
-      let userInteracting = false;
-      let spinEnabled = true;
+      map.on('style.load', setupMapEffects);
 
-      // Spin globe function
-      function spinGlobe() {
-        const map = mapInstance.current;
-        if (!map) return;
-        
-        const zoom = map.getZoom();
-        if (spinEnabled && !userInteracting && zoom < maxSpinZoom) {
-          let distancePerSecond = 360 / secondsPerRevolution;
-          if (zoom > slowSpinZoom) {
-            const zoomDif = (maxSpinZoom - zoom) / (maxSpinZoom - slowSpinZoom);
-            distancePerSecond *= zoomDif;
-          }
-          const center = map.getCenter();
-          center.lng -= distancePerSecond;
-          map.easeTo({ center, duration: 1000, easing: (n) => n });
-        }
-      }
-
-      // Event listeners for interaction
-      map.on('mousedown', () => {
-        userInteracting = true;
-      });
-      
-      map.on('dragstart', () => {
-        userInteracting = true;
-      });
-      
-      map.on('mouseup', () => {
-        userInteracting = false;
-        spinGlobe();
-      });
-      
-      map.on('touchend', () => {
-        userInteracting = false;
-        spinGlobe();
-      });
-
-      map.on('moveend', () => {
-        spinGlobe();
-      });
-
-      // Start the globe spinning
-      spinGlobe();
-
+      return map;
     } catch (error) {
       console.error('Error initializing map:', error);
+      return null;
+    }
+  };
+
+  // Setup rotation animation
+  const setupRotationAnimation = (map: mapboxgl.Map) => {
+    const secondsPerRevolution = 240;
+    const maxSpinZoom = 5;
+    const slowSpinZoom = 3;
+    let userInteracting = false;
+    let spinEnabled = true;
+
+    function spinGlobe() {
+      if (!map) return;
+      
+      const zoom = map.getZoom();
+      if (spinEnabled && !userInteracting && zoom < maxSpinZoom) {
+        let distancePerSecond = 360 / secondsPerRevolution;
+        if (zoom > slowSpinZoom) {
+          const zoomDif = (maxSpinZoom - zoom) / (maxSpinZoom - slowSpinZoom);
+          distancePerSecond *= zoomDif;
+        }
+        const center = map.getCenter();
+        center.lng -= distancePerSecond;
+        map.easeTo({ center, duration: 1000, easing: (n) => n });
+      }
     }
 
-    // Cleanup
+    const events = {
+      mousedown: () => { userInteracting = true; },
+      dragstart: () => { userInteracting = true; },
+      mouseup: () => {
+        userInteracting = false;
+        spinGlobe();
+      },
+      touchend: () => {
+        userInteracting = false;
+        spinGlobe();
+      },
+      moveend: () => { spinGlobe(); }
+    };
+
+    // Add event listeners
+    Object.entries(events).forEach(([event, handler]) => {
+      map.on(event, handler);
+    });
+
+    // Start spinning
+    spinGlobe();
+
+    // Return cleanup function
     return () => {
+      Object.entries(events).forEach(([event, handler]) => {
+        map.off(event, handler);
+      });
+    };
+  };
+
+  useEffect(() => {
+    const map = initializeMap();
+    let cleanupRotation: (() => void) | undefined;
+
+    if (map) {
+      cleanupRotation = setupRotationAnimation(map);
+    }
+
+    return () => {
+      cleanupRotation?.();
       if (mapInstance.current) {
         mapInstance.current.remove();
         mapInstance.current = null;
       }
+      setMapInitialized(false);
     };
   }, []);
 
