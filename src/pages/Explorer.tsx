@@ -5,35 +5,35 @@ import CategoryBar from "@/components/layout/CategoryBar";
 import SideNav from "@/components/layout/SideNav";
 import BottomNav from "@/components/layout/BottomNav";
 import Map from "@/components/Map";
+import { useState } from "react";
 
-export default function Explorer() {
+const Explorer = () => {
   const isMobile = useIsMobile();
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const handleSearch = (searchTerm: string) => {
-    console.log("Searching for:", searchTerm);
-  };
-
-  const handleCategoryChange = (category: string) => {
-    console.log("Category changed to:", category);
+  const handleSearch = (term: string) => {
+    setSearchTerm(term);
+    console.log("Search term in Explorer:", term);
   };
 
   return (
     <div className="min-h-screen bg-white">
-      {isMobile ? <SearchMobile /> : <NavDesktop />}
+      {isMobile ? (
+        <SearchMobile onSearch={handleSearch} />
+      ) : (
+        <NavDesktop />
+      )}
       
-      <div className="flex h-[calc(100vh-80px)] mt-20">
+      <div className="flex h-screen pt-[60px] md:pt-[80px]">
         {!isMobile && (
-          <div className="w-20 border-r border-gray-200">
+          <div className="w-[72px] border-r border-gray-100">
             <SideNav />
           </div>
         )}
         
-        <div className="flex-1 overflow-hidden">
-          <CategoryBar 
-            onCategoryChange={handleCategoryChange}
-            onSearch={handleSearch}
-          />
-          <div className="h-[calc(100vh-160px)]">
+        <div className="flex-1 flex flex-col">
+          <CategoryBar onCategoryChange={() => {}} onSearch={handleSearch} />
+          <div className="flex-1 relative">
             <Map />
           </div>
         </div>
@@ -42,4 +42,6 @@ export default function Explorer() {
       {isMobile && <BottomNav />}
     </div>
   );
-}
+};
+
+export default Explorer;
