@@ -17,11 +17,11 @@ const PropertyGallery = ({ images }: PropertyGalleryProps) => {
         <img
           src={images[currentImageIndex].url}
           alt={images[currentImageIndex].alt}
-          className="w-full h-[353px] md:w-[609px] md:h-[333px] object-cover rounded-lg"
+          className="w-full h-[353px] md:w-[609px] md:h-[333px] object-cover md:rounded-lg"
         />
         <Button 
           onClick={() => setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length)}
-          className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2"
+          className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 hidden md:flex"
           size="icon"
           variant="ghost"
         >
@@ -29,14 +29,14 @@ const PropertyGallery = ({ images }: PropertyGalleryProps) => {
         </Button>
         <Button 
           onClick={() => setCurrentImageIndex((prev) => (prev + 1) % images.length)}
-          className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2"
+          className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 hidden md:flex"
           size="icon"
           variant="ghost"
         >
           <ChevronRight className="h-6 w-6" />
         </Button>
       </div>
-      <div className="w-full md:w-[45%] flex flex-row md:grid md:grid-cols-2 gap-2 overflow-x-auto md:overflow-y-auto md:h-[333px]">
+      <div className="w-full md:w-[45%] flex flex-row md:grid md:grid-cols-2 gap-2 overflow-x-auto md:overflow-y-auto md:h-[333px] px-4 md:px-0">
         {images.map((img, index) => (
           <button
             key={index}
