@@ -5,8 +5,8 @@ interface PropertyBookingProps {
 }
 
 const PropertyBooking = ({ property }: PropertyBookingProps) => {
-  // Calculate the map center based on property location
-  const mapImageUrl = `https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s+3498DB(2.3522,48.8566)/2.3522,48.8566,13,0/383x160@2x?access_token=pk.eyJ1IjoibG92YWJsZSIsImEiOiJjbHRweHgxeDQwMXB5MmptbGw3Z2JsMnB2In0.O8lasM04g4tQoqYS6P5UFw`;
+  // Using a valid Mapbox URL format
+  const mapImageUrl = `https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s+3498DB(2.3522,48.8566)/2.3522,48.8566,13,0/383x160?access_token=pk.eyJ1IjoibG92YWJsZSIsImEiOiJjbHRweHgxeDQwMXB5MmptbGw3Z2JsMnB2In0.O8lasM04g4tQoqYS6P5UFw`;
 
   return (
     <>
