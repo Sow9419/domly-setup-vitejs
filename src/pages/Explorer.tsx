@@ -5,6 +5,7 @@ import CategoryBar from '@/components/layout/CategoryBar';
 import SideNav from '@/components/layout/SideNav';
 import BottomNav from '@/components/layout/BottomNav';
 import { useIsMobile } from '@/hooks/use-mobile';
+import Map from '@/components/Map';
 
 const Explorer = () => {
   const isMobile = useIsMobile();
@@ -20,7 +21,7 @@ const Explorer = () => {
       <div className="flex-1 flex overflow-hidden">
         {/* Sidebar for desktop */}
         {!isMobile && (
-          <div className="w-[280px] border-r">
+          <div className="w-[72px] border-r">
             <SideNav />
           </div>
         )}
@@ -32,11 +33,9 @@ const Explorer = () => {
             onSearch={(term) => setSearchTerm(term)}
           />
           
-          {/* Map placeholder - you'll need to implement the actual map component */}
-          <div className="flex-1 bg-gray-100">
-            <div className="h-full w-full flex items-center justify-center text-gray-500">
-              Map Component Placeholder
-            </div>
+          {/* Map component */}
+          <div className="flex-1 relative">
+            <Map />
           </div>
         </div>
       </div>

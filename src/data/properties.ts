@@ -13,6 +13,11 @@ export interface Property {
   images: PropertyImage[];
   price: number;
   isFavorite?: boolean;
+  // Add these fields when you have the data
+  // coordinates: {
+  //   lat: number;
+  //   lng: number;
+  // };
 }
 
 export const properties: Property[] = [
