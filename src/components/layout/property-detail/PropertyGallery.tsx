@@ -36,14 +36,14 @@ const PropertyGallery = ({ images }: PropertyGalleryProps) => {
           <ChevronRight className="h-6 w-6" />
         </Button>
       </div>
-      <div className="w-full md:w-[45%] flex flex-row md:grid md:grid-cols-2 gap-2 overflow-x-auto hide-scrollbar md:overflow-y-auto md:h-[333px] px-4 md:px-0">
+      <div className="w-full md:w-[45%] flex flex-row md:grid md:grid-cols-2 gap-2 overflow-x-auto hide-scrollbar md:overflow-y-auto md:h-[333px] px-4 md:px-2 pb-2 pt-1">
         {images.map((img, index) => (
           <button
             key={index}
             onClick={() => setCurrentImageIndex(index)}
             className={cn(
               "flex-shrink-0 w-[115px] h-[93px] md:w-full md:h-[163px] rounded-lg overflow-hidden",
-              currentImageIndex === index ? "ring-2 ring-[#3498DB]" : ""
+              currentImageIndex === index ? "ring-2 ring-primary" : ""
             )}
           >
             <img src={img.url} alt={img.alt} className="w-full h-full object-cover" />

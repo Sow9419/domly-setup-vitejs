@@ -17,18 +17,18 @@ const PropertyBooking = ({ property }: PropertyBookingProps) => {
           className="w-full bg-[#FF385C] hover:bg-[#FF385C]/90 text-white py-6"
           onClick={() => console.log('Book property')}
         >
-          Réserver • {property.price}€ par nuit
+          Réserver • {property.price}FCFA par mois
         </Button>
       </div>
     );
   }
 
   return (
-    <div className="w-full md:w-[40%] min-w-[320px] lg:min-w-[383px]">
+    <div className="w-full md:w-[35%] min-w-[320px] lg:min-w-[383px]">
       <div className="sticky top-24 space-y-6 bg-white p-6 rounded-lg shadow-lg border border-gray-200 mb-16 md:mb-0">
           <div className="flex items-center justify-between mb-4">
             <div className="text-2xl font-bold text-[#2C3E50]">
-              {property.price}€ <span className="text-base font-normal">par nuit</span>
+              {property.price}FCFA <span className="text-base font-normal">par nuit</span>
             </div>
             <div className="flex items-center space-x-1">
               <span className="text-sm font-medium">4.9</span>
@@ -57,7 +57,7 @@ const PropertyBooking = ({ property }: PropertyBookingProps) => {
           <div className="border-t border-gray-200 pt-4">
             <div className="flex justify-between items-center mb-2">
               <span className="text-lg font-medium">Total</span>
-              <span className="text-lg font-medium">{property.price}€</span>
+              <span className="text-lg font-medium">{property.price}FCFA</span>
             </div>
           </div>
       </div>

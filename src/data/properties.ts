@@ -28,7 +28,7 @@ export const properties: Property[] = [
     rating: 4.9,
     status: "Occupé",
     category: "apartment",
-    price: 150,
+    price: 150.000,
     images: [
       {
         url: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop",
@@ -55,7 +55,7 @@ export const properties: Property[] = [
     rating: 4.8,
     status: "Disponible",
     category: "villa",
-    price: 300,
+    price: 300.000,
     images: [
       {
         url: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop",
@@ -74,7 +74,7 @@ export const properties: Property[] = [
     rating: 4.7,
     status: "Occupé",
     category: "house",
-    price: 250,
+    price: 100.000,
     images: [
       {
         url: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop",
@@ -93,7 +93,7 @@ export const properties: Property[] = [
     rating: 4.9,
     status: "Disponible",
     category: "workspace",
-    price: 180,
+    price: 180.000,
     images: [
       {
         url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop",
@@ -112,7 +112,7 @@ export const properties: Property[] = [
     rating: 4.6,
     status: "Occupé",
     category: "house",
-    price: 220,
+    price: 220.000,
     images: [
       {
         url: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=2084&auto=format&fit=crop",
@@ -131,7 +131,7 @@ export const properties: Property[] = [
     rating: 4.8,
     status: "Disponible",
     category: "apartment",
-    price: 130,
+    price: 130.000,
     images: [
       {
         url: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=80&w=2070&auto=format&fit=crop",
@@ -150,7 +150,7 @@ export const properties: Property[] = [
     rating: 4.7,
     status: "Occupé",
     category: "apartment",
-    price: 160,
+    price: 160.000,
     images: [
       {
         url: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=2070&auto=format&fit=crop",
@@ -169,7 +169,7 @@ export const properties: Property[] = [
     rating: 4.9,
     status: "Disponible",
     category: "apartment",
-    price: 190,
+    price: 190.000,
     images: [
       {
         url: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop",
@@ -188,7 +188,7 @@ export const properties: Property[] = [
     rating: 4.8,
     status: "Occupé",
     category: "house",
-    price: 210,
+    price: 210.000,
     images: [
       {
         url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop",
@@ -207,7 +207,7 @@ export const properties: Property[] = [
     rating: 4.9,
     status: "Disponible",
     category: "villa",
-    price: 350,
+    price: 130.000,
     images: [
       {
         url: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=2084&auto=format&fit=crop",
