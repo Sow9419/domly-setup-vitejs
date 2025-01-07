@@ -59,7 +59,7 @@ const Index = () => {
 
       {/* Layout Desktop */}
       <div className="hidden md:flex h-screen">
-        <div className="w-[72px] overflow-y-auto border-r border-gray-100 bg-white hide-scrollbar">
+        <div className="w-[72px] overflow-y-auto border-r border-gray-100 bg-white hide-scrollbar ">
           <SideNav />
         </div>
         

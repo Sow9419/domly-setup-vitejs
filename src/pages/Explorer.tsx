@@ -21,7 +21,7 @@ const Explorer = () => {
       <div className="flex-1 flex overflow-hidden">
         {/* Sidebar for desktop */}
         {!isMobile && (
-          <div className="w-20 border-r bg-white">
+          <div className="w-[72px] overflow-y-auto border-r bg-white hide-scrollbar">
             <SideNav />
           </div>
         )}
