@@ -6,33 +6,38 @@ import { Property } from '@/data/properties'
 import { addToFavorites, removeFromFavorites } from '@/data/favorites'
 import { toast } from 'sonner'
 
-const PropertyCard = ({ property }: { property: Property }) => {
+interface PropertyCardProps {
+  property: Property;
+}
+
+const PropertyCard = ({ property }: PropertyCardProps) => {
   const navigate = useNavigate();
-  const [currentImageIndex, setCurrentImageIndex] = useState<number>(0)
-  const [isHovered, setIsHovered] = useState<boolean>(false)
-  const [isFavorite, setIsFavorite] = useState<boolean>(property.isFavorite || false)
+  const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+  const [isFavorite, setIsFavorite] = useState<boolean>(property.isFavorite || false);
 
-  const nextImage = (e: React.MouseEvent) => {
+  const nextImage = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    setCurrentImageIndex((prev) =>
+    setCurrentImageIndex((prev) => 
       prev === property.images.length - 1 ? 0 : prev + 1
-    )
-  }
+    );
+  };
 
-  const previousImage = (e: React.MouseEvent) => {
+  const previousImage = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    setCurrentImageIndex((prev) =>
+    setCurrentImageIndex((prev) => 
       prev === 0 ? property.images.length - 1 : prev - 1
-    )
-  }
+    );
+  };
 
-  const toggleFavorite = (e: React.MouseEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
+  const toggleFavorite = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
     const newFavoriteState = !isFavorite;
-    setIsFavorite(newFavoriteState)
+    setIsFavorite(newFavoriteState);
     
     if (newFavoriteState) {
       addToFavorites(property);
@@ -41,19 +46,22 @@ const PropertyCard = ({ property }: { property: Property }) => {
       removeFromFavorites(property.id);
       toast.success('Retiré des favoris');
     }
-  }
+  };
 
-  const handleViewDetails = (e: React.MouseEvent) => {
+  const handleViewDetails = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
     navigate(`/property/${property.id}`);
-  }
+  };
+
+  const handleMouseEnter = () => setIsHovered(true);
+  const handleMouseLeave = () => setIsHovered(false);
 
   return (
     <Card
       className="relative group overflow-hidden"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <div className="relative aspect-[3/2.5]">
         <button
@@ -61,6 +69,7 @@ const PropertyCard = ({ property }: { property: Property }) => {
             isHovered ? "opacity-100" : "opacity-0"
           }`}
           onClick={previousImage}
+          type="button"
         >
           <ChevronLeft className="h-4 w-4" />
         </button>
@@ -69,6 +78,7 @@ const PropertyCard = ({ property }: { property: Property }) => {
             isHovered ? "opacity-100" : "opacity-0"
           }`}
           onClick={nextImage}
+          type="button"
         >
           <ChevronRight className="h-4 w-4" />
         </button>
@@ -86,7 +96,8 @@ const PropertyCard = ({ property }: { property: Property }) => {
             <span className="text-sm">| {property.status}</span>
           </div>
           <button 
-            className={`bg-white p-2 rounded-full transition-colors duration-300`}
+            type="button"
+            className="bg-white p-2 rounded-full transition-colors duration-300"
             onClick={toggleFavorite}
           >
             <Heart className={`h-4 w-4 ${isFavorite ? 'text-primary fill-current' : ''}`} />
@@ -107,6 +118,7 @@ const PropertyCard = ({ property }: { property: Property }) => {
               </div>
             </div>
             <button 
+              type="button"
               className="bg-black p-2 rounded-full w-[35px] h-[35px] flex items-center justify-center -translate-y-2 translate-x-2"
               onClick={handleViewDetails}
             >
@@ -117,8 +129,9 @@ const PropertyCard = ({ property }: { property: Property }) => {
 
         <div className="absolute bottom-14 left-0 right-0 flex justify-center gap-1.5">
           {property.images.map((_, index) => (
-            <div
+            <button
               key={index}
+              type="button"
               className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${
                 currentImageIndex === index ? "bg-primary" : "bg-white/50"
               }`}
@@ -132,7 +145,7 @@ const PropertyCard = ({ property }: { property: Property }) => {
         </div>
       </div>
     </Card>
-  )
+  );
 };
 
 export default PropertyCard;
