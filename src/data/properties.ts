@@ -12,6 +12,7 @@ export interface Property {
   category: "all" | "apartment" | "house" | "villa" | "workspace" | "office" | "store";
   images: PropertyImage[];
   price: number;
+  isFavorite?: boolean;
 }
 
 export const properties: Property[] = [
