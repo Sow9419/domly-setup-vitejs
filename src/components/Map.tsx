@@ -32,6 +32,8 @@ const Map = () => {
       el.style.borderRadius = '50%';
       el.style.border = '2px solid #0EA5E9';
       el.style.overflow = 'hidden';
+      el.style.cursor = 'pointer';
+      el.style.transition = 'all 0.2s ease-in-out';
       
       // Add property image
       const img = document.createElement('img');
@@ -40,6 +42,22 @@ const Map = () => {
       img.style.height = '100%';
       img.style.objectFit = 'cover';
       el.appendChild(img);
+
+      // Add hover effect
+      el.addEventListener('mouseenter', () => {
+        el.style.transform = 'scale(1.1)';
+        el.style.boxShadow = '0 0 15px rgba(14, 165, 233, 0.3)';
+      });
+
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = 'scale(1)';
+        el.style.boxShadow = 'none';
+      });
+
+      // Add click handler
+      el.addEventListener('click', () => {
+        window.location.href = `/property/${property.id}`;
+      });
 
       // Add marker to map
       // Note: Replace with actual coordinates when available

@@ -1,19 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import NavDesktop from '@/components/layout/property-detail/NavDesktop';
 import SearchMobile from '@/components/layout/SearcheMobile';
 import CategoryBar from '@/components/layout/CategoryBar';
 import PropertyCard from '@/components/layout/PropertyCard';
-import { properties } from '@/data/properties';
 import { Button } from '@/components/ui/button';
 import { Share2, Plus, BookmarkPlus } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import SideNav from '@/components/layout/SideNav';
 import BottomNav from '@/components/layout/BottomNav';
+import { favorites } from '@/data/favorites';
 
 const Favorites = () => {
   const isMobile = useIsMobile();
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const favoriteProperties = properties.filter(p => p.isFavorite);
+  const [favoriteProperties, setFavoriteProperties] = useState(favorites.properties);
+
+  // Update favorites when they change
+  useEffect(() => {
+    setFavoriteProperties(favorites.properties);
+  }, [favorites.properties]);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -24,7 +29,7 @@ const Favorites = () => {
       <div className="flex-1 flex overflow-hidden">
         {/* Sidebar for desktop */}
         {!isMobile && (
-          <div className="w-[72px] border-r">
+          <div className="w-20 border-r bg-white">
             <SideNav />
           </div>
         )}

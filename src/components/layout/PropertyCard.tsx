@@ -3,12 +3,14 @@ import { useNavigate } from 'react-router-dom'
 import { Star, Heart, ChevronLeft, ChevronRight, ArrowUpRight, MapPin } from 'lucide-react'
 import { Card } from "@/components/ui/card"
 import { Property } from '@/data/properties'
+import { addToFavorites, removeFromFavorites } from '@/data/favorites'
+import { toast } from 'sonner'
 
 const PropertyCard = ({ property }: { property: Property }) => {
   const navigate = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0)
   const [isHovered, setIsHovered] = useState<boolean>(false)
-  const [isFavorite, setIsFavorite] = useState<boolean>(false)
+  const [isFavorite, setIsFavorite] = useState<boolean>(property.isFavorite || false)
 
   const nextImage = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -29,7 +31,16 @@ const PropertyCard = ({ property }: { property: Property }) => {
   const toggleFavorite = (e: React.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
-    setIsFavorite(!isFavorite)
+    const newFavoriteState = !isFavorite;
+    setIsFavorite(newFavoriteState)
+    
+    if (newFavoriteState) {
+      addToFavorites(property);
+      toast.success('Ajouté aux favoris');
+    } else {
+      removeFromFavorites(property.id);
+      toast.success('Retiré des favoris');
+    }
   }
 
   const handleViewDetails = (e: React.MouseEvent) => {
@@ -122,6 +133,6 @@ const PropertyCard = ({ property }: { property: Property }) => {
       </div>
     </Card>
   )
-}
+};
 
-export default PropertyCard
+export default PropertyCard;

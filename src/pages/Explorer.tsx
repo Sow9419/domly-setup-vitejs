@@ -21,20 +21,22 @@ const Explorer = () => {
       <div className="flex-1 flex overflow-hidden">
         {/* Sidebar for desktop */}
         {!isMobile && (
-          <div className="w-[72px] border-r">
+          <div className="w-20 border-r bg-white">
             <SideNav />
           </div>
         )}
         
         {/* Main content area */}
-        <div className="flex-1 flex flex-col">
-          <CategoryBar 
-            onCategoryChange={(category) => setSelectedCategory(category)}
-            onSearch={(term) => setSearchTerm(term)}
-          />
+        <div className="flex-1 flex flex-col overflow-hidden">
+          <div className="overflow-x-auto">
+            <CategoryBar 
+              onCategoryChange={(category) => setSelectedCategory(category)}
+              onSearch={(term) => setSearchTerm(term)}
+            />
+          </div>
           
-          {/* Map component */}
-          <div className="flex-1 relative">
+          {/* Map component with bottom padding on mobile */}
+          <div className={`flex-1 relative ${isMobile ? 'pb-16' : ''}`}>
             <Map />
           </div>
         </div>
