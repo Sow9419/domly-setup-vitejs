@@ -7,8 +7,7 @@ const SearchMobile = () => {
     const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
         // Handle search input change
         console.log(event.target.value);
-    };
-    
+      };
     return (
         <header className="fixed top-0 w-full z-50 bg-white md:hidden">
            <div className="px-4 py-3">
@@ -32,5 +31,3 @@ const SearchMobile = () => {
         </header>
     );
 };
-
-export default SearchMobile;
