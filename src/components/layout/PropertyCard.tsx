@@ -10,13 +10,17 @@ const PropertyCard = ({ property }: { property: Property }) => {
   const [isHovered, setIsHovered] = useState<boolean>(false)
   const [isFavorite, setIsFavorite] = useState<boolean>(false)
 
-  const nextImage = () => {
+  const nextImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     setCurrentImageIndex((prev) =>
       prev === property.images.length - 1 ? 0 : prev + 1
     )
   }
 
-  const previousImage = () => {
+  const previousImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     setCurrentImageIndex((prev) =>
       prev === 0 ? property.images.length - 1 : prev - 1
     )
@@ -24,11 +28,13 @@ const PropertyCard = ({ property }: { property: Property }) => {
 
   const toggleFavorite = (e: React.MouseEvent) => {
     e.preventDefault()
+    e.stopPropagation()
     setIsFavorite(!isFavorite)
   }
 
   const handleViewDetails = (e: React.MouseEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     navigate(`/property/${property.id}`);
   }
 
@@ -38,17 +44,12 @@ const PropertyCard = ({ property }: { property: Property }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Container principal avec ratio d'aspect augmenté */}
       <div className="relative aspect-[3/2.5]">
-        {/* Boutons de navigation des images */}
         <button
           className={`absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 p-1.5 rounded-full z-10 transition-opacity duration-300 ${
             isHovered ? "opacity-100" : "opacity-0"
           }`}
-          onClick={(e) => {
-            e.preventDefault();
-            previousImage();
-          }}
+          onClick={previousImage}
         >
           <ChevronLeft className="h-4 w-4" />
         </button>
@@ -56,22 +57,17 @@ const PropertyCard = ({ property }: { property: Property }) => {
           className={`absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 p-1.5 rounded-full z-10 transition-opacity duration-300 ${
             isHovered ? "opacity-100" : "opacity-0"
           }`}
-          onClick={(e) => {
-            e.preventDefault();
-            nextImage();
-          }}
+          onClick={nextImage}
         >
           <ChevronRight className="h-4 w-4" />
         </button>
 
-        {/* Image principale */}
         <img
           src={property.images[currentImageIndex].url}
           alt={property.images[currentImageIndex].alt}
           className="object-cover w-full h-full transition-transform duration-300"
         />
 
-        {/* Barre supérieure avec rating et favoris */}
         <div className="absolute top-0 left-0 right-0 p-3 flex justify-between items-center">
           <div className="flex items-center gap-2 bg-white/80 px-2 py-1 rounded-full">
             <Star className="h-4 w-4 fill-current" />
@@ -82,11 +78,10 @@ const PropertyCard = ({ property }: { property: Property }) => {
             className={`bg-white p-2 rounded-full transition-colors duration-300`}
             onClick={toggleFavorite}
           >
-            <Heart className={`h-4 w-4 ${isFavorite ? 'text-primary fill-current ' : ''}`} />
+            <Heart className={`h-4 w-4 ${isFavorite ? 'text-primary fill-current' : ''}`} />
           </button>
         </div>
 
-        {/* Barre d'information inférieure */}
         <div
           className={`absolute bottom-0 left-0 right-0 p-3 bg-white/70 backdrop-blur-[20px] rounded-t-[12px] transform transition-transform duration-300 ${
             isHovered ? "translate-y-0" : "translate-y-full"
@@ -109,7 +104,6 @@ const PropertyCard = ({ property }: { property: Property }) => {
           </div>
         </div>
 
-        {/* Indicateurs de navigation */}
         <div className="absolute bottom-14 left-0 right-0 flex justify-center gap-1.5">
           {property.images.map((_, index) => (
             <div
@@ -117,7 +111,11 @@ const PropertyCard = ({ property }: { property: Property }) => {
               className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${
                 currentImageIndex === index ? "bg-primary" : "bg-white/50"
               }`}
-              onClick={() => setCurrentImageIndex(index)}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setCurrentImageIndex(index);
+              }}
             />
           ))}
         </div>
