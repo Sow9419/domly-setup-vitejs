@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import NavDesktop from '@/components/layout/property-detail/NavDesktop';
-import { SearchMobile } from '@/components/layout/SearcheMobile';
+import SearchMobile from '@/components/layout/SearcheMobile';
 import CategoryBar from '@/components/layout/CategoryBar';
 import SideNav from '@/components/layout/SideNav';
 import BottomNav from '@/components/layout/BottomNav';
