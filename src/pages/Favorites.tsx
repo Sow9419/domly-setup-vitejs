@@ -15,7 +15,8 @@ const Favorites = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [favoriteProperties, setFavoriteProperties] = useState(favorites.properties);
 
-  // Update favorites when they change
+  console.log('Favorites rendered, isMobile:', isMobile);
+
   useEffect(() => {
     setFavoriteProperties(favorites.properties);
   }, [favorites.properties]);
@@ -42,7 +43,7 @@ const Favorites = () => {
           />
 
           {/* Scrollable content */}
-          <div className="flex-1 overflow-y-auto p-4">
+          <div className={`flex-1 overflow-y-auto p-4 ${isMobile ? 'pb-20' : ''}`}>
             {favoriteProperties.length === 0 ? (
               <div className="text-center py-12">
                 <BookmarkPlus className="mx-auto h-12 w-12 text-gray-400 mb-4" />

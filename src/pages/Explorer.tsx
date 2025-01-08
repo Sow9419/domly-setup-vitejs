@@ -28,12 +28,10 @@ const Explorer = () => {
         
         {/* Main content area */}
         <div className="flex-1 flex flex-col overflow-hidden">
-          <div className="overflow-x-auto">
-            <CategoryBar 
-              onCategoryChange={(category) => setSelectedCategory(category)}
-              onSearch={(term) => setSearchTerm(term)}
-            />
-          </div>
+          <CategoryBar 
+            onCategoryChange={(category) => setSelectedCategory(category)}
+            onSearch={(term) => setSearchTerm(term)}
+          />
           
           {/* Map component with bottom padding on mobile */}
           <div className={`flex-1 relative ${isMobile ? 'pb-16' : ''}`}>
