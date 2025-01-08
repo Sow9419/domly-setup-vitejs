@@ -52,7 +52,7 @@ const BottomNav = () => {
         </Link>
 
         <Link 
-          to="/voyages" 
+          to="/Properties" 
           className={`flex flex-col items-center justify-center ${
             isActive("/voyages") ? "text-blue-500" : "text-gray-500"
           }`}
@@ -62,7 +62,7 @@ const BottomNav = () => {
         </Link>
 
         <Link 
-          to="/profile" 
+          to="/profil" 
           className={`flex flex-col items-center justify-center ${
             isActive("/profile") ? "text-blue-500" : "text-gray-500"
           }`}
