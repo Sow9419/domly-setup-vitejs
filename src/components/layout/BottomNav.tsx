@@ -7,7 +7,7 @@ const BottomNav = () => {
   const isMobile = useIsMobile();
   const isActive = (path: string) => location.pathname === path;
 
-  // Only render on mobile
+  // Ne rendre qu'en mobile et ajouter une classe pour masquer explicitement en desktop
   if (!isMobile) {
     return null;
   }
@@ -15,7 +15,7 @@ const BottomNav = () => {
   console.log('BottomNav rendered, isMobile:', isMobile);
 
   return (
-    <nav className="fixed bottom-0 w-full bg-white border-t z-50">
+    <nav className="md:hidden fixed bottom-0 w-full bg-white border-t z-50">
       <div className="flex justify-around items-center h-16">
         <Link 
           to="/explorer" 
