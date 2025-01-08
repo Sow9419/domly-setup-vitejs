@@ -44,18 +44,18 @@ const SideNav = () => {
       </Link>
 
       <Link 
-        to="/voyages" 
+        to="/Propriete" 
         className={`p-3 rounded-full hover:bg-gray-50 transition-colors ${
-          isActive("/voyages") ? "text-blue-500" : "text-gray-500"
+          isActive("/Propriete") ? "text-blue-500" : "text-gray-500"
         }`}
       >
         <MapPinHouse className="h-6 w-6" strokeWidth={1.5} />
       </Link>
 
       <Link 
-        to="/profile" 
+        to="/Profil" 
         className={`p-3 rounded-full hover:bg-gray-50 transition-colors ${
-          isActive("/profile") ? "text-blue-500" : "text-gray-500"
+          isActive("/Profil") ? "text-blue-500" : "text-gray-500"
         }`}
       >
         <Settings className="h-6 w-6" strokeWidth={1.5} />

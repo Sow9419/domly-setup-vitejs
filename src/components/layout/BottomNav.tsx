@@ -52,9 +52,9 @@ const BottomNav = () => {
         </Link>
 
         <Link 
-          to="/Properties" 
+          to="/Propriete" 
           className={`flex flex-col items-center justify-center ${
-            isActive("/voyages") ? "text-blue-500" : "text-gray-500"
+            isActive("/Propriete") ? "text-blue-500" : "text-gray-500"
           }`}
         >
           <MapPinHouse className="h-6 w-6" strokeWidth={1.5} />
@@ -62,9 +62,9 @@ const BottomNav = () => {
         </Link>
 
         <Link 
-          to="/profil" 
+          to="/Profil" 
           className={`flex flex-col items-center justify-center ${
-            isActive("/profile") ? "text-blue-500" : "text-gray-500"
+            isActive("/Profil") ? "text-blue-500" : "text-gray-500"
           }`}
         >
           <Settings className="h-6 w-6" strokeWidth={1.5} />
