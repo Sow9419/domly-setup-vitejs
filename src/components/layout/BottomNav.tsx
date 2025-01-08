@@ -1,21 +1,12 @@
 import { Search, Heart, MapPinHouse, Home, Settings } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 const BottomNav = () => {
   const location = useLocation();
-  const isMobile = useIsMobile();
   const isActive = (path: string) => location.pathname === path;
 
-  // Ne rendre qu'en mobile et ajouter une classe pour masquer explicitement en desktop
-  if (!isMobile) {
-    return null;
-  }
-
-  console.log('BottomNav rendered, isMobile:', isMobile);
-
   return (
-    <nav className="md:hidden fixed bottom-0 w-full bg-white border-t z-50">
+    <nav className="fixed bottom-0 w-full bg-white border-t md:hidden">
       <div className="flex justify-around items-center h-16">
         <Link 
           to="/explorer" 
@@ -49,6 +40,7 @@ const BottomNav = () => {
               strokeWidth={1.5}
             />
           </div>
+          
         </Link>
 
         <Link 
