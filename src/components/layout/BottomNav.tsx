@@ -44,9 +44,9 @@ const BottomNav = () => {
         </Link>
 
         <Link 
-          to="/voyages" 
+          to="/property" 
           className={`flex flex-col items-center justify-center ${
-            isActive("/voyages") ? "text-blue-500" : "text-gray-500"
+            isActive("/property") ? "text-blue-500" : "text-gray-500"
           }`}
         >
           <MapPinHouse className="h-6 w-6" strokeWidth={1.5} />

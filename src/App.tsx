@@ -13,6 +13,8 @@ import CreateWorkspace from "./pages/CreateWorkspace";
 import PropertyDetail from "./pages/PropertyDetail";
 import Explorer from "./pages/Explorer";
 import Favorites from "./pages/Favorites";
+import Property from "./pages/Property";
+import Profile from "./pages/Profile";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -40,6 +42,8 @@ const App = () => (
           <Route path="/property/:id" element={<PropertyDetail />} />
           <Route path="/explorer" element={<Explorer />} />
           <Route path="/favorites" element={<Favorites />} />
+          <Route path="/property" element={<Property />} />
+          <Route path="/profile" element={<Profile />} />
           {/* Catch all route - redirect to home */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
