@@ -12,6 +12,8 @@ const Explorer = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
 
+  console.log('Explorer rendered, isMobile:', isMobile);
+
   return (
     <div className="h-screen flex flex-col">
       {/* Header */}
@@ -19,21 +21,15 @@ const Explorer = () => {
       
       {/* Main content */}
       <div className="flex-1 flex overflow-hidden">
-        {/* Sidebar for desktop */}
-        {!isMobile && (
-          <div className="w-[72px] overflow-y-auto border-r bg-white hide-scrollbar">
-            <SideNav />
-          </div>
-        )}
+        {/* SideNav will only render on desktop */}
+        <SideNav />
         
         {/* Main content area */}
         <div className="flex-1 flex flex-col overflow-hidden">
-          <div className="overflow-x-auto">
-            <CategoryBar 
-              onCategoryChange={(category) => setSelectedCategory(category)}
-              onSearch={(term) => setSearchTerm(term)}
-            />
-          </div>
+          <CategoryBar 
+            onCategoryChange={(category) => setSelectedCategory(category)}
+            onSearch={(term) => setSearchTerm(term)}
+          />
           
           {/* Map component with bottom padding on mobile */}
           <div className={`flex-1 relative ${isMobile ? 'pb-16' : ''}`}>
@@ -42,8 +38,8 @@ const Explorer = () => {
         </div>
       </div>
 
-      {/* Bottom navigation for mobile */}
-      {isMobile && <BottomNav />}
+      {/* BottomNav will only render on mobile */}
+      <BottomNav />
     </div>
   );
 };
