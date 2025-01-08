@@ -15,6 +15,7 @@ import Explorer from "./pages/Explorer";
 import Favorites from "./pages/Favorites";
 import Properties from "./pages/Properties";
 import Profile from "./pages/Profile";
+import Dashboard from "./pages/Dashboard";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -44,6 +45,7 @@ const App = () => (
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/properties" element={<Properties />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           {/* Catch all route - redirect to home */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
