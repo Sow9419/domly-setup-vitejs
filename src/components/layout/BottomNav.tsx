@@ -5,6 +5,8 @@ const BottomNav = () => {
   const location = useLocation();
   const isActive = (path: string) => location.pathname === path;
 
+  console.log("BottomNav rendering, current path:", location.pathname);
+
   return (
     <nav className="fixed bottom-0 w-full bg-white border-t md:hidden">
       <div className="flex justify-around items-center h-16">
@@ -40,13 +42,12 @@ const BottomNav = () => {
               strokeWidth={1.5}
             />
           </div>
-          
         </Link>
 
         <Link 
-          to="/voyages" 
+          to="/properties" 
           className={`flex flex-col items-center justify-center ${
-            isActive("/voyages") ? "text-blue-500" : "text-gray-500"
+            isActive("/properties") ? "text-blue-500" : "text-gray-500"
           }`}
         >
           <MapPinHouse className="h-6 w-6" strokeWidth={1.5} />
