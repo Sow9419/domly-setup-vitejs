@@ -15,8 +15,7 @@ const Favorites = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [favoriteProperties, setFavoriteProperties] = useState(favorites.properties);
 
-  console.log('Favorites rendered, isMobile:', isMobile);
-
+  // Update favorites when they change
   useEffect(() => {
     setFavoriteProperties(favorites.properties);
   }, [favorites.properties]);
@@ -28,8 +27,12 @@ const Favorites = () => {
 
       {/* Main content */}
       <div className="flex-1 flex overflow-hidden">
-        {/* SideNav will only render on desktop */}
-        <SideNav />
+        {/* Sidebar for desktop */}
+        {!isMobile && (
+          <div className="w-[72px] overflow-x-auto border-r bg-white hide-scrollbar">
+            <SideNav />
+          </div>
+        )}
 
         {/* Main content area */}
         <div className="flex-1 flex flex-col overflow-hidden">
@@ -39,7 +42,7 @@ const Favorites = () => {
           />
 
           {/* Scrollable content */}
-          <div className={`flex-1 overflow-y-auto p-4 ${isMobile ? 'pb-20' : ''}`}>
+          <div className="flex-1 overflow-y-auto p-4">
             {favoriteProperties.length === 0 ? (
               <div className="text-center py-12">
                 <BookmarkPlus className="mx-auto h-12 w-12 text-gray-400 mb-4" />
@@ -90,8 +93,8 @@ const Favorites = () => {
         </div>
       </div>
 
-      {/* BottomNav will only render on mobile */}
-      <BottomNav />
+      {/* Bottom navigation for mobile */}
+      {isMobile && <BottomNav />}
     </div>
   );
 };
