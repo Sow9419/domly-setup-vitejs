@@ -9,13 +9,17 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import SideNav from '@/components/layout/SideNav';
 import BottomNav from '@/components/layout/BottomNav';
 import { favorites } from '@/data/favorites';
-
 const Favorites = () => {
-  const isMobile = useIsMobile();
+  const isMobile = window.innerWidth < 768;
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [favoriteProperties, setFavoriteProperties] = useState(favorites.properties);
-
-  console.log('Favorites rendered, isMobile:', isMobile);
+  const renderNavigation = () => {
+    if (isMobile) {
+      return <BottomNav />;
+    }
+    return <SideNav />;
+  };
+  
 
   useEffect(() => {
     setFavoriteProperties(favorites.properties);
@@ -33,6 +37,7 @@ const Favorites = () => {
           <div className="w-[72px] overflow-x-auto border-r bg-white hide-scrollbar">
             <SideNav />
           </div>
+          
         )}
 
         {/* Main content area */}
@@ -98,6 +103,8 @@ const Favorites = () => {
       {isMobile && <BottomNav />}
     </div>
   );
+  return renderNavigation();
 };
+
 
 export default Favorites;

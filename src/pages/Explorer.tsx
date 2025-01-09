@@ -6,11 +6,16 @@ import SideNav from '@/components/layout/SideNav';
 import BottomNav from '@/components/layout/BottomNav';
 import { useIsMobile } from '@/hooks/use-mobile';
 import Map from '@/components/Map';
-
 const Explorer = () => {
-  const isMobile = useIsMobile();
+  const isMobile = window.innerWidth < 768;
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
+  const renderNavigation = () => {
+    if (isMobile) {
+      return <BottomNav />;
+    }
+    return <SideNav />;
+  };
 
   return (
     <div className="h-screen flex flex-col">
@@ -44,6 +49,7 @@ const Explorer = () => {
       {isMobile && <BottomNav />}
     </div>
   );
+  return renderNavigation();
 };
 
 export default Explorer;

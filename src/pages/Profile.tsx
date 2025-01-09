@@ -7,8 +7,13 @@ const SideNav = lazy(() => import('@/components/layout/SideNav'));
 const BottomNav = lazy(() => import('@/components/layout/BottomNav'));
 
 const Profile = () => {
-  const isMobile = useIsMobile();
-
+  const isMobile = window.innerWidth < 768;
+  const renderNavigation = () => {
+    if (isMobile) {
+      return <BottomNav />;
+    }
+    return <SideNav />;
+  };
   return (
     <div className="min-h-screen flex flex-col">
       <NavFull title="Profil" />
@@ -34,6 +39,7 @@ const Profile = () => {
       </Suspense>
     </div>
   );
+  return renderNavigation();
 };
 
 export default Profile;
