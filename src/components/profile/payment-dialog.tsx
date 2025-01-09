@@ -15,7 +15,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { CreditCard, Phone } from 'lucide-react'
 
 interface PaymentDialogProps {
-  onAddPaymentMethod: (method: { type: string, label: string, expiry?: string }) => void
+  onAddPaymentMethod: (method: { type: string, label: string, expiry: string }) => void
 }
 
 export function PaymentDialog({ onAddPaymentMethod }: PaymentDialogProps) {
@@ -23,15 +23,17 @@ export function PaymentDialog({ onAddPaymentMethod }: PaymentDialogProps) {
   const [paymentType, setPaymentType] = useState('card')
   const [isOpen, setIsOpen] = useState(false)
 
-  async function handleSubmit(formData: FormData) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
     setIsSubmitting(true)
     try {
+      const formData = new FormData(event.currentTarget)
       const result = await addPaymentMethod(formData)
       if (result.success) {
         const newMethod = {
           type: formData.get('type') as string,
           label: formData.get('type') === 'card' ? 'Carte Bancaire' : 'Orange Money',
-          expiry: formData.get('type') === 'card' ? formData.get('expiry') as string : undefined
+          expiry: (formData.get('type') === 'card' ? formData.get('expiry') as string : '31/12/2099')
         }
         onAddPaymentMethod(newMethod)
         setIsOpen(false)
@@ -54,7 +56,7 @@ export function PaymentDialog({ onAddPaymentMethod }: PaymentDialogProps) {
         <DialogHeader>
           <DialogTitle>Ajouter un mode de paiement</DialogTitle>
         </DialogHeader>
-        <form action={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <RadioGroup
             defaultValue="card"
             name="type"

@@ -21,9 +21,11 @@ export function UploadDialog({ onImageUpload }: UploadDialogProps) {
   const [isUploading, setIsUploading] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
 
-  async function handleSubmit(formData: FormData) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
     setIsUploading(true)
     try {
+      const formData = new FormData(event.currentTarget)
       const result = await uploadProfileImage(formData)
       if (result.success) {
         onImageUpload(result.imageUrl)
@@ -47,7 +49,7 @@ export function UploadDialog({ onImageUpload }: UploadDialogProps) {
         <DialogHeader>
           <DialogTitle>Modifier la photo de profil</DialogTitle>
         </DialogHeader>
-        <form action={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <Label htmlFor="image">Sélectionner une image</Label>
             <Input id="image" name="image" type="file" accept="image/*" required />
