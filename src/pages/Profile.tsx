@@ -130,7 +130,7 @@ export default function Profile() {
       </div>
 
       <Suspense fallback={null}>
-        {isMobile && <BottomNav className="fixed bottom-0 left-0 right-0 z-50" />}
+        {isMobile && <BottomNav />}
       </Suspense>
     </div>
   );

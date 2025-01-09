@@ -5,13 +5,14 @@ import { Button } from "@/components/ui/button";
 interface NavFullProps {
   showBackButton?: boolean;
   title?: string;
+  className?: string;
 }
 
-const NavFull = ({ showBackButton, title }: NavFullProps) => {
+const NavFull = ({ showBackButton, title, className }: NavFullProps) => {
   const navigate = useNavigate();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b">
+    <header className={`fixed top-0 left-0 right-0 z-50 bg-white border-b ${className || ''}`}>
       <div className="max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-4">
