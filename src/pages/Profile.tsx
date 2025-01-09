@@ -13,8 +13,8 @@ const SideNav = lazy(() => import('@/components/layout/SideNav'));
 const BottomNav = lazy(() => import('@/components/layout/BottomNav'));
 
 export default function Profile() {
-  const isMobile = window.innerWidth < 768
-  const [profileImage, setProfileImage] = useState("/placeholder.svg?height=80&width=80")
+  const isMobile = window.innerWidth < 768;
+  const [profileImage, setProfileImage] = useState("/placeholder.svg?height=80&width=80");
   const [paymentMethods, setPaymentMethods] = useState<Array<{
     type: string;
     label: string;
@@ -22,15 +22,15 @@ export default function Profile() {
     isActive: boolean;
   }>>([
     { type: 'card', label: 'Carte Bancaire', expiry: '31/12/2024', isActive: true }
-  ])
+  ]);
 
   const handleProfileImageUpdate = (newImageUrl: string) => {
-    setProfileImage(newImageUrl)
-  }
+    setProfileImage(newImageUrl);
+  };
 
-  const handleAddPaymentMethod = (newMethod: { type: string, label: string, expiry: string }) => {
-    setPaymentMethods([...paymentMethods, { ...newMethod, isActive: true }])
-  }
+  const handleAddPaymentMethod = (newMethod: { type: string; label: string; expiry: string }) => {
+    setPaymentMethods([...paymentMethods, { ...newMethod, isActive: true }]);
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -253,5 +253,4 @@ export default function Profile() {
       </Suspense>
     </div>
   );
-};
 }
