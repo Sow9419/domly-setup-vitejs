@@ -57,28 +57,34 @@ export default function Profile() {
                 <TabsList className="grid grid-cols-6 lg:hidden mb-8 sticky top-0 bg-white">
                   <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-200"></div>
                   <div className={`absolute bottom-0 h-0.5 bg-blue-500 transition-all duration-300`} style={{ width: `${100 / 6}%`, transform: `translateX(${activeSection === 'profile' ? 0 : activeSection === 'preferences' ? 1 : activeSection === 'notifications' ? 2 : activeSection === 'security' ? 3 : activeSection === 'payment' ? 4 : 5}00%)` }}></div>
-                  <TabsTrigger value="profile" className="flex items-center gap-2">
-                    <User className="h-4 w-4" />
+                  {/* Onglet Profil */}
+                  <TabsTrigger value="profile" className={`flex items-center gap-2 ${activeSection === 'profile' ? 'text-blue-500' : 'text-gray-500'}`}>
+                    <User className={`h-6 w-6 ${activeSection === 'profile' ? 'text-blue-500' : 'text-gray-500'}`} />
                     <span className="hidden sm:inline">Profil</span>
                   </TabsTrigger>
-                  <TabsTrigger value="preferences" className="flex items-center gap-2">
-                    <Palette className="h-4 w-4" />
+                  {/* Onglet Préférences */}
+                  <TabsTrigger value="preferences" className={`flex items-center gap-2 ${activeSection === 'preferences' ? 'text-blue-500' : 'text-gray-500'}`}>
+                    <Palette className={`h-6 w-6 ${activeSection === 'preferences' ? 'text-blue-500' : 'text-gray-500'}`} />
                     <span className="hidden sm:inline">Préférences</span>
                   </TabsTrigger>
-                  <TabsTrigger value="notifications" className="flex items-center gap-2">
-                    <Bell className="h-4 w-4" />
+                  {/* Onglet Notifications */}
+                  <TabsTrigger value="notifications" className={`flex items-center gap-2 ${activeSection === 'notifications' ? 'text-blue-500' : 'text-gray-500'}`}>
+                    <Bell className={`h-6 w-6 ${activeSection === 'notifications' ? 'text-blue-500' : 'text-gray-500'}`} />
                     <span className="hidden sm:inline">Notifications</span>
                   </TabsTrigger>
-                  <TabsTrigger value="security" className="flex items-center gap-2">
-                    <Lock className="h-4 w-4" />
+                  {/* Onglet Sécurité */}
+                  <TabsTrigger value="security" className={`flex items-center gap-2 ${activeSection === 'security' ? 'text-blue-500' : 'text-gray-500'}`}>
+                    <Lock className={`h-6 w-6 ${activeSection === 'security' ? 'text-blue-500' : 'text-gray-500'}`} />
                     <span className="hidden sm:inline">Sécurité</span>
                   </TabsTrigger>
-                  <TabsTrigger value="payment" className="flex items-center gap-2">
-                    <Payment className="h-4 w-4" />
+                  {/* Onglet Paiement */}
+                  <TabsTrigger value="payment" className={`flex items-center gap-2 ${activeSection === 'payment' ? 'text-blue-500' : 'text-gray-500'}`}>
+                    <Payment className={`h-6 w-6 ${activeSection === 'payment' ? 'text-blue-500' : 'text-gray-500'}`} />
                     <span className="hidden sm:inline">Paiement</span>
                   </TabsTrigger>
-                  <TabsTrigger value="advanced" className="flex items-center gap-2">
-                    <Settings className="h-4 w-4" />
+                  {/* Onglet Avancé */}
+                  <TabsTrigger value="advanced" className={`flex items-center gap-2 ${activeSection === 'advanced' ? 'text-blue-500' : 'text-gray-500'}`}>
+                    <Settings className={`h-6 w-6 ${activeSection === 'advanced' ? 'text-blue-500' : 'text-gray-500'}`} />
                     <span className="hidden sm:inline">Avancé</span>
                   </TabsTrigger>
                 </TabsList>
@@ -86,27 +92,33 @@ export default function Profile() {
                 <div className="grid lg:grid-cols-[200px_1fr] gap-8">
                   <Card className="hidden lg:block p-2 h-fit sticky top-4">
                     <div className="space-y-1">
-                      <Button variant="ghost" className="w-full justify-start" onClick={() => setActiveSection('profile')}>
+                      {/* Bouton Profil */}
+                      <Button variant="ghost" className={`w-full justify-start ${activeSection === 'profile' ? 'text-blue-500 bg-blue-50' : ''}`} onClick={() => setActiveSection('profile')}>
                         <User className="mr-2 h-4 w-4" />
                         Profil
                       </Button>
-                      <Button variant="ghost" className="w-full justify-start" onClick={() => setActiveSection('preferences')}>
+                      {/* Bouton Préférences */}
+                      <Button variant="ghost" className={`w-full justify-start ${activeSection === 'preferences' ? 'text-blue-500 bg-blue-50' : ''}`} onClick={() => setActiveSection('preferences')}>
                         <Palette className="mr-2 h-4 w-4" />
                         Préférences
                       </Button>
-                      <Button variant="ghost" className="w-full justify-start" onClick={() => setActiveSection('notifications')}>
+                      {/* Bouton Notifications */}
+                      <Button variant="ghost" className={`w-full justify-start ${activeSection === 'notifications' ? 'text-blue-500 bg-blue-50' : ''}`} onClick={() => setActiveSection('notifications')}>
                         <Bell className="mr-2 h-4 w-4" />
                         Notifications
                       </Button>
-                      <Button variant="ghost" className="w-full justify-start" onClick={() => setActiveSection('security')}>
+                      {/* Bouton Sécurité */}
+                      <Button variant="ghost" className={`w-full justify-start ${activeSection === 'security' ? 'text-blue-500 bg-blue-50' : ''}`} onClick={() => setActiveSection('security')}>
                         <Lock className="mr-2 h-4 w-4" />
                         Sécurité
                       </Button>
-                      <Button variant="ghost" className="w-full justify-start" onClick={() => setActiveSection('payment')}>
+                      {/* Bouton Paiement */}
+                      <Button variant="ghost" className={`w-full justify-start ${activeSection === 'payment' ? 'text-blue-500 bg-blue-50' : ''}`} onClick={() => setActiveSection('payment')}>
                         <Payment className="mr-2 h-4 w-4" />
                         Paiement
                       </Button>
-                      <Button variant="ghost" className="w-full justify-start" onClick={() => setActiveSection('advanced')}>
+                      {/* Bouton Avancé */}
+                      <Button variant="ghost" className={`w-full justify-start ${activeSection === 'advanced' ? 'text-blue-500 bg-blue-50' : ''}`} onClick={() => setActiveSection('advanced')}>
                         <Settings className="mr-2 h-4 w-4" />
                         Avancé
                       </Button>
