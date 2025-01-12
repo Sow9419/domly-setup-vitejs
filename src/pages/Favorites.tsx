@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import NavDesktop from '@/components/layout/property-detail/NavDesktop';
 import SearchMobile from '@/components/layout/SearcheMobile';
-import CategoryBar from '@/components/layout/CategoryBar';
 import PropertyCard from '@/components/layout/PropertyCard';
 import { Button } from '@/components/ui/button';
 import { Share2, Plus, BookmarkPlus } from 'lucide-react';
@@ -35,12 +34,6 @@ const Favorites = () => {
 
         {/* Main content area */}
         <div className="flex-1 flex flex-col overflow-hidden ml-0 md:ml-[72px]">
-        <div className="sticky top-0 z-10 bg-white">
-            <CategoryBar 
-              onCategoryChange={(category) => setSelectedCategory(category)}
-              onSearch={() => {}}
-            />
-          </div>
 
           {/* Scrollable content */}
           <div className={`flex-1 overflow-y-auto p-4 ${isMobile ? 'pb-20' : ''}`}>
