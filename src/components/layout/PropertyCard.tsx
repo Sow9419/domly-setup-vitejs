@@ -59,11 +59,11 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
 
   return (
     <Card
-      className="relative group overflow-hidden"
+      className="relative group overflow-hidden rounded-[15px]"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="relative aspect-[3/2.5]">
+      <div className="relative aspect-[2.5/2.5]">
         <button
           className={`absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 p-1.5 rounded-full z-10 transition-opacity duration-300 ${
             isHovered ? "opacity-100" : "opacity-0"
@@ -90,7 +90,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
         />
 
         <div className="absolute top-0 left-0 right-0 p-3 flex justify-between items-center">
-          <div className="flex items-center gap-2 bg-white/80 px-2 py-1 rounded-full">
+          <div className="flex items-center gap-2 bg-[rgba(255,255,255,0.27)] backdrop-blur-[4px] px-2 py-1 rounded-full">
             <Star className="h-4 w-4 fill-current" />
             <span className="text-sm font-medium">{property.rating}</span>
             <span className="text-sm">| {property.status}</span>
@@ -105,7 +105,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
         </div>
 
         <div
-          className={`absolute bottom-0 left-0 right-0 p-3 bg-white/70 backdrop-blur-[20px] rounded-t-[12px] transform transition-transform duration-300 ${
+          className={`absolute bottom-0 left-0 right-0 p-3 bg-[rgba(255,255,255,0.65)] backdrop-blur-[8px] rounded-t-[15px] transform transition-transform duration-300 ${
             isHovered ? "translate-y-0" : "translate-y-full"
           }`}
         >
@@ -119,7 +119,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
             </div>
             <button 
               type="button"
-              className="bg-black p-2 rounded-full w-[35px] h-[35px] flex items-center justify-center -translate-y-2 translate-x-2"
+              className="bg-black p-2 rounded-full w-[40px] h-[40px] flex items-center justify-center -translate-y-2 translate-x-2"
               onClick={handleViewDetails}
             >
               <ArrowUpRight className="h-6 w-6 text-white" />

@@ -62,8 +62,12 @@ export const properties: Property[] = [
         alt: "Vue sur la mer"
       },
       {
-        url: "https://images.unsplash.com/photo-1597266732667-006066625207?q=80&w=2070&auto=format&fit=crop",
-        alt: "Piscine"
+        url: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=80&w=2070&auto=format&fit=crop",
+        alt: "Chambre principale"
+      },
+      {
+        url: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=2070&auto=format&fit=crop",
+        alt: "Vue sur la terrasse"
       }
     ]
   },
@@ -81,8 +85,12 @@ export const properties: Property[] = [
         alt: "Vue panoramique"
       },
       {
-        url: "https://images.unsplash.com/photo-1580926082266-22262226207a?q=80&w=2070&auto=format&fit=crop",
-        alt: "Cuisine moderne"
+        url: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=80&w=2070&auto=format&fit=crop",
+        alt: "Chambre principale"
+      },
+      {
+        url: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=2070&auto=format&fit=crop",
+        alt: "Vue sur la terrasse"
       }
     ]
   },
@@ -119,8 +127,12 @@ export const properties: Property[] = [
         alt: "Façade historique"
       },
       {
-        url: "https://images.unsplash.com/photo-1571003123894-1f00f1d1fa61?q=80&w=2070&auto=format&fit=crop",
-        alt: "Jardin intérieur"
+        url: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=80&w=2070&auto=format&fit=crop",
+        alt: "Chambre principale"
+      },
+      {
+        url: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=2070&auto=format&fit=crop",
+        alt: "Vue sur la terrasse"
       }
     ]
   },

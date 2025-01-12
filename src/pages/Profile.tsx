@@ -54,9 +54,9 @@ export default function Profile() {
               <h1 className="text-2xl font-bold text-gray-700 mb-6">Paramètres</h1>
               
               <Tabs value={activeSection} onValueChange={setActiveSection} className="w-full">
-                <TabsList className="grid grid-cols-6 lg:hidden mb-8 sticky top-0 bg-white">
+                <TabsList className="grid grid-cols-5 lg:hidden mb-8 sticky top-0 bg-white">
                   <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-200"></div>
-                  <div className={`absolute bottom-0 h-0.5 bg-blue-500 transition-all duration-300`} style={{ width: `${100 / 6}%`, transform: `translateX(${activeSection === 'profile' ? 0 : activeSection === 'preferences' ? 1 : activeSection === 'notifications' ? 2 : activeSection === 'security' ? 3 : activeSection === 'payment' ? 4 : 5}00%)` }}></div>
+                  <div className={`absolute bottom-0 h-0.5 bg-blue-500 transition-all duration-300`} style={{ width: `${100 / 5}%`, transform: `translateX(${activeSection === 'profile' ? 0 : activeSection === 'preferences' ? 1 : activeSection === 'notifications' ? 2 : activeSection === 'security' ? 3 : activeSection === 'payment' ? 4 : 5}00%)` }}></div>
                   {/* Onglet Profil */}
                   <TabsTrigger value="profile" className={`flex items-center gap-2 ${activeSection === 'profile' ? 'text-blue-500' : 'text-gray-500'}`}>
                     <User className={`h-6 w-6 ${activeSection === 'profile' ? 'text-blue-500' : 'text-gray-500'}`} />
@@ -83,10 +83,10 @@ export default function Profile() {
                     <span className="hidden sm:inline">Paiement</span>
                   </TabsTrigger>
                   {/* Onglet Avancé */}
-                  <TabsTrigger value="advanced" className={`flex items-center gap-2 ${activeSection === 'advanced' ? 'text-blue-500' : 'text-gray-500'}`}>
+                  {/* <TabsTrigger value="advanced" className={`flex items-center gap-2 ${activeSection === 'advanced' ? 'text-blue-500' : 'text-gray-500'}`}>
                     <Settings className={`h-6 w-6 ${activeSection === 'advanced' ? 'text-blue-500' : 'text-gray-500'}`} />
                     <span className="hidden sm:inline">Avancé</span>
-                  </TabsTrigger>
+                  </TabsTrigger>*/}
                 </TabsList>
 
                 <div className="grid lg:grid-cols-[200px_1fr] gap-8">
@@ -118,10 +118,10 @@ export default function Profile() {
                         Paiement
                       </Button>
                       {/* Bouton Avancé */}
-                      <Button variant="ghost" className={`w-full justify-start ${activeSection === 'advanced' ? 'text-blue-500 bg-blue-50' : ''}`} onClick={() => setActiveSection('advanced')}>
+                      {/*<Button variant="ghost" className={`w-full justify-start ${activeSection === 'advanced' ? 'text-blue-500 bg-blue-50' : ''}`} onClick={() => setActiveSection('advanced')}>
                         <Settings className="mr-2 h-4 w-4" />
                         Avancé
-                      </Button>
+                      </Button>*/}
                     </div>
                   </Card>
 
@@ -146,10 +146,10 @@ export default function Profile() {
 
                     <TabsContent value="security" className="m-0 space-y-6">
                       <SecurityCard />
-                      <PaymentMethodsCard 
+                      {/*<PaymentMethodsCard 
                         paymentMethods={paymentMethods}
                         onAddPaymentMethod={handleAddPaymentMethod}
-                      />
+                      />*/}
                       <AdvancedOptionsCard />
                     </TabsContent>
 
@@ -160,9 +160,9 @@ export default function Profile() {
                       />
                     </TabsContent>
 
-                    <TabsContent value="advanced" className="m-0">
+                    {/*<TabsContent value="advanced" className="m-0">
                       <AdvancedOptionsCard />
-                    </TabsContent>
+                    </TabsContent>*/}
                   </div>
                 </div>
               </Tabs>
