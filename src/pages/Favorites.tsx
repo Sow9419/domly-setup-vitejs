@@ -54,7 +54,7 @@ const Favorites = () => {
 
         {/* Main content area */}
         <div className="flex-1 flex flex-col overflow-hidden ml-0 md:ml-[72px]">
-          {/* FavoriBar */}
+          {/* FavoriBar with padding and fixed positioning */}
           <div className="pt-16">
             <FavoriBar 
               onFilterChange={handleFilterChange}
