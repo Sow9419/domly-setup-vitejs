@@ -63,7 +63,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="relative aspect-[2.5/2.5]">
+      <div className="relative aspect-[3/2.5]">
         <button
           className={`absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 p-1.5 rounded-full z-10 transition-opacity duration-300 ${
             isHovered ? "opacity-100" : "opacity-0"
@@ -90,17 +90,17 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
         />
 
         <div className="absolute top-0 left-0 right-0 p-3 flex justify-between items-center">
-          <div className="flex items-center gap-2 bg-[rgba(255,255,255,0.27)] backdrop-blur-[4px] px-2 py-1 rounded-full">
+          <div className="flex items-center gap-2 bg-[rgba(255,255,255,0.56)] px-2 py-1 rounded-full">
             <Star className="h-4 w-4 fill-current" />
             <span className="text-sm font-medium">{property.rating}</span>
             <span className="text-sm">| {property.status}</span>
           </div>
           <button 
             type="button"
-            className="bg-white p-2 rounded-full transition-colors duration-300"
+            className="bg-[rgba(0,0,0,0.17)] backdrop-blur-[2px] p-1.5 rounded-full transition-colors duration-300 text-white"
             onClick={toggleFavorite}
           >
-            <Heart className={`h-4 w-4 ${isFavorite ? 'text-primary fill-current' : ''}`} />
+            <Heart className={`h-5 w-5  ${isFavorite ? 'text-red-500 fill-current' : ''}`} />
           </button>
         </div>
 
@@ -127,7 +127,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
           </div>
         </div>
 
-        <div className="absolute bottom-14 left-0 right-0 flex justify-center gap-1.5">
+        <div className="absolute bottom-20 left-0 right-0 flex justify-center gap-1.5">
           {property.images.map((_, index) => (
             <button
               key={index}

@@ -9,17 +9,11 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import SideNav from '@/components/layout/SideNav';
 import BottomNav from '@/components/layout/BottomNav';
 import { favorites } from '@/data/favorites';
+
 const Favorites = () => {
   const isMobile = window.innerWidth < 768;
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [favoriteProperties, setFavoriteProperties] = useState(favorites.properties);
-  const renderNavigation = () => {
-    if (isMobile) {
-      return <BottomNav />;
-    }
-    return <SideNav />;
-  };
-  
 
   useEffect(() => {
     setFavoriteProperties(favorites.properties);
@@ -34,18 +28,19 @@ const Favorites = () => {
       <div className="flex-1 flex overflow-hidden">
         {/* Sidebar for desktop */}
         {!isMobile && (
-          <div className="w-[72px] overflow-x-auto border-r bg-white hide-scrollbar">
+          <div className="w-[72px] fixed left-0 top-0 bottom-0 overflow-hidden border-r bg-white">
             <SideNav />
           </div>
-          
         )}
 
         {/* Main content area */}
-        <div className="flex-1 flex flex-col overflow-hidden">
-          <CategoryBar 
-            onCategoryChange={(category) => setSelectedCategory(category)}
-            onSearch={() => {}}
-          />
+        <div className="flex-1 flex flex-col overflow-hidden ml-0 md:ml-[72px]">
+        <div className="sticky top-0 z-10 bg-white">
+            <CategoryBar 
+              onCategoryChange={(category) => setSelectedCategory(category)}
+              onSearch={() => {}}
+            />
+          </div>
 
           {/* Scrollable content */}
           <div className={`flex-1 overflow-y-auto p-4 ${isMobile ? 'pb-20' : ''}`}>
@@ -67,28 +62,8 @@ const Favorites = () => {
               </div>
             ) : (
               <div>
-                {/* Actions */}
-                <div className="flex justify-between items-center mb-6">
-                  <Button 
-                    variant="outline" 
-                    className="flex items-center gap-2"
-                    onClick={() => console.log('Create new list')}
-                  >
-                    <Plus className="h-4 w-4" />
-                    Créer une nouvelle liste
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    size="icon" 
-                    className="rounded-full"
-                    onClick={() => console.log('Share favorites')}
-                  >
-                    <Share2 className="h-4 w-4" />
-                  </Button>
-                </div>
-
                 {/* Favorites grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {favoriteProperties.map((property) => (
                     <PropertyCard key={property.id} property={property} />
                   ))}
@@ -103,8 +78,6 @@ const Favorites = () => {
       {isMobile && <BottomNav />}
     </div>
   );
-  return renderNavigation();
 };
-
 
 export default Favorites;
