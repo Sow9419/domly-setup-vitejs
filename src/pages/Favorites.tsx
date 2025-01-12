@@ -55,7 +55,7 @@ const Favorites = () => {
         {/* Main content area */}
         <div className="flex-1 flex flex-col overflow-hidden ml-0 md:ml-[72px]">
           {/* FavoriBar with padding and fixed positioning */}
-          <div className={`sticky top-0 z-40 ${isMobile ? 'pt-20' : 'pt-0'}`}>
+          <div className={`sticky top-0 z-40 bg-white ${isMobile ? 'mt-20' : ''}`}>
             <FavoriBar 
               onFilterChange={handleFilterChange}
               favorites={favoriteProperties}
