@@ -56,7 +56,7 @@ const Favorites = () => {
             ) : (
               <div>
                 {/* Favorites grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-20">
                   {favoriteProperties.map((property) => (
                     <PropertyCard key={property.id} property={property} />
                   ))}
