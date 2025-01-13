@@ -8,11 +8,10 @@ import BottomNav from "@/components/layout/BottomNav";
 import { properties } from "@/data/properties";
 
 const Index = () => {
-  // États pour la gestion des filtres et de la recherche
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>("all");
   const [searchTerm, setSearchTerm] = useState("");
+  const isMobile = window.innerWidth < 768;
 
-  // Fonction de filtrage des propriétés
   const filteredProperties = properties.filter((property) => {
     const matchesCategory = selectedCategory === "all" || property.category === selectedCategory;
     const matchesSearch = searchTerm === "" || 
@@ -21,13 +20,11 @@ const Index = () => {
     return matchesCategory && matchesSearch;
   });
 
-  // Gestionnaire de changement de catégorie
   const handleCategoryChange = useCallback((category: CategoryType) => {
     setSelectedCategory(category);
     console.log("Filtering by category:", category);
   }, []);
 
-  // Gestionnaire de recherche
   const handleSearch = useCallback((term: string) => {
     setSearchTerm(term);
     console.log("Searching for:", term);
@@ -35,7 +32,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Layout Mobile */}
+      {/* Mobile Layout */}
       <div className="md:hidden">
         <Header onSearch={handleSearch} />
         <CategoryBar onCategoryChange={handleCategoryChange} onSearch={handleSearch} />
@@ -45,7 +42,6 @@ const Index = () => {
               <PropertyCard key={property.id} property={property} />
             ))}
           </div>
-
           <div className="mt-12 bg-gradient-to-r from-pink-500 to-purple-500 rounded-xl p-8 text-white">
             <h2 className="text-2xl font-bold mb-4">Devenez hôte</h2>
             <p className="mb-6">Gagnez un revenu complémentaire en partageant votre logement</p>
@@ -57,30 +53,35 @@ const Index = () => {
         <BottomNav />
       </div>
 
-      {/* Layout Desktop */}
-      <div className="hidden md:flex h-screen">
-        <div className="w-[72px] overflow-y-auto border-r border-gray-100 bg-white hide-scrollbar ">
+      {/* Desktop Layout */}
+      <div className="hidden md:flex min-h-screen">
+        {/* Column 1: Fixed Sidebar */}
+        <div className="w-72 fixed left-0 top-0 bottom-0 border-r border-gray-200 bg-white">
           <SideNav />
         </div>
-        
-        <div className="flex-1 flex flex-col overflow-hidden">
-          <Header onSearch={handleSearch} />
-          <CategoryBar onCategoryChange={handleCategoryChange} onSearch={handleSearch} />
-          <main className="flex-1 overflow-y-auto hide-scrollbar">
-            <div className="container mx-auto px-8 py-4">
-              <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6">
-                {filteredProperties.map((property) => (
-                  <PropertyCard key={property.id} property={property} />
-                ))}
-              </div>
 
-              <div className="mt-12 mb-8 bg-gradient-to-r from-pink-500 to-purple-500 rounded-xl p-8 text-white">
-                <h2 className="text-2xl font-bold mb-4">Devenez hôte</h2>
-                <p className="mb-6">Gagnez un revenu complémentaire en partageant votre logement</p>
-                <Button variant="secondary" className="bg-white text-pink-500 hover:bg-gray-100">
-                  En savoir plus
-                </Button>
-              </div>
+        {/* Column 2: Main Content */}
+        <div className="flex-1 ml-72">
+          {/* Fixed Header Section */}
+          <div className="fixed top-0 right-0 left-72 bg-white z-50">
+            <Header onSearch={handleSearch} />
+            <CategoryBar onCategoryChange={handleCategoryChange} onSearch={handleSearch} />
+          </div>
+
+          {/* Scrollable Main Content */}
+          <main className="pt-32 px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {filteredProperties.map((property) => (
+                <PropertyCard key={property.id} property={property} />
+              ))}
+            </div>
+
+            <div className="mt-12 mb-8 bg-gradient-to-r from-pink-500 to-purple-500 rounded-xl p-8 text-white">
+              <h2 className="text-2xl font-bold mb-4">Devenez hôte</h2>
+              <p className="mb-6">Gagnez un revenu complémentaire en partageant votre logement</p>
+              <Button variant="secondary" className="bg-white text-pink-500 hover:bg-gray-100">
+                En savoir plus
+              </Button>
             </div>
           </main>
         </div>
