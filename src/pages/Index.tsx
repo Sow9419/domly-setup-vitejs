@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/layout/Header";
-import CategoryBar from "@/components/layout/CategoryBar";
+import CategoryBar, { CategoryType } from "@/components/layout/CategoryBar";
 import PropertyCard from "@/components/layout/PropertyCard";
 import SideNav from "@/components/layout/SideNav";
 import BottomNav from "@/components/layout/BottomNav";
