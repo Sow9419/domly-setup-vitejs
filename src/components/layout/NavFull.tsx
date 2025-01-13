@@ -12,8 +12,8 @@ const NavFull = ({ showBackButton, title, className }: NavFullProps) => {
   const navigate = useNavigate();
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 bg-white border-b ${className || ''}`}>
-      <div className="max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4">
+    <header className={`fixed top-0 left-0 right-0 z-50 bg-white border-b ${className || ''} md:ml-[72px]`}>
+      <div className="max-w-[calc(100%-72px)] mx-auto xl:px-20 md:px-10 sm:px-2 px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-4">
             {showBackButton && (

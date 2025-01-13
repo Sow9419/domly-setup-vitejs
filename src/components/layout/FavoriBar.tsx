@@ -46,7 +46,7 @@ const FavoriBar = ({ onFilterChange, favorites }: FavoriBarProps) => {
   };
 
   return (
-    <div className="border-b bg-white z-40 shadow-sm">
+    <div className=" border-b bg-white z-40 shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4 overflow-x-auto hide-scrollbar">
           <div className="flex gap-3">
@@ -54,7 +54,6 @@ const FavoriBar = ({ onFilterChange, favorites }: FavoriBarProps) => {
               const IconComponent = filter.icon;
               const isSelected = selectedFilter === filter.id;
               const count = getFilterCount(filter.id as FavoriFilterType);
-              
               return (
                 <Button
                   key={filter.id}

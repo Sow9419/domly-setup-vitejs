@@ -55,7 +55,7 @@ const Header = ({ onSearch }: HeaderProps) => {
   return (
     <>
       {/* Version Mobile */}
-      <header className="fixed top-0 w-full z-50 bg-white md:hidden">
+      <header className="fixed top-0 container max-auto z-50 bg-white md:hidden">
         <div className="px-4 py-3">
           <div className="flex items-center gap-3 bg-white rounded-full border border-gray-200 p-3 shadow-lg">
             <Search className="h-5 w-5 text-gray-600" />
@@ -79,13 +79,13 @@ const Header = ({ onSearch }: HeaderProps) => {
       {/* Version Desktop */}
       <header 
         className={`
-          fixed top-0 left-0 right-0 z-50 
+          w-full bg-white 
           transition-all duration-300
           hidden md:block 
           ${isScrolled ? 'bg-white border-b border-gray-200' : 'bg-white'}
         `}
       >
-        <div className="max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4">
+        <div className="w-full px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link to="/" className="flex items-center">
@@ -96,7 +96,7 @@ const Header = ({ onSearch }: HeaderProps) => {
 
             {/* Barre de recherche - Visible uniquement lors du scroll */}
             {isScrolled && (
-              <div className="hidden md:flex flex-1 max-w-md mx-8">
+              <div className="flex flex-1 max-w-md mx-8">
                 <div className="relative w-full">
                   <div className="flex items-center bg-white rounded-full border border-gray-300 shadow-md hover:shadow-xl transition-shadow duration-200">
                     <div className="flex-1">
@@ -119,7 +119,7 @@ const Header = ({ onSearch }: HeaderProps) => {
             )}
 
             {/* Menu de droite */}
-            <div className="hidden md:flex items-center gap-4">
+            <div className="flex items-center gap-4">
               <Button 
                 variant="ghost" 
                 className={`hover:text-gray-600 ${isScrolled ? 'text-gray-800' : 'text-gray-800'}`}
@@ -147,7 +147,7 @@ const Header = ({ onSearch }: HeaderProps) => {
 
       {/* Barre de recherche principale - Entre Header et CategoryBar */}
       {!isScrolled && (
-        <div className="w-full bg-transparent hidden md:block pb-2" style={{ marginTop: "80px" }}>
+        <div className="w-full bg-transparent hidden md:block pb-2 pt-4">
           <div className="max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4">
             <div className="max-w-2xl mx-auto">
               <div className="relative">

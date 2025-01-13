@@ -14,7 +14,7 @@ const Property = () => {
   
   return (
     <div className="min-h-screen flex flex-col">
-      <NavFull title="Propriétés" />
+      <NavFull title="Propriétés"/>
       <div className="flex-1 flex overflow-hidden">
         <Suspense fallback={null}>
         {!isMobile && (

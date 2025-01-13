@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import NavFull from '@/components/layout/NavFull';
 import SearchMobile from '@/components/layout/SearcheMobile';
 import PropertyCard from '@/components/layout/PropertyCard';
 import { Button } from '@/components/ui/button';
@@ -10,6 +9,7 @@ import BottomNav from '@/components/layout/BottomNav';
 import { favorites } from '@/data/favorites';
 import FavoriBar, { FavoriFilterType } from '@/components/layout/FavoriBar';
 import { Property } from '@/data/properties';
+import NavDesktop from '@/components/layout/property-detail/NavDesktop';
 
 const Favorites = () => {
   const isMobile = window.innerWidth < 768;
@@ -41,7 +41,7 @@ const Favorites = () => {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
-      {isMobile ? <SearchMobile /> : <NavFull title="Favoris" />}
+      {isMobile ? <SearchMobile /> : null}
 
       {/* Main content */}
       <div className="flex-1 flex overflow-hidden">
@@ -55,7 +55,8 @@ const Favorites = () => {
         {/* Main content area */}
         <div className="flex-1 flex flex-col overflow-hidden ml-0 md:ml-[72px]">
           {/* FavoriBar with padding and fixed positioning */}
-          <div className={`sticky top-0 z-40 bg-white ${isMobile ? 'mt-20' : ''}`}>
+          <div className={`bg-white ${isMobile ? 'mt-20' : ''}`}>
+            {!isMobile && <NavDesktop className="max-w-[calc(100%-72px)] mx-auto"/>}
             <FavoriBar 
               onFilterChange={handleFilterChange}
               favorites={favoriteProperties}

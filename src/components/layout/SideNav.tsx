@@ -6,7 +6,7 @@ const SideNav = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-full gap-7 nav-transition side-nav">
+    <div className="flex flex-col items-center justify-center min-h-full gap-7 nav-transition side-nav bg-gray-100">
       <Link 
         to="/explorer" 
         className={`p-3 rounded-full hover:bg-blue-100 transition-colors ${
