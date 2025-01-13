@@ -4,55 +4,52 @@ import SearchMobile from '@/components/layout/SearcheMobile';
 import CategoryBar from '@/components/layout/CategoryBar';
 import SideNav from '@/components/layout/SideNav';
 import BottomNav from '@/components/layout/BottomNav';
+import { useIsMobile } from '@/hooks/use-mobile';
 import Map from '@/components/Map';
-
 const Explorer = () => {
   const isMobile = window.innerWidth < 768;
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
+  const renderNavigation = () => {
+    if (isMobile) {
+      return <BottomNav />;
+    }
+    return <SideNav />;
+  };
 
   return (
-    <div className="h-screen flex">
-      {/* Mobile Layout */}
-      {isMobile ? (
-        <div className="flex flex-col h-full w-full">
-          <SearchMobile />
+    <div className="h-screen flex flex-col">
+      {/* Header */}
+      {isMobile ? <SearchMobile /> : <NavDesktop />}
+      
+      {/* Main content */}
+      <div className="flex-1 flex overflow-hidden">
+        {/* Sidebar for desktop */}
+        {!isMobile && (
+          <div className="w-[72px] overflow-y-auto border-r bg-white hide-scrollbar">
+            <SideNav />
+          </div>
+        )}
+        
+        {/* Main content area */}
+        <div className="flex-1 flex flex-col overflow-hidden">
           <CategoryBar 
             onCategoryChange={(category) => setSelectedCategory(category)}
             onSearch={(term) => setSearchTerm(term)}
           />
-          <div className="flex-1 relative pb-16">
+          
+          {/* Map component with bottom padding on mobile */}
+          <div className={`flex-1 relative ${isMobile ? 'pb-16' : ''}`}>
             <Map />
           </div>
-          <BottomNav />
         </div>
-      ) : (
-        <>
-          {/* Column 1: Fixed Sidebar */}
-          <div className="w-72 fixed left-0 top-0 bottom-0 border-r border-gray-200 bg-white">
-            <SideNav />
-          </div>
+      </div>
 
-          {/* Column 2: Main Content */}
-          <div className="flex-1 ml-72">
-            {/* Fixed Header Section */}
-            <div className="fixed top-0 right-0 left-72 bg-white z-50">
-              <NavDesktop />
-              <CategoryBar 
-                onCategoryChange={(category) => setSelectedCategory(category)}
-                onSearch={(term) => setSearchTerm(term)}
-              />
-            </div>
-
-            {/* Scrollable Main Content */}
-            <div className="pt-32 h-full">
-              <Map />
-            </div>
-          </div>
-        </>
-      )}
+      {/* Bottom navigation for mobile */}
+      {isMobile && <BottomNav />}
     </div>
   );
+  return renderNavigation();
 };
 
 export default Explorer;
