@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/layout/Header";
-import CategoryBar, { CategoryType } from "@/components/layout/CategoryBar";
+import CategoryBar from "@/components/layout/CategoryBar";
 import PropertyCard from "@/components/layout/PropertyCard";
 import SideNav from "@/components/layout/SideNav";
 import BottomNav from "@/components/layout/BottomNav";
@@ -62,14 +62,16 @@ const Index = () => {
 
         {/* Column 2: Main Content */}
         <div className="flex-1 ml-72">
-          {/* Fixed Header Section */}
-          <div className="fixed top-0 right-0 left-72 bg-white z-50">
-            <Header onSearch={handleSearch} />
-            <CategoryBar onCategoryChange={handleCategoryChange} onSearch={handleSearch} />
+          {/* Fixed Header Section - Now properly contained within Column 2 */}
+          <div className="sticky top-0 z-50 bg-white">
+            <div className="w-full">
+              <Header onSearch={handleSearch} />
+              <CategoryBar onCategoryChange={handleCategoryChange} onSearch={handleSearch} />
+            </div>
           </div>
 
           {/* Scrollable Main Content */}
-          <main className="pt-32 px-8">
+          <main className="px-8">
             <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {filteredProperties.map((property) => (
                 <PropertyCard key={property.id} property={property} />
