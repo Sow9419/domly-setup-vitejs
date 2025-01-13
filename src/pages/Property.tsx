@@ -3,39 +3,39 @@ import SideNav from '@/components/layout/SideNav';
 import BottomNav from '@/components/layout/BottomNav';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Suspense } from 'react';
+
 const Property = () => {
   const isMobile = window.innerWidth < 768;
-  const renderNavigation = () => {
-    if (isMobile) {
-      return <BottomNav />;
-    }
-    return <SideNav />;
-  };
-  
-  return (
-    <div className="min-h-screen flex flex-col">
-      <NavFull title="Propriétés" />
-      <div className="flex-1 flex overflow-hidden">
-        <Suspense fallback={null}>
-        {!isMobile && (
-          <div className="w-[72px] overflow-x-auto border-r bg-white hide-scrollbar">
-            <SideNav />
-          </div>
-        )}
-        </Suspense>
 
-        <div className="flex-1 flex flex-col overflow-hidden ml-0 md:ml-[72px]">
-          {/* Main content area */}
-          <div className="flex-1 overflow-y-auto">
-            {/* Main content goes here */}
+  return (
+    <div className="min-h-screen flex">
+      {/* Column 1: Fixed Sidebar (Desktop only) */}
+      {!isMobile && (
+        <div className="w-[72px] fixed left-0 top-0 bottom-0 overflow-hidden border-r bg-white">
+          <SideNav />
+        </div>
+      )}
+
+      {/* Column 2: Main Content Area */}
+      <div className="flex-1 flex flex-col min-h-screen md:ml-[72px]">
+        {/* Fixed Header Section */}
+        <div className="sticky top-0 z-50 bg-white">
+          <NavFull title="Propriétés" />
+        </div>
+
+        {/* Scrollable Main Content */}
+        <div className="flex-1 overflow-y-auto">
+          {/* Main content goes here */}
+          <div className="container mx-auto px-4 py-6">
+            {/* Your main content components */}
           </div>
         </div>
-      </div>
 
-      {isMobile && <BottomNav />}
+        {/* Mobile Bottom Navigation */}
+        {isMobile && <BottomNav />}
+      </div>
     </div>
   );
-  return renderNavigation();
 };
 
 export default Property;
