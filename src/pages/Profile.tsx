@@ -10,12 +10,13 @@ import { NotificationsCard } from '@/components/profile/NotificationsCard';
 import { SecurityCard } from '@/components/profile/SecurityCard';
 import { PaymentMethodsCard } from '@/components/profile/PaymentMethodsCard';
 import { AdvancedOptionsCard } from '@/components/profile/AdvancedOptionsCard';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const SideNav = lazy(() => import('@/components/layout/SideNav'));
 const BottomNav = lazy(() => import('@/components/layout/BottomNav'));
 
 export default function Profile() {
-  const isMobile = window.innerWidth < 768;
+  const isMobile = useIsMobile();
   const [profileImage, setProfileImage] = useState("/placeholder.svg?height=80&width=80");
   const [paymentMethods, setPaymentMethods] = useState<Array<{
     type: string;
@@ -35,26 +36,17 @@ export default function Profile() {
     setPaymentMethods([...paymentMethods, { ...newMethod, isActive: true }]);
   };
 
-  return (
+  // Layout Mobile
+  const MobileLayout = () => (
     <div className="min-h-screen flex flex-col">
-      <NavFull title="Profil" className="fixed top-0 left-0 right-0 z-50" />
+      <NavFull title="Profil" />
       
-      <div className="flex-1 flex overflow-hidden pt-16">
-        <Suspense fallback={null}>
-          {!isMobile && (
-            <div className="w-[72px] fixed left-0 top-0 bottom-0 overflow-hidden border-r bg-white">
-              <SideNav />
-            </div>
-          )}
-        </Suspense>
-        
-        <div className="flex-1 flex flex-col overflow-hidden ml-0 md:ml-[72px]">
-          <div className="flex-1 overflow-y-auto">
-            <div className="container mx-auto px-4 pt-6 pb-20">
-              <h1 className="text-2xl font-bold text-gray-700 mb-6">Paramètres</h1>
-              
-              <Tabs value={activeSection} onValueChange={setActiveSection} className="w-full">
-                <TabsList className="grid grid-cols-5 lg:hidden mb-8 sticky top-0 bg-white">
+      <main className="flex-1 overflow-y-auto pt-16 pb-16">
+        <div className="container mx-auto px-4 py-6">
+          <h1 className="text-2xl font-bold text-gray-700 mb-6">Paramètres</h1>
+          
+          <Tabs value={activeSection} onValueChange={setActiveSection} className="w-full">
+            <TabsList className="grid grid-cols-5 mb-8 sticky top-0 bg-white">
                   <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-200"></div>
                   <div className={`absolute bottom-0 h-0.5 bg-blue-500 transition-all duration-300`} style={{ width: `${100 / 5}%`, transform: `translateX(${activeSection === 'profile' ? 0 : activeSection === 'preferences' ? 1 : activeSection === 'notifications' ? 2 : activeSection === 'security' ? 3 : activeSection === 'payment' ? 4 : 5}00%)` }}></div>
                   {/* Onglet Profil */}
@@ -87,16 +79,64 @@ export default function Profile() {
                     <Settings className={`h-6 w-6 ${activeSection === 'advanced' ? 'text-blue-500' : 'text-gray-500'}`} />
                     <span className="hidden sm:inline">Avancé</span>
                   </TabsTrigger>*/}
-                </TabsList>
+            </TabsList>
 
-                <div className="grid lg:grid-cols-[200px_1fr] gap-8">
-                  <Card className="hidden lg:block p-2 h-fit sticky top-4">
-                    <div className="space-y-1">
-                      {/* Bouton Profil */}
-                      <Button variant="ghost" className={`w-full justify-start ${activeSection === 'profile' ? 'text-blue-500 bg-blue-50' : ''}`} onClick={() => setActiveSection('profile')}>
-                        <User className="mr-2 h-4 w-4" />
-                        Profil
-                      </Button>
+            <div className="space-y-6">
+              <TabsContent value="profile">
+                <ProfileCard profileImage={profileImage} onImageUpload={setProfileImage} />
+              </TabsContent>
+              <TabsContent value="preferences">
+                <PreferencesCard />
+              </TabsContent>
+              <TabsContent value="notifications">
+                <NotificationsCard />
+              </TabsContent>
+              <TabsContent value="security">
+                <SecurityCard />
+              </TabsContent>
+              <TabsContent value="payment">
+                <PaymentMethodsCard 
+                  paymentMethods={paymentMethods}
+                  onAddPaymentMethod={(method) => setPaymentMethods([...paymentMethods, { ...method, isActive: true }])}
+                />
+              </TabsContent>
+            </div>
+          </Tabs>
+        </div>
+      </main>
+
+      <BottomNav />
+    </div>
+  );
+
+  // Layout Desktop
+  const DesktopLayout = () => (
+    <div className="min-h-screen flex">
+      <Suspense fallback={null}>
+        <div className="w-[72px] fixed left-0 top-0 bottom-0 overflow-hidden border-r bg-white">
+          <SideNav />
+        </div>
+      </Suspense>
+      
+      <div className="flex-1 flex flex-col ml-[72px]">
+        <NavFull title="Profil" />
+        
+        <main className="flex-1 overflow-y-auto pt-16">
+          <div className="container mx-auto px-8 py-6">
+            <h1 className="text-2xl font-bold text-gray-700 mb-6">Paramètres</h1>
+            
+            <Tabs value={activeSection} onValueChange={setActiveSection} className="w-full">
+              <div className="grid lg:grid-cols-[200px_1fr] gap-8">
+                <Card className="p-2 h-fit sticky top-4">
+                  <div className="space-y-1">
+                    <Button 
+                      variant="ghost" 
+                      className={`w-full justify-start ${activeSection === 'profile' ? 'text-blue-500 bg-blue-50' : ''}`}
+                      onClick={() => setActiveSection('profile')}
+                    >
+                      <User className="mr-2 h-4 w-4" />
+                      Profil
+                    </Button>
                       {/* Bouton Préférences */}
                       <Button variant="ghost" className={`w-full justify-start ${activeSection === 'preferences' ? 'text-blue-500 bg-blue-50' : ''}`} onClick={() => setActiveSection('preferences')}>
                         <Palette className="mr-2 h-4 w-4" />
@@ -122,58 +162,36 @@ export default function Profile() {
                         <Settings className="mr-2 h-4 w-4" />
                         Avancé
                       </Button>*/}
-                    </div>
-                  </Card>
-
-                  <div className="space-y-6">
-                    <TabsContent value="profile" className="m-0">
-                      <div className="space-y-6">
-                        <ProfileCard 
-                          profileImage={profileImage}
-                          onImageUpload={handleProfileImageUpdate}
-                        />
-                        
-                      </div>
-                    </TabsContent>
-
-                    <TabsContent value="preferences" className="m-0">
-                      <PreferencesCard />
-                    </TabsContent>
-
-                    <TabsContent value="notifications" className="m-0">
-                      <NotificationsCard />
-                    </TabsContent>
-
-                    <TabsContent value="security" className="m-0 space-y-6">
-                      <SecurityCard />
-                      {/*<PaymentMethodsCard 
-                        paymentMethods={paymentMethods}
-                        onAddPaymentMethod={handleAddPaymentMethod}
-                      />*/}
-                      <AdvancedOptionsCard />
-                    </TabsContent>
-
-                    <TabsContent value="payment" className="m-0">
-                      <PaymentMethodsCard 
-                        paymentMethods={paymentMethods}
-                        onAddPaymentMethod={handleAddPaymentMethod}
-                      />
-                    </TabsContent>
-
-                    {/*<TabsContent value="advanced" className="m-0">
-                      <AdvancedOptionsCard />
-                    </TabsContent>*/}
                   </div>
-                </div>
-              </Tabs>
-            </div>
-          </div>
-        </div>
-      </div>
+                </Card>
 
-      <Suspense fallback={null}>
-        {isMobile && <BottomNav />}
-      </Suspense>
+                <div className="space-y-6">
+                  <TabsContent value="profile">
+                    <ProfileCard profileImage={profileImage} onImageUpload={setProfileImage} />
+                  </TabsContent>
+                  <TabsContent value="preferences">
+                    <PreferencesCard />
+                  </TabsContent>
+                  <TabsContent value="notifications">
+                    <NotificationsCard />
+                  </TabsContent>
+                  <TabsContent value="security">
+                    <SecurityCard />
+                  </TabsContent>
+                  <TabsContent value="payment">
+                    <PaymentMethodsCard 
+                      paymentMethods={paymentMethods}
+                      onAddPaymentMethod={(method) => setPaymentMethods([...paymentMethods, { ...method, isActive: true }])}
+                    />
+                  </TabsContent>
+                </div>
+              </div>
+            </Tabs>
+          </div>
+        </main>
+      </div>
     </div>
   );
+
+  return isMobile ? <MobileLayout /> : <DesktopLayout />;
 }
