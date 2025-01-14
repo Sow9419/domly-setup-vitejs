@@ -8,49 +8,42 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import Map from '@/components/Map';
 
 const Explorer = () => {
-  const isMobile = useIsMobile();
+  const isMobile = window.innerWidth < 768;
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Layout Mobile
-  const MobileLayout = () => (
+  return (
     <div className="h-screen flex flex-col">
-      <SearchMobile />
-      <CategoryBar 
-        onCategoryChange={(category) => setSelectedCategory(category)}
-        onSearch={(term) => setSearchTerm(term)}
-      />
+      {/* Header */}
+      {isMobile ? <SearchMobile /> : <NavDesktop className="max-w-[calc(100%-72px)] mx-auto" />}
       
-      <div className="flex-1 relative pb-16">
-        <Map />
-      </div>
-
-      <BottomNav />
-    </div>
-  );
-
-  // Layout Desktop
-  const DesktopLayout = () => (
-    <div className="h-screen flex">
-      <div className="w-[72px] fixed left-0 top-0 bottom-0 overflow-hidden border-r bg-white">
-        <SideNav />
-      </div>
-      
-      <div className="flex-1 flex flex-col ml-[72px]">
-        <NavDesktop className="max-w-[calc(100%-72px)] mx-auto" />
-        <CategoryBar 
-          onCategoryChange={(category) => setSelectedCategory(category)}
-          onSearch={(term) => setSearchTerm(term)}
-        />
+      {/* Main content */}
+      <div className="flex-1 flex overflow-hidden">
+        {/* Sidebar for desktop */}
+        {!isMobile && (
+          <div className="w-[72px] fixed left-0 top-0 bottom-0 overflow-hidden border-r bg-white">
+            <SideNav />
+          </div>
+        )}
         
-        <div className="flex-1 relative">
-          <Map />
+        {/* Main content area */}
+        <div className="flex-1 flex flex-col overflow-hidden ml-0 md:ml-[72px]">
+          <CategoryBar 
+            onCategoryChange={(category) => setSelectedCategory(category)}
+            onSearch={(term) => setSearchTerm(term)}
+          />
+          
+          {/* Map component with bottom padding on mobile */}
+          <div className={`flex-1 relative ${isMobile ? 'pb-16' : ''}`}>
+            <Map />
+          </div>
         </div>
       </div>
+
+      {/* Bottom navigation for mobile */}
+      {isMobile && <BottomNav />}
     </div>
   );
-
-  return isMobile ? <MobileLayout /> : <DesktopLayout />;
 };
 
 export default Explorer;
