@@ -2,9 +2,28 @@ import NavFull from '@/components/layout/NavFull';
 import SideNav from '@/components/layout/SideNav';
 import BottomNav from '@/components/layout/BottomNav';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { useEffect, useState } from 'react';
 
 const Property = () => {
-  const isMobile = useIsMobile();
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(true); // État pour gérer le flash de rendu
+  
+    useEffect(() => {
+      const checkIsMobile = () => {
+        setIsMobile(window.innerWidth <= 768);
+      };
+  
+      checkIsMobile(); // Vérification initiale
+  
+      window.addEventListener('resize', checkIsMobile);
+  
+      // Désactivation de l'état de "chargement" après le premier calcul
+      setIsLoading(false);
+  
+      return () => window.removeEventListener('resize', checkIsMobile);
+    }, []);
+  
+  
 
   // Layout Mobile
   const MobileLayout = () => (
@@ -32,8 +51,12 @@ const Property = () => {
       </div>
     </div>
   );
-
+  // Affichage conditionnel basé sur isMobile et isLoading
+  if (isLoading) {
+    return null; // Affichage vide pendant le calcul de la taille
+  }
   return isMobile ? <MobileLayout /> : <DesktopLayout />;
+  
 };
 
 export default Property;

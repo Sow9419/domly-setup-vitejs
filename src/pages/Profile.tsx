@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import NavFull from '@/components/layout/NavFull';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -16,7 +16,23 @@ const SideNav = lazy(() => import('@/components/layout/SideNav'));
 const BottomNav = lazy(() => import('@/components/layout/BottomNav'));
 
 export default function Profile() {
-  const isMobile = useIsMobile();
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(true); // État pour gérer le flash de rendu
+  
+    useEffect(() => {
+      const checkIsMobile = () => {
+        setIsMobile(window.innerWidth <= 768);
+      };
+  
+      checkIsMobile(); // Vérification initiale
+  
+      window.addEventListener('resize', checkIsMobile);
+  
+      // Désactivation de l'état de "chargement" après le premier calcul
+      setIsLoading(false);
+  
+      return () => window.removeEventListener('resize', checkIsMobile);
+    }, []);
   const [profileImage, setProfileImage] = useState("/placeholder.svg?height=80&width=80");
   const [paymentMethods, setPaymentMethods] = useState<Array<{
     type: string;
@@ -192,6 +208,10 @@ export default function Profile() {
       </div>
     </div>
   );
+  // Affichage conditionnel basé sur isMobile et isLoading
+  if (isLoading) {
+    return null; // Affichage vide pendant le calcul de la taille
+  }
 
   return isMobile ? <MobileLayout /> : <DesktopLayout />;
 }

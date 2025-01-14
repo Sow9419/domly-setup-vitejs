@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import NavDesktop from '@/components/layout/property-detail/NavDesktop';
 import SearchMobile from '@/components/layout/SearcheMobile';
 import CategoryBar from '@/components/layout/CategoryBar';
@@ -8,9 +8,26 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import Map from '@/components/Map';
 
 const Explorer = () => {
-  const isMobile = useIsMobile();
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(true); // État pour gérer le flash de rendu
+  
+    useEffect(() => {
+      const checkIsMobile = () => {
+        setIsMobile(window.innerWidth <= 768);
+      };
+  
+      checkIsMobile(); // Vérification initiale
+  
+      window.addEventListener('resize', checkIsMobile);
+  
+      // Désactivation de l'état de "chargement" après le premier calcul
+      setIsLoading(false);
+  
+      return () => window.removeEventListener('resize', checkIsMobile);
+    }, []);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
+ 
 
   // Layout Mobile
   const MobileLayout = () => (
@@ -49,6 +66,10 @@ const Explorer = () => {
       </div>
     </div>
   );
+  // Affichage conditionnel basé sur isMobile et isLoading
+  if (isLoading) {
+    return null; // Affichage vide pendant le calcul de la taille
+  }
 
   return isMobile ? <MobileLayout /> : <DesktopLayout />;
 };

@@ -12,7 +12,24 @@ import { Property } from '@/data/properties';
 import NavDesktop from '@/components/layout/property-detail/NavDesktop';
 
 const Favorites = () => {
-  const isMobile = useIsMobile();
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true); // État pour gérer le flash de rendu
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkIsMobile(); // Vérification initiale
+
+    window.addEventListener('resize', checkIsMobile);
+
+    // Désactivation de l'état de "chargement" après le premier calcul
+    setIsLoading(false);
+
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
+
   const [selectedFilter, setSelectedFilter] = useState<FavoriFilterType>("all");
   const [favoriteProperties, setFavoriteProperties] = useState<Property[]>(favorites.properties);
   const [filteredProperties, setFilteredProperties] = useState<Property[]>(favorites.properties);
@@ -23,19 +40,26 @@ const Favorites = () => {
 
   useEffect(() => {
     let filtered = favoriteProperties;
-    
+
     if (selectedFilter === "available") {
       filtered = favoriteProperties.filter(p => p.status === "Disponible");
     } else if (selectedFilter !== "all") {
       filtered = favoriteProperties.filter(p => p.category === selectedFilter);
     }
-    
+
     setFilteredProperties(filtered);
   }, [selectedFilter, favoriteProperties]);
 
   const handleFilterChange = (filter: FavoriFilterType) => {
     setSelectedFilter(filter);
-    console.log('Filter changed to:', filter);
+  };
+
+  // Rendu dynamique de la navigation en fonction de la taille de la fenêtre
+  const renderNavigation = () => {
+    if (isMobile) {
+      return <BottomNav />;
+    }
+    return <SideNav />;
   };
 
   // Layout Mobile
@@ -43,7 +67,7 @@ const Favorites = () => {
     <div className="min-h-screen bg-white">
       <SearchMobile />
       <div className="fixed top-[72px] left-0 right-0 z-40 bg-white">
-        <FavoriBar 
+        <FavoriBar
           onFilterChange={handleFilterChange}
           favorites={favoriteProperties}
         />
@@ -83,11 +107,11 @@ const Favorites = () => {
       <div className="w-[72px] fixed left-0 top-0 bottom-0 overflow-hidden border-r bg-white">
         <SideNav />
       </div>
-      
+
       <div className="flex-1 flex flex-col ml-[72px]">
         <div className="fixed top-0 right-0 left-[72px] bg-white z-50">
           <NavDesktop className="w-full border-b" />
-          <FavoriBar 
+          <FavoriBar
             onFilterChange={handleFilterChange}
             favorites={favoriteProperties}
           />
@@ -121,6 +145,11 @@ const Favorites = () => {
       </div>
     </div>
   );
+
+  // Affichage conditionnel basé sur isMobile et isLoading
+  if (isLoading) {
+    return null; // Affichage vide pendant le calcul de la taille
+  }
 
   return isMobile ? <MobileLayout /> : <DesktopLayout />;
 };
