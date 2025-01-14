@@ -46,7 +46,7 @@ const FavoriBar = ({ onFilterChange, favorites }: FavoriBarProps) => {
   };
 
   return (
-    <div className=" border-b bg-white z-40 shadow-sm">
+    <div className="border-b bg-white z-40 shadow-sm w-full">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4 overflow-x-auto hide-scrollbar">
           <div className="flex gap-3">
