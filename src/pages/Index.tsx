@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 const Index = () => {
+  console.log("Rendering Index page"); // Adding console log to track page render
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="text-center space-y-6">
